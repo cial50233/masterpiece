@@ -1,0 +1,18 @@
+<p>create-account works!</p>
+<form [formGroup]="profileForm"></form>
+    <label>
+        Username:
+        <input type="text" [formControl]="username">
+    </label>
+    <label>
+        Email:
+        <input type="text" [formControl]="email">
+    </label>
+    <label>
+        Password:
+        <input type="text" [formControl]="pwd">
+    </label>
+
+    <input type="reset" value="Reset">
+    <input type="submit" value="Submit">
+</form>
