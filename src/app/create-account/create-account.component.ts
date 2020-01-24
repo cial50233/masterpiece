@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-account',
@@ -8,14 +8,24 @@ import { FormControl } from '@angular/forms';
 })
 export class CreateAccountComponent implements OnInit {
 
-
-  username = new FormControl('');
-  email = new FormControl('');
-  pwd = new FormControl('');
+  profilForm = new FormGroup({
+    username : new FormControl(''),
+    email : new FormControl(''),
+    pwd : new FormControl('')
+  });
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+
+  onSubmit() {
+
+    // TODO: Use EventEmitter with form value
+
+    console.warn(this.profilForm.value);
+
   }
 
 }

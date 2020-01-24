@@ -1,18 +1,22 @@
-<p>create-account works!</p>
+<h1>Registration</h1>
 <form [formGroup]="profileForm">
     <label>
-        Username:
+        <p>Username:</p>
         <input type="text" [formControl]="username">
     </label>
     <label>
-        Email:
+        <p>Email:</p>
         <input type="text" [formControl]="email">
     </label>
     <label>
-        Password:
+        <p>Password:</p>
         <input type="text" [formControl]="pwd">
     </label>
-
-    <input type="reset" value="Reset">
-    <input type="submit" value="Submit">
+    <p>
+        <input type="reset" value="Reset">
+        <input type="submit" value="Submit">
+    </p>
+    <p>
+        <button type="submit" [disabled]="!profilForm.valider">Valider</button>
+    </p>
 </form>
