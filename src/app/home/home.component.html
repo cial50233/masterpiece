@@ -1,0 +1,26 @@
+<div class="row m-2">
+
+    <div class="col-md-4 mr-auto">LOGO</div>
+    <h1>Login</h1>
+
+<form [formGroup]="loginForm">
+    <label>
+        <p>Username or email:</p>
+        <input type="text" [formControl]="username">
+    </label>
+    <label>
+        <p>Mot de passe:</p>
+        <input type="text" [formControl]="pwd">
+    </label>
+    <p>
+        <button type="submit">Connect</button>
+    </p>
+</form>
+
+    <div class="row-md-4">
+
+        <div><a [routerLink]="['/create']">Pas encore de compte ? Créer un compte</a></div>
+
+    </div>
+
+</div>
