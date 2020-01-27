@@ -1,0 +1,109 @@
+<h1>Registration</h1>
+
+<form [formGroup]="profileForm" #UserInfos (ngSubmit)="createForm(UserInfos)">
+    <label>
+        <p>Username:</p>
+        <input type="text" [formControl]="username">
+    </label>
+    <label>
+        <p>Email:</p>
+        <input type="text" [formControl]="email">
+    </label>
+    <label>
+        <p>Password:</p>
+        <input type="text" [formControl]="pwd" formControlName="pwd">
+    </label>
+    <p>
+        <input type="reset" value="Reset">
+        <input type="submit" value="Submit">
+    </p>
+    <p>
+        <button type="submit" [disabled]="!profilForm.valider">Valider</button>
+    </p>
+</form>
+
+<div class="container">
+    <div class="row justify-content-end">
+        <button class="btn btn-secondary m-1"><a [routerLink]="['/']">retour</a></button>
+    </div>
+
+    <h2>Formulaire d'inscription</h2>
+
+    <form [formGroup]="form" #UserInformation (ngSubmit)="UserForm(UserInformation)">
+        <div class="row">
+            <div class=" col-md-offset-1 col-md-4">
+                <label for="email"> Email </label>
+                <input formControlName="email" class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row m-2 p-4" style="border: 1px solid gray; border-radius: 1em;">
+            <div class=" col-md-offset-1 col-md-1">
+                <label for="civility"> Civilité </label>
+                <input formControlName="civility" class="form-control" type="text">
+            </div>
+            <div class=" col-md-offset-1 col-md-4">
+                <label for="firstName"> Prénom </label>
+                <input formControlName="firstName" class="form-control" type="text">
+            </div>
+            <div class=" col-md-offset-1 col-md-4">
+                <label for="lastName"> Nom </label>
+                <input formControlName="lastName" class="form-control" type="text">
+            </div>
+            <div class=" col-md-offset-1 col-md-3">
+                <label for="dateOfBirth"> Date de naissance </label>
+                <input formControlName="dateOfBirth" class="form-control" type="date" placeholder="JJ/MM/AAAA">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class=" col-md-offset-1 col-md-4">
+                <label for="password"> Mot de passe </label>
+                <input formControlName="password" class="form-control" type="password">
+            </div>
+            <div class=" col-md-offset-1 col-md-4">
+                <label for="confirmPassword"> Confirmer le mot de passe </label>
+                <input formControlName="confirmPassword" class="form-control" type="password">
+            </div>
+        </div>
+
+        <div class="col">Adresse : </div>
+        <div class="row m-2 p-4" style="border: 1px solid gray; border-radius: 1em;">
+            <div class=" col-md-offset-1 col-md-1">
+                <label for="streetNumber"> N° </label>
+                <input formControlName="streetNumber" class="form-control" type="text">
+            </div>
+
+            <div class=" col-md-offset-1 col-md-3">
+                <label for="street"> Rue </label>
+                <input formControlName="street" class="form-control" type="text">
+            </div>
+            <div class=" col-md-offset-1 col-md-3">
+                <label for="town"> Ville </label>
+                <input formControlName="town" class="form-control" type="text">
+            </div>
+            <div class=" col-md-offset-1 col-md-2">
+                <label for="zipCode"> Code Postal </label>
+                <input formControlName="zipCode" class="form-control" type="text">
+            </div>
+            <div class=" col-md-offset-1 col-md-3">
+                <label for="country"> Pays </label>
+                <input formControlName="country" class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class=" col-md-offset-1 col-md-4">
+                <label for="role"> Role </label>
+                <input formControlName="role" class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-md-offset-1 col-md-4">
+                <button class="btn btn-md btn-primary btn-style">Valider</button>
+            </div>
+        </div>
+
+    </form>
+</div>
