@@ -30,10 +30,10 @@ public class UserController {
 
     }
 
-	@PostMapping
-	protected void create(@Valid @RequestBody UserDto dto) {
+	@PostMapping("/create")
+	protected boolean create(@Valid @RequestBody UserDto dto) {
 
-		service.create(dto);
+		return service.create(dto);
 
 	}
 

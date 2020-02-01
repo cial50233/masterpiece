@@ -7,7 +7,7 @@ import fr.masterpiece.back.dtos.UserViewDto;
 
 public interface UserService {
 
-    void create(UserDto dto);
+    boolean create(UserDto dto);
 
     void delete(Long id);
 
@@ -16,5 +16,7 @@ public interface UserService {
   //  List<UserViewDto> getAll();
 
     void update(Long id, UserDto dto);
+    
+    boolean isAlreadyPresent(UserDto dto);
 
 }
