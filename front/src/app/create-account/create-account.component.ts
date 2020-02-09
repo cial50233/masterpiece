@@ -11,30 +11,42 @@ import { RouterModule } from '@angular/router';
 })
 export class CreateAccountComponent implements OnInit {
 
-  private userInfo = new UserInfo();
+  private user: UserInfo;
 
   constructor(private userService: UserService, private router: RouterModule) { }
 
   ngOnInit() {
+
+    //this.user = new UserInfo({ email: "", password: { pwd: "", confirm_pwd: "" } });
+    this.user = new UserInfo({ email: "", password: "" });
+  }
+
+  public onFormSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
+    this.user = value;
+    console.log(this.user);
+    console.log("valid: " + valid);
+    this.userService.saveUserToServer();
   }
 
   profilForm = new FormGroup({
-    username: new FormControl('', Validators.required),
+    //username: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
-    pwd: new FormControl('', Validators.required)
+    password: new FormControl('', Validators.required)
   });
 
-  createForm(UserInfos){
+  createForm() {
     let pwd = this.Password.value;
 
     let confirmPwd = this.Password.value;
 
+    this.profilForm.value;
+
   }
 
-  get Password(){
+  get Password() {
 
     return this.profilForm.get('pwd');
-  
+
   }
 
 }
