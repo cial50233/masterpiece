@@ -1,26 +1,30 @@
-<div class="row m-2">
-
-    <div class="col-md-4 mr-auto">LOGO</div>
-    <h1>Login</h1>
+<div class="col-md-4 mr-auto">LOGO</div>
+<h1>Login</h1>
 
 <form [formGroup]="loginForm">
-    <label>
-        <p>Username or email:</p>
-        <input type="text" [formControl]="username">
-    </label>
-    <label>
-        <p>Mot de passe:</p>
-        <input type="text" [formControl]="pwd">
-    </label>
-    <p>
-        <button type="submit">Connect</button>
-    </p>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+        <label>
+            <p>Username or email:</p>
+            <input type="text" [formControl]="username">
+        </label>
+        </div>
+        <div class="form-group col-md-12">
+        <label>
+            <p>Mot de passe:</p>
+            <input type="text" [formControl]="pwd">
+        </label>
+        </div>
+        <div class="form-group col-md-10">
+            <p>
+                <button type="submit" class="btn btn-success">Connect</button>
+            </p>
+        </div>
+    </div>
 </form>
 
-    <div class="row-md-4">
+<div class="form-group col-md-12">
 
-        <div><a [routerLink]="['/create']">Pas encore de compte ? Créer un compte</a></div>
-
-    </div>
+    <div><a [routerLink]="['/create']">Pas encore de compte ? Créer un compte</a></div>
 
 </div>

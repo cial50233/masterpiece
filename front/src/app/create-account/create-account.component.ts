@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserInfo } from '../classes/user-info';
 import { UserService } from '../services/user.service';
 import { RouterModule } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-account',
@@ -13,7 +14,7 @@ export class CreateAccountComponent implements OnInit {
 
   private user: UserInfo;
 
-  constructor(private userService: UserService, private router: RouterModule) { }
+  constructor(private httpClient: HttpClient, private userService: UserService, private router: RouterModule) { }
 
   ngOnInit() {
 
@@ -22,10 +23,21 @@ export class CreateAccountComponent implements OnInit {
   }
 
   public onFormSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
-    this.user = value;
-    console.log(this.user);
-    console.log("valid: " + valid);
-    this.userService.saveUserToServer();
+    let headers = new HttpHeaders()
+    .set("access-control-allow-origin", "http://localhost:8081")
+    .set("Access-Control-Request-Method", "GET,HEAD,PUT,PATCH,POST,DELETE")
+    .set("Content-Type", "application/json");
+    alert('onFormSubmit');
+    this.httpClient
+      .post('http://localhost:8081/user/create/', JSON.stringify(this.user),  { headers })
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
   }
 
   profilForm = new FormGroup({
@@ -34,19 +46,12 @@ export class CreateAccountComponent implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
-  createForm() {
-    let pwd = this.Password.value;
 
-    let confirmPwd = this.Password.value;
-
-    this.profilForm.value;
-
-  }
-
-  get Password() {
-
-    return this.profilForm.get('pwd');
-
+  public onSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
+    this.user = value;alert('onSubmit');
+    console.log(this.user);
+    console.log("valid: " + valid);
+    this.userService.saveUserToServer();
   }
 
 }

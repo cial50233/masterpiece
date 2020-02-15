@@ -1,6 +1,7 @@
+
 <h1>Registration</h1>
 
-<form novalidate ngNoForm [formGroup]="profilForm" #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+<form [formGroup]="profilForm" #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
     <div class="form-row">
         <!--  <div class="form-group col-md-6">
             <label>
@@ -41,8 +42,8 @@
         </div> -->
         <div class="form-group col-md-10">
             <p>
-                <input type="reset" value="Reset">
-                <input type="submit" value="Submit">
+                <input type="reset" class="btn btn-primary" value="Reset">
+                <!--<input type="submit" value="Submit">-->
             </p>
         </div>
         <div class="form-group col-md-10">
