@@ -1,18 +1,25 @@
 <div class="col-md-4 mr-auto">LOGO</div>
 <h1>Login</h1>
 
-<form [formGroup]="loginForm">
+<form [formGroup]="loginForm" (ngSubmit)="logIn()">
     <div class="form-row">
         <div class="form-group col-md-12">
         <label>
-            <p>Username or email:</p>
-            <input type="text" [formControl]="username">
+            <p>Email:</p>
+            <input type="text" [formControl]="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.email.errors.required }"/>
+            <div *ngIf="submitted && returnControl.email.errors.required" class="invalid-feedback">
+                <div *ngIf="returnControl.email.errors.required">Email is required</div>
+                <div *ngIf="returnControl.email.errors.email">Wrong email format</div>
+            </div>
         </label>
         </div>
         <div class="form-group col-md-12">
         <label>
             <p>Mot de passe:</p>
-            <input type="text" [formControl]="pwd">
+            <input type="text" [formControl]="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors.required }">
+            <div *ngIf="submitted && returnControl.password.errors.required" class="invalid-feedback">
+                <div *ngIf="returnControl.password.errors.required">Password is required</div>
+            </div>
         </label>
         </div>
         <div class="form-group col-md-10">

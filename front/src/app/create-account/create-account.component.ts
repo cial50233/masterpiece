@@ -54,7 +54,6 @@ export class CreateAccountComponent implements OnInit {
   }
 
 
-
   public onSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
     this.user = value; alert('onSubmit');
     console.log(this.user);

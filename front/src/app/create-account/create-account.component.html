@@ -1,21 +1,23 @@
+<div class="row justify-content-start">
+    <button class="btn btn-secondary m-1"><a [routerLink]="['/']">retour</a></button>
+</div>
 <h1>Registration</h1>
 
 <form [formGroup]="profilForm" (ngSubmit)="saveUser()">
 
     <label for="email">Email</label>
     <input formControlName="email" id="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.email.errors.required }"/>
-    <div *ngIf="email.invalid">Invalid</div>
     <div *ngIf="submitted && returnControl.email.errors.required" class="invalid-feedback">
         <div *ngIf="returnControl.email.errors.required">Email is required</div>
         <div *ngIf="returnControl.email.errors.email">Wrong email format</div>
     </div>
 
     <label for="password">Password</label>
-    <input formControlName="password" id="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors.required }"/>
-    <!--div *ngIf="password.touched && password.hasError('required')">Required</div-->
-    <!--<div *ngIf="submitted && returnControl.password.errors.required" class="invalid-feedback">
+    <input formControlName="password" id="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors }"/>
+    <div *ngIf="password.touched && password.hasError('required')">Required</div>
+    <div *ngIf="submitted && returnControl.password.errors.required" class="invalid-feedback">
         <div *ngIf="returnControl.password.errors.required">Password is required</div>
-    </div> -->
+    </div>
     <button type="submit" class="btn btn-success" [disabled]="!profilForm.valid">Submit</button>
     <button type="text" class="btn btn-primary" (click)="onReset()">Reset</button>
 </form>
