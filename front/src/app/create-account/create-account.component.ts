@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserInfo } from '../classes/user-info';
 import { UserService } from '../services/user.service';
 import { RouterModule } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-create-account',
@@ -14,13 +15,25 @@ export class CreateAccountComponent implements OnInit {
 
   private user: UserInfo;
 
-  constructor(private httpClient: HttpClient, private userService: UserService, private router: RouterModule) { }
+  submitted = false;
+
+  profilForm = this.formBuilder.group({
+
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
+  });
+  returnControl = this.profilForm.controls;
+  
+  constructor(private formBuilder : FormBuilder, private httpClient: HttpClient, private userService: UserService, private router: RouterModule) { }
 
   ngOnInit() {
 
     //this.user = new UserInfo({ email: "", password: { pwd: "", confirm_pwd: "" } });
     this.user = new UserInfo({ email: "", password: "" });
+
   }
+
+
 
   public onFormSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
     let headers = new HttpHeaders()
@@ -40,18 +53,38 @@ export class CreateAccountComponent implements OnInit {
       );
   }
 
-  profilForm = new FormGroup({
-    //username: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  });
-
+ 
 
   public onSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
     this.user = value;alert('onSubmit');
     console.log(this.user);
     console.log("valid: " + valid);
     this.userService.saveUserToServer();
+    if (this.profilForm.valid) {
+      alert(
+        `Email: ${this.profilForm.value.email} Password: ${this.profilForm.value.password}`
+      );
+    }
   }
+
+  public saveUser(){
+
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.profilForm.invalid) {
+        return;
+    }
+
+    // display form values on success
+    alert("OK");
+   // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+    
+  }
+
+  onReset() {
+    this.submitted = false;
+    this.profilForm.reset();
+}
 
 }
