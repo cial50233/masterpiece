@@ -4,7 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name="USERS")
 public class Users extends AbstractEntity {
 	
@@ -32,6 +35,11 @@ public class Users extends AbstractEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "Users [email=" + email + ", password=" + password + "]";
 	}
 
 }

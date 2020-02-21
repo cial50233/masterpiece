@@ -13,6 +13,10 @@ public class UserDto {
     @Size(min = 8, max = 40)
     private String password;
 
+	public UserDto() {
+
+	}
+
 	public String getEmail() {
 		return email;
 	}
