@@ -7,5 +7,9 @@ public interface UserViewDto {
     String getEmail();
 
     String getPassword();
+    
+    String getRoles();
+    
+    Boolean isEnable();
 
 }

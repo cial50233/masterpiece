@@ -1,6 +1,8 @@
 package fr.masterpiece.back.services;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -9,18 +11,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import fr.masterpiece.back.dtos.UserDto;
 import fr.masterpiece.back.dtos.UserViewDto;
+import fr.masterpiece.back.entities.Role;
 import fr.masterpiece.back.entities.Users;
+import fr.masterpiece.back.repositories.RoleJPARepository;
 import fr.masterpiece.back.repositories.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepo;
+	
+	private final RoleJPARepository roleRepo;
 
-	public UserServiceImpl(UserRepository userRepo) {
+	public UserServiceImpl(UserRepository userRepo, RoleJPARepository roleRepo) {
 
 		this.userRepo = userRepo;
-
+		this.roleRepo = roleRepo;
 	}
 
 	@Override
@@ -37,6 +43,10 @@ public class UserServiceImpl implements UserService {
 
 		user.setEmail(dto.getEmail());
 		user.setPassword(dto.getPassword());
+		Role defaultRole = roleRepo.findByDefaultRoleTrue();
+		Set<Role> set = new HashSet<Role>();
+		set.add(defaultRole);
+		user.setRoles(set);
 		user.setEnable(true);
 		userRepo.save(user);
 

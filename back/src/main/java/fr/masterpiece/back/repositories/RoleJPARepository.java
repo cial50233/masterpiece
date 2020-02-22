@@ -8,6 +8,6 @@ import fr.masterpiece.back.entities.Role;
 @Repository
 public interface RoleJPARepository extends JpaRepository<Role, Long> {
 	
-	Role findByDefaultRole(boolean defaultRole);
+	Role findByDefaultRoleTrue();
 
 }

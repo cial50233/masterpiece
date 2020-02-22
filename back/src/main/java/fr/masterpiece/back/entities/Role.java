@@ -7,15 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Role {
-	
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class Role extends AbstractEntity{
 	
 	@Column(length = 10, nullable = false, unique = true)
 	private String code;
+	
+	@Column(length = 50, nullable = true, unique = true)
+	private String label;
 	
 	@Column(nullable = false)
 	private boolean defaultRole;
@@ -24,20 +22,20 @@ public class Role {
 
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getCode() {
 		return code;
 	}
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public boolean isDefaultRole() {

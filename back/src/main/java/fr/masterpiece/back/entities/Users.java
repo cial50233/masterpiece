@@ -64,7 +64,7 @@ public class Users extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "Users [email=" + email + ", password=" + password + "]";
+		return "Users [email=" + email + ", password=" + password + ", enable=" + enable + ", roles=" + roles + "]";
 	}
 
 }
