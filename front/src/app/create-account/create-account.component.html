@@ -4,161 +4,18 @@
 <h1>Registration</h1>
 
 <form [formGroup]="profilForm" (ngSubmit)="saveUser()">
-
-    <label for="email">Email</label>
-    <input formControlName="email" id="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.email.errors.required }"/>
-    <div *ngIf="submitted && returnControl.email.errors.required" class="invalid-feedback">
-        <div *ngIf="returnControl.email.errors.required">Email is required</div>
-        <div *ngIf="returnControl.email.errors.email">Wrong email format</div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input formControlName="email" id="email" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && returnControl.email.errors.required }" />
+            <control-messages [control]="profilForm.get('email')"></control-messages>
     </div>
-
-    <label for="password">Password</label>
-    <input formControlName="password" id="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors }"/>
-    <div *ngIf="password.touched && password.hasError('required')">Required</div>
-    <div *ngIf="submitted && returnControl.password.errors.required" class="invalid-feedback">
-        <div *ngIf="returnControl.password.errors.required">Password is required</div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" id="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors }" />
+            <control-messages [control]="profilForm.get('password')"></control-messages>
     </div>
     <button type="submit" class="btn btn-success" [disabled]="!profilForm.valid">Submit</button>
     <button type="text" class="btn btn-primary" (click)="onReset()">Reset</button>
 </form>
-
-<!--<form [formGroup]="profilForm" #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
-    <div class="form-row">
-          <div class="form-group col-md-6">
-            <label>
-                <p>Username:</p>
-                <input type="text" [formControl]="username" required>
-            </label>
-        </div> 
-        <div class="form-group col-md-12">
-            <label>
-                <p>Email:</p>
-                <input type="email" [(ngModel)]="user.email" name="email" [formControl]="email" formControlName="email" placeholder="Email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-            </label>
-        </div>
-        <div class="form-group col-md-12">
-           <label>
-                <p>Password:</p>
-                <input type="password" [(ngModel)]="user.password.pwd" name="pwd" [formControl]="pwd"
-                    formControlName="pwd" minlength="8" required>
-            </label>
-            <label>
-                <p>Password:</p>
-                <input type="password" [(ngModel)]="user.password" name="password" [formControl]="password"
-                    formControlName="password">
-            </label>
-        </div>
-          <div ngModelGroup="password">
-            <div class="form-group">
-                <label for="inputPassword">Password</label>
-                <input type="password" [(ngModel)]="user.password.pwd" name="pwd" placeholder="Password">
-            </div>
-
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" [(ngModel)]="user.password.confirmPwd" name="confirmPwd"
-                    placeholder="Confirm Password">
-            </div>
-        </div> -->
-<!--div class="form-group col-md-10">
-    <p>
-        <input type="reset" class="btn btn-primary" value="Reset">
-        <!--<input type="submit" value="Submit">-->
- <!--   </p>
-</div>
-<div class="form-group col-md-10">
-    <p>{{user | json}}</p>
-    <p>
-        <!--   <button type="submit" class="btn btn-success" [disabled]="!profilForm.form.valid">Submit</button> -->
-  <!--  </p>
-</div>
-</div>
-</form-->
-
-<!--
-<div class="container">
-    <div class="row justify-content-end">
-        <button class="btn btn-secondary m-1"><a [routerLink]="['/']">retour</a></button>
-    </div>
-
-    <h2>Formulaire d'inscription</h2>
-
-    <form [formGroup]="form" #UserInformation (ngSubmit)="UserForm(UserInformation)">
-        <div class="row">
-            <div class=" col-md-offset-1 col-md-4">
-                <label for="email"> Email </label>
-                <input formControlName="email" class="form-control" type="text">
-            </div>
-        </div>
-        <div class="row m-2 p-4" style="border: 1px solid gray; border-radius: 1em;">
-            <div class=" col-md-offset-1 col-md-1">
-                <label for="civility"> Civilité </label>
-                <input formControlName="civility" class="form-control" type="text">
-            </div>
-            <div class=" col-md-offset-1 col-md-4">
-                <label for="firstName"> Prénom </label>
-                <input formControlName="firstName" class="form-control" type="text">
-            </div>
-            <div class=" col-md-offset-1 col-md-4">
-                <label for="lastName"> Nom </label>
-                <input formControlName="lastName" class="form-control" type="text">
-            </div>
-            <div class=" col-md-offset-1 col-md-3">
-                <label for="dateOfBirth"> Date de naissance </label>
-                <input formControlName="dateOfBirth" class="form-control" type="date" placeholder="JJ/MM/AAAA">
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class=" col-md-offset-1 col-md-4">
-                <label for="password"> Mot de passe </label>
-                <input formControlName="password" class="form-control" type="password">
-            </div>
-            <div class=" col-md-offset-1 col-md-4">
-                <label for="confirmPassword"> Confirmer le mot de passe </label>
-                <input formControlName="confirmPassword" class="form-control" type="password">
-            </div>
-        </div>
-
-        <div class="col">Adresse : </div>
-        <div class="row m-2 p-4" style="border: 1px solid gray; border-radius: 1em;">
-            <div class=" col-md-offset-1 col-md-1">
-                <label for="streetNumber"> N° </label>
-                <input formControlName="streetNumber" class="form-control" type="text">
-            </div>
-
-            <div class=" col-md-offset-1 col-md-3">
-                <label for="street"> Rue </label>
-                <input formControlName="street" class="form-control" type="text">
-            </div>
-            <div class=" col-md-offset-1 col-md-3">
-                <label for="town"> Ville </label>
-                <input formControlName="town" class="form-control" type="text">
-            </div>
-            <div class=" col-md-offset-1 col-md-2">
-                <label for="zipCode"> Code Postal </label>
-                <input formControlName="zipCode" class="form-control" type="text">
-            </div>
-            <div class=" col-md-offset-1 col-md-3">
-                <label for="country"> Pays </label>
-                <input formControlName="country" class="form-control" type="text">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class=" col-md-offset-1 col-md-4">
-                <label for="role"> Role </label>
-                <input formControlName="role" class="form-control" type="text">
-            </div>
-        </div>
-
-        <div class="row" style="margin-top: 40px;">
-            <div class="col-md-offset-1 col-md-4">
-                <button class="btn btn-md btn-primary btn-style">Valider</button>
-            </div>
-        </div>
-
-    </form>
-</div> -->

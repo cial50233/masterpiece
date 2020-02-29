@@ -4,7 +4,7 @@ import { UserInfo } from '../classes/user-info';
 import { UserService } from '../services/user.service';
 import { RouterModule } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { ValidationService } from './../services/validation.service';
 
 @Component({
   selector: 'app-create-account',
@@ -16,15 +16,16 @@ export class CreateAccountComponent implements OnInit {
   private user: UserInfo;
 
   submitted = false;
+  profilForm: any;
 
-  profilForm = this.formBuilder.group({
 
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
-  });
-  returnControl = this.profilForm.controls;
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private userService: UserService, private router: RouterModule) { 
+    this.profilForm = this.formBuilder.group({
 
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private userService: UserService, private router: RouterModule) { }
+      email: ['', [Validators.required, ValidationService.emailValidator]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
   ngOnInit() {
 
@@ -72,6 +73,7 @@ export class CreateAccountComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.profilForm.invalid) {
+      alert("Not OK");
       return;
     }
 

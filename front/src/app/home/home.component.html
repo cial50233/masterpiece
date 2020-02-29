@@ -6,25 +6,22 @@
         <div class="form-group col-md-12">
         <label>
             <p>Email:</p>
-            <input type="text" [formControl]="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.email.errors.required }"/>
-            <div *ngIf="submitted && returnControl.email.errors.required" class="invalid-feedback">
-                <div *ngIf="returnControl.email.errors.required">Email is required</div>
-                <div *ngIf="returnControl.email.errors.email">Wrong email format</div>
-            </div>
+            <input type="text" id="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.email.errors.required }"/>
+            <control-messages [control]="loginForm.get('email')"></control-messages>
+
         </label>
         </div>
         <div class="form-group col-md-12">
         <label>
             <p>Mot de passe:</p>
-            <input type="text" [formControl]="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors.required }">
-            <div *ngIf="submitted && returnControl.password.errors.required" class="invalid-feedback">
-                <div *ngIf="returnControl.password.errors.required">Password is required</div>
-            </div>
+            <input type="text" id="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors.required }">
+            <control-messages [control]="loginForm.get('password')"></control-messages>
+
         </label>
         </div>
         <div class="form-group col-md-10">
             <p>
-                <button type="submit" class="btn btn-success">Connect</button>
+                <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Connect</button>
             </p>
         </div>
     </div>
