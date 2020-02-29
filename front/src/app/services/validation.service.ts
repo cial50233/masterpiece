@@ -10,7 +10,7 @@ export class ValidationService {
         invalidCreditCard: 'Is invalid credit card number',
         invalidEmailAddress: 'Invalid email address',
         invalidPassword:
-          'Invalid password. Password must be at least 6 characters long, and contain a number.',
+          'Invalid password. Password must be at least 6 characters long, and contain a number, a capital letter and a special char.',
         minlength: `Minimum length ${validatorValue.requiredLength}`
       };
   
@@ -46,7 +46,7 @@ export class ValidationService {
     static passwordValidator(control) {
       // {6,100}           - Assert password is between 6 and 100 characters
       // (?=.*[0-9])       - Assert a string has at least one number
-      if (control.value.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$/)) {
+      if (control.value.match(/(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*~{}&.,§+=°_();\/]).{8,30}/)) {
         return null;
       } else {
         return { invalidPassword: true };

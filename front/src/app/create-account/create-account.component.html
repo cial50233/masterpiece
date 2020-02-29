@@ -15,6 +15,7 @@
         <input type="password" formControlName="password" id="password" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors }" />
             <control-messages [control]="profilForm.get('password')"></control-messages>
+           
     </div>
     <button type="submit" class="btn btn-success" [disabled]="!profilForm.valid">Submit</button>
     <button type="text" class="btn btn-primary" (click)="onReset()">Reset</button>

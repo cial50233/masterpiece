@@ -18,41 +18,37 @@ export class CreateAccountComponent implements OnInit {
   submitted = false;
   profilForm: any;
 
-
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private userService: UserService, private router: RouterModule) { 
+  //returnControl = this.profilForm.controls;
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private userService: UserService, private router: RouterModule) {
     this.profilForm = this.formBuilder.group({
 
       email: ['', [Validators.required, ValidationService.emailValidator]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, ValidationService.passwordValidator]]
     });
   }
 
   ngOnInit() {
-
-    //this.user = new UserInfo({ email: "", password: { pwd: "", confirm_pwd: "" } });
-    this.user = new UserInfo({ email: "", password: "" });
-
   }
 
 
 
-  public onFormSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
-    let headers = new HttpHeaders()
-      .set("access-control-allow-origin", "http://localhost:8081")
-      .set("Access-Control-Request-Method", "GET,HEAD,PUT,PATCH,POST,DELETE")
-      .set("Content-Type", "application/json");
-    alert('onFormSubmit');
-    this.httpClient
-      .post('http://localhost:8081/user/create/', JSON.stringify(this.user), { headers })
-      .subscribe(
-        () => {
-          console.log('Enregistrement terminé !');
-        },
-        (error) => {
-          console.log('Erreur ! : ' + error);
-        }
-      );
-  }
+  /* public onFormSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
+     let headers = new HttpHeaders()
+       .set("access-control-allow-origin", "http://localhost:8081")
+       .set("Access-Control-Request-Method", "GET,HEAD,PUT,PATCH,POST,DELETE")
+       .set("Content-Type", "application/json");
+     alert('onFormSubmit');
+     this.httpClient
+       .post('http://localhost:8081/user/create/', JSON.stringify(this.user), { headers })
+       .subscribe(
+         () => {
+           console.log('Enregistrement terminé !');
+         },
+         (error) => {
+           console.log('Erreur ! : ' + error);
+         }
+       );
+   } */
 
 
   public onSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
@@ -77,9 +73,21 @@ export class CreateAccountComponent implements OnInit {
       return;
     }
 
-    // display form values on success
-    alert("OK");
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+    let headers = new HttpHeaders()
+      .set("access-control-allow-origin", "http://localhost:8081")
+      .set("Access-Control-Request-Method", "GET,HEAD,PUT,PATCH,POST,DELETE")
+      .set("Content-Type", "application/json");
+
+    this.httpClient
+      .post('http://localhost:8081/user/create/', JSON.stringify(this.user), { headers })
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
 
   }
 

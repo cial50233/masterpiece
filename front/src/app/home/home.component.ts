@@ -12,17 +12,17 @@ import { ValidationService } from './../services/validation.service';
 export class HomeComponent implements OnInit {
 
   submitted = false;
-loginForm : any;
+  loginForm: any;
 
- // returnControl = this.loginForm.controls;
+  // returnControl = this.loginForm.controls;
 
   constructor(private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({
 
       email: ['', [Validators.required, ValidationService.emailValidator]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, ValidationService.passwordValidator]]
     });
-   }
+  }
 
   ngOnInit() {
   }
