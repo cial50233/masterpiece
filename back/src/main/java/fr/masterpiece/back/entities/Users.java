@@ -10,7 +10,6 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name="USERS")
 public class Users extends AbstractEntity {
 	
