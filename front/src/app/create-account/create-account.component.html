@@ -5,13 +5,13 @@
 
 <form [formGroup]="profilForm" (ngSubmit)="saveUser()">
     <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">{{ 'HOME.EMAIL' | translate }}</label>
         <input formControlName="email" id="email" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && returnControl.email.errors.required }" />
             <control-messages [control]="profilForm.get('email')"></control-messages>
     </div>
     <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">{{ 'HOME.PWD' | translate }}</label>
         <input type="password" formControlName="password" id="password" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors }" />
             <control-messages [control]="profilForm.get('password')"></control-messages>

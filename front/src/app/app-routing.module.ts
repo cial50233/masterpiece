@@ -3,24 +3,42 @@ import { Routes, RouterModule } from '@angular/router';
 
 import {HomeComponent} from './home/home.component';
 import {CreateAccountComponent} from './create-account/create-account.component';
-
+import {paths} from './app-paths'
+import { from } from 'rxjs';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 export const appRoutes: Routes = [
 
+  
+  {
+    path : '',
+    pathMatch: 'full',
+    redirectTo: paths.home
+  },
   {
 
-    path : '',
+    path : paths.home,
 
     component : HomeComponent
 
   },
   {
 
-    path : 'create',
+    path : paths.create,
 
     component : CreateAccountComponent
 
+  },
+  {
+    path: '**',
+    
+    redirectTo: 'notfound'
+  },
+  {
+    path: paths.notfound,
+    
+    component: NotfoundComponent
   }
 
 ];
