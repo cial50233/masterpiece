@@ -73,13 +73,22 @@ export class CreateAccountComponent implements OnInit {
       return;
     }
 
+    let user = {
+
+      "id":"",
+      "email": this.profilForm.value.email,
+      "password": this.profilForm.value.password
+
+    }
+    console.log(this.profilForm.value);
+    console.log(user);
     let headers = new HttpHeaders()
       .set("access-control-allow-origin", "http://localhost:8081")
       .set("Access-Control-Request-Method", "GET,HEAD,PUT,PATCH,POST,DELETE")
       .set("Content-Type", "application/json");
 
     this.httpClient
-      .post('http://localhost:8081/user/create/', JSON.stringify(this.user), { headers })
+      .post('http://localhost:8081/user/create/', this.profilForm.value, { headers })
       .subscribe(
         () => {
           console.log('Enregistrement terminé !');
