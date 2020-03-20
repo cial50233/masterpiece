@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -21,7 +22,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CreateAccountComponent,
     HomeComponent,
     NavbarComponent,
-    ControlMessagesComponent
+    ControlMessagesComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

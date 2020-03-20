@@ -3,7 +3,6 @@ package fr.masterpiece.back.dtos;
 import java.util.Set;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -23,20 +22,9 @@ public class UserDto {
     @Pattern(regexp = "[a-zA-Z0-9,;:!§\\/.?²&é\"'(-è_çà)=}\\]@^\\\\`|\\[{#~&]{6,}", message = "Please enter a password that contains at least one upper and one lower cases, one digit and one special character and is min 6 caracters long")
     private String password;
     
-    @NotEmpty
+    
     private Set<Role> roles;
     
-    private boolean enable;
-    
-
-	public boolean isEnable() {
-		return enable;
-	}
-
-	public void setEnable(boolean enable) {
-		this.enable = enable;
-	}
-
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -67,7 +55,7 @@ public class UserDto {
 
 	@Override
 	public String toString() {
-		return "UserDto [email=" + email + ", password=" + password + ", roles=" + roles + ", enable=" + enable + "]";
+		return "UserDto [email=" + email + ", password=" + password + ", roles=" + roles + "]";
 	}
 
 }
