@@ -1,40 +1,41 @@
-
-<form [formGroup]="loginForm" (ngSubmit)="logIn()">
-    <div class="form-group">
-        <legend>
-            <div>LOGO</div>
-            <h1>Login</h1>
-        </legend>
-    </div>
-    <div class="row">
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="logIn()">
         <div class="form-group">
-            <label class="col-lg-2 control-label">{{ 'HOME.EMAIL' | translate }}:</label>
-            <div class="col-lg-10">
-                <input type="text" id="email" formControlName="email" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && returnControl.email.errors.required }" />
-                <control-messages [control]="loginForm.get('email')"></control-messages>
+            <legend>
+                <div>LOGO</div>
+                <h1>Login</h1>
+            </legend>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label class="col-lg-2 control-label">{{ 'HOME.EMAIL' | translate }}:</label>
+                <div class="col-lg-10">
+                    <input type="text" id="email" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && returnControl.email.errors.required }" />
+                    <control-messages [control]="loginForm.get('email')"></control-messages>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="form-group">
-            <label class="col-lg-2 control-label">{{ 'HOME.PWD' | translate }}:</label>
-            <div class="col-lg-10">
-                <input type="text" id="password" formControlName="password" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors.required }">
-                <control-messages [control]="loginForm.get('password')"></control-messages>
+        <div class="row">
+            <div class="form-group">
+                <label class="col-lg-2 control-label">{{ 'HOME.PWD' | translate }}:</label>
+                <div class="col-lg-10">
+                    <input type="text" id="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors.required }">
+                    <control-messages [control]="loginForm.get('password')"></control-messages>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="form-group">
-        <button type="submit" class="pull-right btn btn-success" [disabled]="!loginForm.valid">Connect</button>
+        <div class="form-group">
+            <button type="submit" class="pull-right btn btn-success" [disabled]="!loginForm.valid">Connect</button>
 
-    </div>
+        </div>
 
 
-<div>
+        <div>
 
-    <div><a [routerLink]="['/create']">Pas encore de compte ? Créer un compte</a></div>
+            <div><a [routerLink]="['/create']">Pas encore de compte ? Créer un compte</a></div>
 
+        </div>
+    </form>
 </div>
-</form>
