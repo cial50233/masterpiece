@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row justify-content-start">
-        <button class="btn btn-secondary m-1"><a [routerLink]="['/']">retour</a></button>
+        <button class="btn btn-secondary"><a [routerLink]="['/']">retour</a></button>
     </div>
     <h1>Registration</h1>
 
@@ -16,7 +16,9 @@
             <control-messages [control]="profilForm.get('password')"></control-messages>
 
         </div>
-        <button type="submit" class="btn btn-success" [disabled]="!profilForm.valid">Submit</button>
-        <button type="text" class="btn btn-primary" (click)="onReset()">Reset</button>
+        <div class="float-right">
+            <button type="submit" class="btn btn-success" [disabled]="!profilForm.valid">Submit</button>
+            <button type="button" class="btn btn-primary" (click)="onReset()">Reset</button>
+        </div>
     </form>
 </div>

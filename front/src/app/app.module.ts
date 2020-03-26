@@ -11,6 +11,7 @@ import { ControlMessagesComponent } from './control-messages/control-messages.co
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { LoginComponent } from './login/login.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -23,7 +24,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HomeComponent,
     NavbarComponent,
     ControlMessagesComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
