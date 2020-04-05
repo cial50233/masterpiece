@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 
+
+import { Product, AdService } from '../services/adverts.service';
+import { Heroes, HService } from '../services/heroes.service';
+
 @Component({
   selector: 'app-home',
+  providers: [ AdService, HService ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   title = 'Angular Pagination Tutorial';
+  products: Product[];
+  heroes: Heroes[];
+  searchText;
   public adverts = [];
   public ads = [];
   // Pagination parameters.
   p: number = 1;
   count: number = 4;
 
-  constructor() { 
-
+  constructor(adservice: AdService, hservice: HService) { 
+    this.products = adservice.getProducts();
+    this.heroes = hservice.getHeroes();
     this.adverts = [
       {'name':'bob', 'pic':'../../assets/img/tree-1439369_1280.jpg'},
       {'name':'bob', 'pic':'../../assets/img/tree-1439369_1280.jpg'},

@@ -39,7 +39,7 @@
         </a>
     </div>
     <div class="row">
-      <!--  <div class="col-sm-6 col-md-3">
+        <!--  <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
                 <img class="img-thumbnail" src="../../assets/img/taiwan-4959461_1280.webp" alt="...">
                 <div class="caption">
@@ -86,7 +86,29 @@
     </div>
     <div class="pagination justify-content-center">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
-      </div>
+    </div>
+    <div class="row">
+        <div class="search-hero">
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                placeholder="&#61442;  Start searching for a hero by id or name or country">
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Hero Name</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let hero of heroes | filter:searchText">
+                    <td>{{hero.id}}</td>
+                    <td>{{hero.name}}</td>
+                    <td>{{hero.country}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <!--The content below is only a placeholder and can be replaced.
 <div class="container">
