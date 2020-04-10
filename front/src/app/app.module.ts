@@ -20,9 +20,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -36,7 +38,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NavbarComponent,
     ControlMessagesComponent,
     NotfoundComponent,
-    LoginComponent
+    LoginComponent,
+    SearchbarComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatAutocompleteModule,
     MatChipsModule,
     MatFormFieldModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgbModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
