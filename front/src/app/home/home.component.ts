@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ViewChild, ElementRef, NgZone } from '@angular/core';//map
+import { MapsAPILoader, MouseEvent } from '@agm/core';  //map
 
 import { Product, AdService } from '../services/adverts.service';
 import { Heroes, HService } from '../services/heroes.service';
 
 @Component({
   selector: 'app-home',
-  providers: [ AdService, HService ],
+  providers: [AdService, HService],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -20,18 +21,28 @@ export class HomeComponent implements OnInit {
   // Pagination parameters.
   p: number = 1;
   count: number = 4;
+  //map
+  latitude: number;
+  longitude: number;
+  zoom: number;
+  address: string;
+  private geoCoder;
 
-  constructor(adservice: AdService, hservice: HService) { 
+  @ViewChild('search')
+  public searchElementRef: ElementRef;
+
+  constructor(adservice: AdService, hservice: HService, private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) {
     this.products = adservice.getProducts();
     this.heroes = hservice.getHeroes();
     this.adverts = [
-      {'name':'bob', 'pic':'../../assets/img/tree-1439369_1280.jpg'},
-      {'name':'bob', 'pic':'../../assets/img/tree-1439369_1280.jpg'},
-      {'name':'bob', 'pic':'../../assets/img/tree-1439369_1280.jpg'},
-      {'name':'bob', 'pic':'../../assets/img/tree-1439369_1280.jpg'},
-      {'name':'bob', 'pic':'../../assets/img/tree-1439369_1280.jpg'},
-      {'name':'bob', 'pic':'../../assets/img/tree-1439369_1280.jpg'},
-      {'name':'bob', 'pic':'../../assets/img/tree-1439369_1280.jpg'},
+      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
     ];
 
     this.ads = [
@@ -60,6 +71,39 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      this.setCurrentLocation();
+      this.geoCoder = new google.maps.Geocoder;
+
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          //set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 12;
+        });
+      });
+    });
+  }
+  // Get Current Location Coordinates
+  private setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 15;
+      });
+    }
   }
 
 }

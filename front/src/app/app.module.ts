@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AgmCoreModule } from '@agm/core';
 
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -61,7 +62,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatChipsModule,
     MatFormFieldModule,
     Ng2SearchPipeModule,
-    NgbModule
+    NgbModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCCQYtMN7-J4MCFHbEGakwNbkLYl7GVn60',
+      libraries: ['places']
+    })
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

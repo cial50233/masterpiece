@@ -40,39 +40,6 @@
         </a>
     </div>
     <div class="row">
-        <!--  <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img class="img-thumbnail" src="../../assets/img/taiwan-4959461_1280.webp" alt="...">
-                <div class="caption">
-                    <h3>Thumbnail label</h3>
-                    <p>...</p>
-                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default"
-                            role="button">Button</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img class="img-thumbnail" src="../../assets/img/bydgoszcz-418818_1280.jpg" alt="...">
-                <div class="caption">
-                    <h3>Thumbnail label</h3>
-                    <p>...</p>
-                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default"
-                            role="button">Button</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img class="img-thumbnail" src="../../assets/img/thumbnail-1460861_1280.jpg" alt="...">
-                <div class="caption">
-                    <h3>Thumbnail label</h3>
-                    <p>...</p>
-                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default"
-                            role="button">Button</a></p>
-                </div>
-            </div>
-        </div>-->
         <div *ngFor="let e of adverts | paginate: { itemsPerPage: count, currentPage: p }" class="col-sm-6 col-md-3">
             <div class="thumbnail">
                 <img class="img-thumbnail" src="{{e.pic}}" alt="...">
@@ -88,6 +55,12 @@
     <div class="pagination justify-content-center">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
+    <div class="row">
+        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+        </agm-map>
+    </div>
+    <hr>
     <div class="row">
         <div class="search-hero">
             <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
@@ -111,39 +84,3 @@
         </table>
     </div>
 </div>
-<!--The content below is only a placeholder and can be replaced.
-<div class="container">
-    <h2 class="text-secondary text-center">{{ title }}!</h2>
-    <hr />
-   
-    <div>
-      <h4 class="text-info">Displaying employee data.</h4>
-      <div> </div>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Fullname</th>
-            <th>Phone no.</th>
-            <th>Email</th>
-            <th>Gender</th>
-            <th>Nationality</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let e of ads | paginate: { itemsPerPage: count, currentPage: p }">
-            <td>{{e.id}}</td>
-            <td>{{e.name}}</td>
-            <td>{{e.phoneno}}</td>
-            <td>{{e.email}}</td>
-            <td>{{e.gender}}</td>
-            <td>{{e.nationality}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-   
-    <div class="pagination justify-content-center">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </div>
-  </div>-->
