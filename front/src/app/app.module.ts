@@ -22,10 +22,14 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
-
+import { MapComponent } from '../app/map/map.component';
+import {CarouselComponent} from '../app/carousel/carousel.component';
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+
+import { SearchComponent } from './search/search.component';
+import { MiniAdsComponent } from './mini-ads/mini-ads.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -40,7 +44,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ControlMessagesComponent,
     NotfoundComponent,
     LoginComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    MapComponent,
+    CarouselComponent,
+    SearchComponent,
+    MiniAdsComponent
   ],
   imports: [
     BrowserModule,

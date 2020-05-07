@@ -1,0 +1,17 @@
+<p>mini-ads works!</p>
+<div class="row">
+    <div *ngFor="let e of adverts | paginate: { itemsPerPage: count, currentPage: p }" class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <img class="img-thumbnail" src="{{e.pic}}" alt="...">
+            <div class="caption">
+                <h3>{{e.name}}</h3>
+                <p>...</p>
+                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default"
+                        role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pagination justify-content-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
