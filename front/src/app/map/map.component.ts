@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import 'ol/ol.css';
 import Map from 'ol/Map';
 import View from 'ol/View';
-import { defaults as defaultControls, OverviewMap } from 'ol/control';
+import { defaults as defaultControls, OverviewMap, ScaleLine, FullScreen } from 'ol/control';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import { fromLonLat } from 'ol/proj';
@@ -24,10 +24,11 @@ import * as olProj from 'ol/proj';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  map;
+ public map;
   view = new View({
     center: olProj.fromLonLat([2.5838853999999998, 48.84416820000001]),
-    zoom: 5,
+    zoom: 15,
+    minZoom: 3,
     maxZoom: 19,
   });
 
@@ -43,9 +44,14 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.setCurrentLocation();
     this.initializeMap();
 
+
+    setTimeout(() => {
+      this.setCurrentLocation();
+    }, 500);
+
+    //this.setCurrentLocation2()
   }
 
   initializeMap() {
@@ -59,16 +65,18 @@ export class MapComponent implements OnInit {
     });
 
     this.map = new Map({
+      controls: defaultControls().extend([
+        overviewMapControl,
+        new ScaleLine(),
+        new FullScreen()
+      ]),
       layers: [
         new TileLayer({
           source: source
         })
       ],
       target: 'carte',
-      view: this.view,
-      controls: defaultControls().extend([
-        overviewMapControl
-      ])
+      view: this.view
     });
   }
 
