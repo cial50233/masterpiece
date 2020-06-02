@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
 
 	private void populateAndSave(UserDto dto, User user) {
 
+		user.setUsername(dto.getUsername());
 		user.setEmail(dto.getEmail());
 		user.setPassword(dto.getPassword());
 		Role defaultRole = roleRepo.findByDefaultRoleTrue();

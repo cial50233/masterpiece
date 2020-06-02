@@ -10,6 +10,10 @@ import javax.validation.constraints.Size;
 import fr.masterpiece.back.entities.Role;
 
 public class UserDto {
+	
+    @NotNull
+    @Size(max = 20)
+    private String username;
 
     @Email
 	@NotNull
@@ -37,6 +41,14 @@ public class UserDto {
 
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -55,7 +67,10 @@ public class UserDto {
 
 	@Override
 	public String toString() {
-		return "UserDto [email=" + email + ", password=" + password + ", roles=" + roles + "]";
+		return "UserDto [username=" + username + ", email=" + email + ", password=" + password + ", roles=" + roles
+				+ "]";
 	}
+
+
 
 }
