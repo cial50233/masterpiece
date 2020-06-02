@@ -5,6 +5,7 @@ import { UserService } from '../services/user.service';
 import { RouterModule } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ValidationService } from './../services/validation.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-create-account',
@@ -18,7 +19,11 @@ export class CreateAccountComponent implements OnInit {
   submitted = false;
   profilForm: any;
 
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private userService: UserService, private router: RouterModule) {
+  constructor(private formBuilder: FormBuilder,
+    private httpClient: HttpClient,
+    private userService: UserService,
+    private router: RouterModule,
+    private _location: Location) {
     this.profilForm = this.formBuilder.group({
       username: ['', [Validators.required, ValidationService.userNameValidator]],
       email: ['', [Validators.required, ValidationService.emailValidator]],
@@ -82,6 +87,10 @@ export class CreateAccountComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.profilForm.reset();
+  }
+
+  onReturn() {
+    this._location.back();
   }
 
 }

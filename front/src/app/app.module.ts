@@ -30,6 +30,7 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
 
 import { SearchComponent } from './search/search.component';
 import { MiniAdsComponent } from './mini-ads/mini-ads.component';
+import { FindAroundComponent } from './find-around/find-around.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MapComponent,
     CarouselComponent,
     SearchComponent,
-    MiniAdsComponent
+    MiniAdsComponent,
+    FindAroundComponent
   ],
   imports: [
     BrowserModule,
