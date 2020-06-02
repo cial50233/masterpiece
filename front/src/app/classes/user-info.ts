@@ -1,7 +1,7 @@
 export class UserInfo {
 
   id: number;
-  //username: string;
+  username: string;
   email: string;
   enable: boolean;
   password: string;

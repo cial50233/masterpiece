@@ -14,18 +14,12 @@ export class UserService {
     {
 
       id:'',
+      username: 'azerty',
       email: 'bbbb@bb.bb',
       password: 'htyFTYaea'
     
     }
 
-  /*  {
-
-      "id":"",
-      "email": "wwwww@rez.re",
-      "password": "azeazze::45aazaea"
-    
-    }*/
   ]
 
   constructor(private httpClient: HttpClient) { }

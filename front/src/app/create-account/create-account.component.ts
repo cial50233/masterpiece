@@ -18,10 +18,9 @@ export class CreateAccountComponent implements OnInit {
   submitted = false;
   profilForm: any;
 
-  //returnControl = this.profilForm.controls;
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private userService: UserService, private router: RouterModule) {
     this.profilForm = this.formBuilder.group({
-
+      username: ['', [Validators.required, ValidationService.userNameValidator]],
       email: ['', [Validators.required, ValidationService.emailValidator]],
       password: ['', [Validators.required, ValidationService.passwordValidator]]
     });
@@ -30,27 +29,6 @@ export class CreateAccountComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
-  /* public onFormSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
-     let headers = new HttpHeaders()
-       .set("access-control-allow-origin", "http://localhost:8081")
-       .set("Access-Control-Request-Method", "GET,HEAD,PUT,PATCH,POST,DELETE")
-       .set("Content-Type", "application/json");
-     alert('onFormSubmit');
-     this.httpClient
-       .post('http://localhost:8081/user/create/', JSON.stringify(this.user), { headers })
-       .subscribe(
-         () => {
-           console.log('Enregistrement terminé !');
-         },
-         (error) => {
-           console.log('Erreur ! : ' + error);
-         }
-       );
-   } */
-
-
   public onSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
     this.user = value; alert('onSubmit');
     console.log(this.user);
@@ -58,7 +36,7 @@ export class CreateAccountComponent implements OnInit {
     this.userService.saveUserToServer();
     if (this.profilForm.valid) {
       alert(
-        `Email: ${this.profilForm.value.email} Password: ${this.profilForm.value.password}`
+        `Username: ${this.profilForm.value.username} Email: ${this.profilForm.value.email} Password: ${this.profilForm.value.password}`
       );
     }
   }
@@ -76,6 +54,7 @@ export class CreateAccountComponent implements OnInit {
     let user = {
 
       "id":"",
+      "username": this.profilForm.value.username,
       "email": this.profilForm.value.email,
       "password": this.profilForm.value.password
 
