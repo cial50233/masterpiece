@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './login/login.component';
 import {CreateAccountComponent} from './create-account/create-account.component';
 import {paths} from './app-paths'
 import { from } from 'rxjs';
@@ -21,6 +21,13 @@ export const appRoutes: Routes = [
     path : paths.home,
 
     component : HomeComponent
+
+  },
+  {
+
+    path : paths.login,
+
+    component : LoginComponent
 
   },
   {

@@ -1,18 +1,6 @@
 <div class="container">
-  <div class="row">
-      <div class="col-xs-12">
+  <h2>{{ 'HOME.TITLE' | translate }}</h2>
 
-        <div>
-          <h2>{{ 'HOME.TITLE' | translate }}</h2>
-          <label>
-            {{ 'HOME.SELECT' | translate }}
-            <select #langSelect (change)="translate.use(langSelect.value)">
-              <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
-            </select>
-          </label>
-        </div>
-        <app-navbar></app-navbar>
-          <router-outlet></router-outlet>
-      </div>
-  </div>
+  <app-navbar></app-navbar>
 </div>
+<router-outlet></router-outlet>

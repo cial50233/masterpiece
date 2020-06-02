@@ -1,33 +1,19 @@
-<div class="col-md-4 mr-auto">LOGO</div>
-<h1>Login</h1>
-<form [formGroup]="loginForm" (ngSubmit)="logIn()">
-    <div class="form-row">
-        <div class="form-group col-md-12">
-        <label>
-            <p>{{ 'HOME.EMAIL' | translate }}:</p>
-            <input type="text" id="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.email.errors.required }"/>
-            <control-messages [control]="loginForm.get('email')"></control-messages>
-
-        </label>
-        </div>
-        <div class="form-group col-md-12">
-        <label>
-            <p>{{ 'HOME.PWD' | translate }}:</p>
-            <input type="text" id="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && returnControl.password.errors.required }">
-            <control-messages [control]="loginForm.get('password')"></control-messages>
-
-        </label>
-        </div>
-        <div class="form-group col-md-10">
-            <p>
-                <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Connect</button>
-            </p>
-        </div>
+<div class="container">
+    <h1>HOMEPAGE</h1>
+    <div class="row">
+      <!--  <app-searchbar></app-searchbar> -->
     </div>
-</form>
-
-<div class="form-group col-md-12">
-
-    <div><a [routerLink]="['/create']">Pas encore de compte ? Créer un compte</a></div>
-
+    <div class="row">
+      <!--  <app-carousel></app-carousel> -->
+    </div>
+    <div class="row">
+      <!--  <app-mini-ads></app-mini-ads> -->
+    </div>
+    <div class="row">
+        <app-map></app-map>
+    </div>
+    <hr>
+    <div class="row">
+        <!-- <app-search></app-search> -->
+    </div>
 </div>
