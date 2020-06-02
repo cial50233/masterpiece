@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import fr.masterpiece.back.dtos.UserDto;
 import fr.masterpiece.back.dtos.UserViewDto;
 import fr.masterpiece.back.entities.Role;
-import fr.masterpiece.back.entities.Users;
+import fr.masterpiece.back.entities.User;
 import fr.masterpiece.back.repositories.RoleJPARepository;
 import fr.masterpiece.back.repositories.UserRepository;
 
@@ -32,14 +32,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean create(@Valid @RequestBody UserDto dto) {
 		if (!isAlreadyPresent(dto)) {
-			Users user = new Users();
+			User user = new User();
 			populateAndSave(dto, user);
 			return true;
 		}
 		return false;
 	}
 
-	private void populateAndSave(UserDto dto, Users user) {
+	private void populateAndSave(UserDto dto, User user) {
 
 		user.setEmail(dto.getEmail());
 		user.setPassword(dto.getPassword());
@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void update(Long id, UserDto dto) {
 
-		Users user = userRepo.findById(id).get();
+		User user = userRepo.findById(id).get();
 
 		populateAndSave(dto, user);
 

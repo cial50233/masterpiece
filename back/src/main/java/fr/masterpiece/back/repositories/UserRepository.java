@@ -7,17 +7,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import fr.masterpiece.back.dtos.UserViewDto;
-import fr.masterpiece.back.entities.Users;
+import fr.masterpiece.back.entities.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<Users, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     UserViewDto getById(Long id);
     
-    Optional<Users> getOneByEmail(String email);
+    Optional<User> getOneByEmail(String email);
 
    // List<UserViewDto> getAll();
     
-    Users findByEmail(String email);
+    User findByEmail(String email);
     
 }

@@ -2,8 +2,16 @@ package fr.masterpiece.back.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(name = "roles", uniqueConstraints = {
+        @UniqueConstraint(
+                name = "roles_code_UQ",
+                columnNames = "code"
+        )
+})
 public class Role extends AbstractEntity{
 	
 	@Column(length = 10, nullable = false, unique = true)
