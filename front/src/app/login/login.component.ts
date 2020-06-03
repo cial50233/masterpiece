@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({
 
-      email: ['', [Validators.required, ValidationService.emailValidator]],
+      username: ['', [Validators.required, ValidationService.userNameValidator]],
       password: ['', [Validators.required, ValidationService.passwordValidator]]
     });
   }
