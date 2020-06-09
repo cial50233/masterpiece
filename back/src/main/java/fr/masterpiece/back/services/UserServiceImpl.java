@@ -20,7 +20,7 @@ import fr.masterpiece.back.repositories.UserRepository;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepo;
-	
+
 	private final RoleJPARepository roleRepo;
 
 	public UserServiceImpl(UserRepository userRepo, RoleJPARepository roleRepo) {
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean create(@Valid @RequestBody UserDto dto) {
-		if (!isAlreadyPresent(dto)) {
+		if (!(isAlreadyPresent(dto.getUsername()) || isAlreadyPresent(dto.getEmail()))){
 			User user = new User();
 			populateAndSave(dto, user);
 			return true;
@@ -83,9 +83,11 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	@Override
-	public boolean isAlreadyPresent(UserDto dto) {
-		return userRepo.getOneByEmail(dto.getEmail()).isPresent();
+	public boolean isAlreadyPresent(String name) {
+		if((userRepo.findByUsername(name) != null) || (userRepo.findByEmail(name) != null)) {
+			return true;
+		};
+		return false;
 	}
 
 }

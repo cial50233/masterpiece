@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserInfo } from '../classes/user-info';
-import { UserService } from '../services/user.service';
 import { RouterModule } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ValidationService } from './../services/validation.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-account',
@@ -18,10 +17,10 @@ export class CreateAccountComponent implements OnInit {
 
   submitted = false;
   profilForm: any;
+  errorMsg = "";
 
   constructor(private formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    private userService: UserService,
     private router: RouterModule,
     private _location: Location) {
     this.profilForm = this.formBuilder.group({
@@ -32,18 +31,6 @@ export class CreateAccountComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  public onSubmit({ value, valid }: { value: UserInfo, valid: boolean }) {
-    this.user = value; alert('onSubmit');
-    console.log(this.user);
-    console.log("valid: " + valid);
-    this.userService.saveUserToServer();
-    if (this.profilForm.valid) {
-      alert(
-        `Username: ${this.profilForm.value.username} Email: ${this.profilForm.value.email} Password: ${this.profilForm.value.password}`
-      );
-    }
   }
 
   public saveUser() {
@@ -58,7 +45,7 @@ export class CreateAccountComponent implements OnInit {
 
     let user = {
 
-      "id":"",
+      "id": "",
       "username": this.profilForm.value.username,
       "email": this.profilForm.value.email,
       "password": this.profilForm.value.password
@@ -74,11 +61,15 @@ export class CreateAccountComponent implements OnInit {
     this.httpClient
       .post('http://localhost:8081/user/create/', this.profilForm.value, { headers })
       .subscribe(
-        () => {
-          console.log('Enregistrement terminé !');
-        },
-        (error) => {
-          console.log('Erreur ! : ' + error);
+        data => {
+          //this.profilForm.reset();
+          if (data) {
+            console.log(data);
+            this.errorMsg = "Registered done";
+          } else {
+            console.log(data);
+            this.errorMsg = "User already registered";
+          }
         }
       );
 

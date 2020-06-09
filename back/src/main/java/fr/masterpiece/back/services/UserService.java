@@ -17,6 +17,6 @@ public interface UserService {
 
     void update(Long id, UserDto dto);
     
-    boolean isAlreadyPresent(UserDto dto);
+    boolean isAlreadyPresent(String name);
 
 }

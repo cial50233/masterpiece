@@ -19,5 +19,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
    // List<UserViewDto> getAll();
     
     User findByEmail(String email);
+    User findByUsername(String name);
     
+    int countByUsername(String name);
+    int countByEmail(String name);
 }
