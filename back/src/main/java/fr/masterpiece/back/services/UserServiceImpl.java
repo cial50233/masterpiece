@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -19,6 +21,11 @@ import fr.masterpiece.back.repositories.UserRepository;
 @Service
 public class UserServiceImpl implements UserService {
 
+	
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+	
 	private final UserRepository userRepo;
 
 	private final RoleJPARepository roleRepo;
@@ -43,7 +50,8 @@ public class UserServiceImpl implements UserService {
 
 		user.setUsername(dto.getUsername());
 		user.setEmail(dto.getEmail());
-		user.setPassword(dto.getPassword());
+		String password = dto.getPassword();
+        user.setPassword(passwordEncoder.encode(password));
 		Role defaultRole = roleRepo.findByDefaultRoleTrue();
 		Set<Role> set = new HashSet<Role>();
 		set.add(defaultRole);
