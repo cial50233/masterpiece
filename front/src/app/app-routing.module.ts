@@ -7,6 +7,7 @@ import {paths} from './app-paths'
 import { from } from 'rxjs';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { FindAroundComponent } from './find-around/find-around.component';
+import { CreateAdComponent } from './create-ad/create-ad.component';
 
 
 export const appRoutes: Routes = [
@@ -43,6 +44,13 @@ export const appRoutes: Routes = [
     path : paths.create,
 
     component : CreateAccountComponent
+
+  },
+  {
+
+    path : paths.createAd,
+
+    component : CreateAdComponent
 
   },
   {

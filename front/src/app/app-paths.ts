@@ -3,5 +3,6 @@ export const paths = {
     find: 'find',
     login: 'login',
     create: 'create',
+    createAd: 'createAd',
     notfound: 'notfound'
 }
