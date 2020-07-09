@@ -5,5 +5,24 @@
     "USERNAME": "Pseudo",
     "EMAIL": "Email",
     "PWD": "Mot de passe"
+  },
+  "AD":{
+    "TITLE": "Annonce",
+    "PLACE": "Lieu",
+    "PLACEa": "Chez le jobber",
+    "PLACEb": "Chez l'annonceur",
+    "adr": "adresse",
+    "DATE1": "Date de début",
+    "DATE2": "Date de fin",
+    "type": "Type",
+    "name": "Nom",
+    "com": "Commentaires"
+  },
+  "LOGIN": {
+    "title": "Connexion",
+    "USERNAME": "Pseudo",
+    "PWD": "Mot de passe",
+    "btn1": "Se connecter",
+    "btn2": "S'inscrire"
   }
 }

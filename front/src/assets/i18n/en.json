@@ -5,6 +5,25 @@
     "USERNAME": "Username",
     "EMAIL": "Email",
     "PWD": "Password"
+  },
+  "AD":{
+    "TITLE": "Announcement",
+    "PLACE": "Place",
+    "PLACEa": "At sitter's place",
+    "PLACEb": "At owner's place",
+    "adr": "address",
+    "DATE1": "Start date",
+    "DATE2": "End date",
+    "type": "Type",
+    "name": "Name",
+    "com": "Comments"
+  },
+  "LOGIN": {
+    "title": "Sign In",
+    "USERNAME": "Username",
+    "PWD": "Password",
+    "btn1": "Sign In",
+    "btn2": "Sign Up"
   }
   
 }

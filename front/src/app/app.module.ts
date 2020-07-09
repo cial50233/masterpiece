@@ -36,6 +36,7 @@ import { SearchComponent } from './search/search.component';
 import { MiniAdsComponent } from './mini-ads/mini-ads.component';
 import { FindAroundComponent } from './find-around/find-around.component';
 import { CreateAdComponent } from './create-ad/create-ad.component';
+import { AdComponent } from './ad/ad.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -56,7 +57,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SearchComponent,
     MiniAdsComponent,
     FindAroundComponent,
-    CreateAdComponent
+    CreateAdComponent,
+    AdComponent
   ],
   imports: [
     BrowserModule,
