@@ -16,7 +16,7 @@
     "DATE2": "Date de fin",
     "type": "Type",
     "name": "Nom",
-    "com": "Commentaires"
+    "com": "Indications"
   },
   "LOGIN": {
     "title": "Connexion",

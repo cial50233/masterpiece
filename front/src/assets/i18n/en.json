@@ -16,7 +16,7 @@
     "DATE2": "End date",
     "type": "Type",
     "name": "Name",
-    "com": "Comments"
+    "com": "Indications"
   },
   "LOGIN": {
     "title": "Sign In",

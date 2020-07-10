@@ -1,20 +1,21 @@
 <div class="container text-center col-lg-8 col-lg-offset-2">
     <h1>{{ 'AD.TITLE' | translate }}</h1>
-    <form [formGroup]="adForm" class="form-horizontal">
+    <form [formGroup]="adForm" class="form-horizontal" (ngSubmit)="submit()">
 
         <div class="form-group row">
             <label class="col-lg-3 control-label">{{ 'AD.PLACE' | translate }} :</label>
             <div class="col-lg-9">
                 <!-- Default unchecked -->
                 <div class="custom-control custom-radio text-left">
-                    <input type="radio" class="custom-control-input" id="r1" name="placeRadios" mdbInput (change)="onRadioChange($event)">
+                    <input type="radio" class="custom-control-input" id="r1" name="placeRadios" mdbInput
+                        (change)="onRadioChange($event)">
                     <label class="custom-control-label" for="r1">{{ 'AD.PLACEa' | translate }}</label>
                 </div>
 
                 <!-- Default checked -->
                 <div class="custom-control custom-radio text-left">
-                    <input type="radio" class="custom-control-input" id="r2" name="placeRadios" checked
-                        mdbInput (change)="onRadioChange2($event)">
+                    <input type="radio" class="custom-control-input" id="r2" name="placeRadios" checked mdbInput
+                        (change)="onRadioChange2($event)">
                     <label class="custom-control-label" for="r2">{{ 'AD.PLACEb' | translate }}</label>
                 </div>
             </div>
@@ -54,33 +55,50 @@
         <pre>Model: {{ endDateJson | json }}</pre>
 
         <fieldset>
-            <legend>Animal</legend>
-            <div class="form-group row">
-                <label class="col-lg-3 control-label">{{ 'AD.type' | translate }} :</label>
-                <div class="col-lg-9">
-                    <select class="form-control selectpicker" data-live-search="true" class="form-control">
-                        <option *ngFor="let type of animalTypes" title="{{type}}">
-                            {{type}}
-                        </option>
-                    </select>
+            <legend>ADD</legend>
+            <section *ngFor="let animal of animals; let i = index;">
+                <h5 class="text-left">Animal n° {{i+1}}</h5>
+                <div class="form-group row">
+                    <label class="col-lg-3 control-label">{{ 'AD.type' | translate }} :</label>
+                    <div class="col-lg-9">
+                        <select [(ngModel)]="animal.animalType" formControlName="animalType" class="form-control selectpicker" data-live-search="true"
+                            class="form-control" name="animalType_{{animal.id}}" placeholder="Dog">
+                            <option *ngFor="let type of animalTypes" title="{{type}}" value="{{type}}">
+                                {{type}}
+                            </option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-lg-3 control-label">{{ 'AD.name' | translate }} :</label>
-                <div class="col-lg-9">
-                    <input type="text" id="animalName" formControlName="animalName" class="form-control" />
+                <div class="form-group row">
+                    <label class="col-lg-3 control-label">{{ 'AD.name' | translate }} :</label>
+                    <div class="col-lg-9">
+                        <input type="text" [(ngModel)]="animal.animalName" id="animalName_{{animal.id}}" name="animalName_{{animal.id}}" formControlName="animalName" class="form-control" />
 
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label class="col-lg-3 control-label">{{ 'AD.com' | translate }} :</label>
-                <div class="col-lg-9">
-                    <textarea type="text" id="comment" class="md-textarea form-control" mdbInput></textarea>
+                <div class="form-group row">
+                    <label class="col-lg-3 control-label">{{ 'AD.com' | translate }} :</label>
+                    <div class="col-lg-9">
+                        <textarea [(ngModel)]="animal.comment" type="text" id="comment_{{animal.id}}"  name="animalName_{{animal.id}}"formControlName="comment" class="md-textarea form-control"
+                            mdbInput></textarea>
+                    </div>
                 </div>
-            </div>
-
+                <div class="row d-flex flex-row-reverse">
+                    <button type="button" class="btn btn-warning" (click)="addAnimal()">Add an other one</button>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="removeAnimal(i)">Remove</button>
+                </div>
+                <hr>
+            </section>
         </fieldset>
-
+        <div class="row justify-content-between p-3">
+            <div>
+                <button type="button" class="btn btn-info" (click)="onReturn()">retour</button>
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary" (click)="onReset()">Reset</button>
+                <button type="submit" class="btn btn-success" [disabled]="!adForm.valid">Submit</button>
+            </div>
+        </div>
     </form>
 </div>
