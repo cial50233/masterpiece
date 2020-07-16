@@ -14,12 +14,12 @@ export class MiniAdsComponent implements OnInit {
   constructor() { 
     this.adverts = [
       { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'candal', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'fitzgerald', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'marcoussis', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'amelie', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'pat', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      { 'name': 'shawn', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
     ];
 
 

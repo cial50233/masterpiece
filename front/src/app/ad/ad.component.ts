@@ -21,17 +21,17 @@ export class AdComponent implements OnInit {
     id: 1,
     animalType: '',
     animalName: '',
-    comment: ''
+    indication: ''
   }];
 
   constructor(private formBuilder: FormBuilder,
     private _location: Location) {
     this.animalTypes = ["Dog", 'Cat', 'Fish', 'Farm', 'Exotic light', 'Exotic warn'];
     this.adForm = this.formBuilder.group({
-      adr: '',
+      address: '',
       animalType: '',
       animalName: '',
-      comment: ''
+      indication: ''
     });
 
   }
@@ -48,17 +48,16 @@ export class AdComponent implements OnInit {
   onRadioChange(evt) {
     var target = evt.target;
     if (target.checked) {
-      console.log('ched');
-    } else {
-      console.log('chedzzzz');
-    }
+      console.log('chez le jobber clicked');
+      (document.getElementById("address") as HTMLButtonElement).disabled = true;
+    } 
   }
   onRadioChange2(evt) {
     var target = evt.target;
-    if (!target.checked) {
-      console.log('ched');
-    } else {
-      console.log('chedzzzz');
+    if (target.checked) {
+      console.log('chez l annonceur clicked');
+
+      (document.getElementById("address") as HTMLButtonElement).disabled = false;
     }
   }
 
@@ -67,7 +66,7 @@ export class AdComponent implements OnInit {
       id: this.animals.length + 1,
       animalType: '',
       animalName: '',
-      comment: ''
+      indication: ''
     });
 
   }

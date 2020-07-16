@@ -18,7 +18,7 @@ import fr.masterpiece.back.services.UserService;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
 	private final UserService service;
