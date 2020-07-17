@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 import fr.masterpiece.back.entities.Role;
 
-public class UserDto {
+public class AccountDto {
 	
     @NotNull
     @Size(max = 20)
@@ -37,7 +37,7 @@ public class UserDto {
 		this.roles = roles;
 	}
 
-	public UserDto() {
+	public AccountDto() {
 
 	}
 

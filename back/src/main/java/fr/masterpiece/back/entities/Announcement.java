@@ -16,7 +16,7 @@ public class Announcement extends AbstractEntity{
 	
     @ManyToOne
     @JoinColumn(name = "id_owner", nullable = false, foreignKey = @ForeignKey(name = "fk_announcements_users"))
-	private User owner;
+	private Account owner;
 
 	@Column(name = "job_place", nullable = false)
 	private String jobPlace;
