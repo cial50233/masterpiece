@@ -65,10 +65,16 @@ export class CreateAccountComponent implements OnInit {
           //this.profilForm.reset();
           if (data) {
             console.log(data);
+            document.getElementById("alertMsg").setAttribute("style", "display:block;");
             this.errorMsg = "Registered done";
+            document.getElementById("alertMsg").classList.add("alert-success");
+            document.getElementById("alertMsg").classList.remove('alert-danger');
           } else {
             console.log(data);
+            document.getElementById("alertMsg").setAttribute("style", "display:block;");
             this.errorMsg = "User already registered";
+            document.getElementById("alertMsg").classList.add('alert-danger');
+            document.getElementById("alertMsg").classList.remove("alert-success");
           }
         }
       );

@@ -29,4 +29,28 @@ public class Animal extends AbstractEntity {
 	@Column(length = 100, nullable = false, name = "animal_name")
 	private String animalName;
 
+	public Announcement getAnnouncement() {
+		return announcement;
+	}
+
+	public void setAnnouncement(Announcement announcement) {
+		this.announcement = announcement;
+	}
+
+	public AnimalType getAnimalType() {
+		return animalType;
+	}
+
+	public void setAnimalType(AnimalType animalType) {
+		this.animalType = animalType;
+	}
+
+	public String getAnimalName() {
+		return animalName;
+	}
+
+	public void setAnimalName(String animalName) {
+		this.animalName = animalName;
+	}
+
 }

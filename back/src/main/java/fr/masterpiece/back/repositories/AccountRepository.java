@@ -1,7 +1,5 @@
 package fr.masterpiece.back.repositories;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.masterpiece.back.entities.Account;
