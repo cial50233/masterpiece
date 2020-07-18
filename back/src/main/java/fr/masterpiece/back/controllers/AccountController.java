@@ -12,48 +12,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.masterpiece.back.dtos.UserDto;
-import fr.masterpiece.back.dtos.UserViewDto;
-import fr.masterpiece.back.services.UserService;
+import fr.masterpiece.back.dtos.AccountDto;
+import fr.masterpiece.back.services.AccountService;
 
 @RestController
-@RequestMapping("/user")
-@CrossOrigin
-public class UserController {
+@RequestMapping("/account")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+public class AccountController {
 
-	private final UserService service;
+	private final AccountService service;
 
-	protected UserController(UserService service) {
+	protected AccountController(AccountService service) {
 
         this.service = service;
 
     }
 
 	@PostMapping("/create")
-	protected boolean create(@Valid @RequestBody UserDto dto) {
+	protected boolean create(@Valid @RequestBody AccountDto dto) {
 
 		return service.create(dto);
 
 	}
-
-	@GetMapping("/{id}")
-	protected UserViewDto getOne(@PathVariable("id") Long id) {
-
-		return service.getOne(id);
-
-	}
 	
 
-  /*  @GetMapping
-    protected List<UserViewDto> getAll() {
-
-        return service.getAll();
-
-    }
-*/
-
 	@PutMapping("/{id}")
-	protected void update(@PathVariable("id") Long id, @Valid @RequestBody UserDto dto) {
+	protected void update(@PathVariable("id") Long id, @Valid @RequestBody AccountDto dto) {
 
 		service.update(id, dto);
 

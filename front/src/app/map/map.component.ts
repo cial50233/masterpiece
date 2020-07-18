@@ -29,6 +29,7 @@ import VectorSource from 'ol/source/Vector';
 export class MapComponent implements OnInit {
   test;
   private map;
+  map2;
   view;
   /*view = new View({
     center: olProj.fromLonLat([2.5838853999999998, 48.84416820000001]),
@@ -65,6 +66,7 @@ export class MapComponent implements OnInit {
     }, 500);
 */
     this.test = "ntin";
+    this.initializeMap2();
   }
 
   initializeMap() {
@@ -104,6 +106,10 @@ export class MapComponent implements OnInit {
       source: this.vectorSource
     });
     this.map = new Map({
+      controls: defaultControls().extend([
+        new ScaleLine(),
+        new FullScreen()
+      ]),
       target: 'carte',
       layers: [ new TileLayer({
         source: new OSM()
@@ -113,33 +119,38 @@ export class MapComponent implements OnInit {
         zoom: 16
       })
     });
+  }
 
-    //var source = new OSM();
-    var source = new XYZ({
-      url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-    });
-    var overviewMapControl = new OverviewMap({
-      layers: [
-        new TileLayer({
-          source: source
-        }) 
-      ]
-    });
-
-    let map = new Map({
-      controls: defaultControls().extend([
-        overviewMapControl,
-        new ScaleLine(),
-        new FullScreen()
-      ]),
-      layers: [
-        new TileLayer({
-          source: source
-        })],
-      target: 'carte',
-      view: this.view
-    });
-    this.map = map;
+  initializeMap2(){
+        //map2
+        var source = new XYZ({
+          url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        });
+        var overviewMapControl = new OverviewMap({
+          layers: [
+            new TileLayer({
+              source: source
+            }) 
+          ]
+        });
+    
+        this.map2 = new Map({
+          controls: defaultControls().extend([
+            overviewMapControl,
+            new ScaleLine(),
+            new FullScreen()
+          ]),
+          layers: [
+            new TileLayer({
+              source: new OSM()
+            })],
+          target: 'map',
+          view: new View({
+            center: fromLonLat([2.5838853999999998, 48.84416820000001]),
+            zoom: 16
+          })
+        });
+        //this.map = map;
   }
 
   // Get Current Location Coordinates

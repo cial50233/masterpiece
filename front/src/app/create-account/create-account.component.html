@@ -5,7 +5,7 @@
             <div class="alert alert-danger" role="alert" *ngIf="errorMsg">{{ errorMsg }}</div>
             <form [formGroup]="profilForm" (ngSubmit)="saveUser()">
                 <div class="form-group">
-                    <label for="email">{{ 'HOME.USERNAME' | translate }}</label>
+                    <label for="username">{{ 'HOME.USERNAME' | translate }}</label>
                     <input formControlName="username" id="username" class="form-control" />
                     <control-messages [control]="profilForm.get('username')"></control-messages>
                 </div>

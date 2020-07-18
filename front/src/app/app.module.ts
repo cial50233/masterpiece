@@ -19,11 +19,15 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from '../app/map/map.component';
-import {CarouselComponent} from '../app/carousel/carousel.component';
+import { CarouselComponent } from '../app/carousel/carousel.component';
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SearchbarComponent } from './searchbar/searchbar.component';
@@ -31,6 +35,8 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
 import { SearchComponent } from './search/search.component';
 import { MiniAdsComponent } from './mini-ads/mini-ads.component';
 import { FindAroundComponent } from './find-around/find-around.component';
+import { CreateAdComponent } from './create-ad/create-ad.component';
+import { AdComponent } from './ad/ad.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -50,7 +56,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CarouselComponent,
     SearchComponent,
     MiniAdsComponent,
-    FindAroundComponent
+    FindAroundComponent,
+    CreateAdComponent,
+    AdComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +79,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatAutocompleteModule,
     MatChipsModule,
     MatFormFieldModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatButtonModule,
+    MatProgressBarModule,
     Ng2SearchPipeModule,
     NgbModule,
     AgmCoreModule.forRoot({

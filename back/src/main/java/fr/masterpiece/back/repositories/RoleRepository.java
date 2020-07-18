@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import fr.masterpiece.back.entities.Role;
 
 @Repository
-public interface RoleJPARepository extends JpaRepository<Role, Long> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
 	
 	Role findByDefaultRoleTrue();
 
