@@ -1,5 +1,6 @@
 package fr.masterpiece.back.services;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,26 +25,23 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	@Autowired
     private AnimalRepository animalRepository;
 	
+    @Autowired
+    private ModelMapper mapper;
+	
 	@Override
 	public void createAnnouncement(AnnouncementDto dto) {
 
-        Announcement ann = new Announcement();
-        ann.setJobPlace(dto.getJobPlace());
-        ann.setAddress(dto.getAddress());
-        ann.setStartDate(dto.getStartDate());
-        ann.setEndDate(dto.getEndDate());
+        Announcement announcement = mapper.map(dto, Announcement.class);
 
         Account account = accountRepository.findById(dto.getOwnerId()).get();
-        ann.setOwner(account);
+        announcement.setOwner(account);
 
-        announcementRepository.save(ann);
+        announcementRepository.save(announcement);
         
-        for (AnimalDto anima : dto.getAnimals()) {
+        for (AnimalDto animalDto : dto.getAnimals()) {
 
-    	    Animal animal = new Animal();
-    	    animal.setAnimalName(anima.getAnimalName());
-    	    animal.setAnimalType(anima.getAnimalType());
-    	    animal.setAnnouncement(ann);
+    	    Animal animal = mapper.map(animalDto, Animal.class);
+    	    animal.setAnnouncement(announcement);
 		    animalRepository.save(animal);
 
     	}
