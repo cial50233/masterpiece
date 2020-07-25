@@ -17,7 +17,6 @@ import fr.masterpiece.back.services.AccountService;
 
 @RestController
 @RequestMapping("/accounts")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AccountController {
 
 	private final AccountService service;

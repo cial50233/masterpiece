@@ -13,7 +13,6 @@ import fr.masterpiece.back.dtos.AnnouncementDto;
 import fr.masterpiece.back.services.AnnouncementService;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/announcements")
 public class AnnouncementController {
 	

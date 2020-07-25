@@ -5,9 +5,14 @@ import java.util.Set;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import fr.masterpiece.back.config.CustomUserDetails;
 import fr.masterpiece.back.dtos.AccountDto;
+import fr.masterpiece.back.dtos.AccountViewDto;
 import fr.masterpiece.back.entities.Account;
 import fr.masterpiece.back.entities.Role;
 import fr.masterpiece.back.repositories.AccountRepository;
@@ -93,5 +98,14 @@ public class AccountServiceImpl implements AccountService {
 	public boolean uniqueUsername(String value) {
 		return !accountRepository.existsByUsername(value);
 	}
+	
+    @Override
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException {
+        AccountViewDto account = accountRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(
+                        "no user found with username: " + username));
+        return new CustomUserDetails(account);
+    }
 
 }

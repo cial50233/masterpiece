@@ -1,8 +1,11 @@
 package fr.masterpiece.back.services;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import fr.masterpiece.back.dtos.AccountDto;
 
-public interface AccountService {
+public interface AccountService extends UserDetailsService {
 
     void create(AccountDto dto);
 
@@ -15,5 +18,7 @@ public interface AccountService {
     boolean uniqueEmail(String value);
     
     boolean uniqueUsername(String value);
+    
+    UserDetails loadUserByUsername(String username);
 
 }
