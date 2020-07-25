@@ -2,8 +2,12 @@ package fr.masterpiece.back.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import fr.masterpiece.back.enums.EnumRole;
 
 @Entity
 @Table(name = "roles", uniqueConstraints = {
@@ -14,8 +18,9 @@ import javax.persistence.UniqueConstraint;
 })
 public class Role extends AbstractEntity{
 	
-	@Column(length = 10, nullable = false, unique = true)
-	private String code;
+	@Column(name = "code", nullable = false, columnDefinition = EnumRole.columnDefinition)
+    @Enumerated(EnumType.STRING)
+    private EnumRole code;
 	
 	@Column(length = 50, nullable = true, unique = true)
 	private String label;
@@ -27,11 +32,11 @@ public class Role extends AbstractEntity{
 
 	}
 
-	public String getCode() {
+	public EnumRole getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(EnumRole code) {
 		this.code = code;
 	}
 
