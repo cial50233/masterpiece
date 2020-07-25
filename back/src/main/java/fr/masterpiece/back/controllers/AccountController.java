@@ -29,9 +29,9 @@ public class AccountController {
     }
 
 	@PostMapping("/create")
-	protected boolean create(@Valid @RequestBody AccountDto dto) {
+	protected void create(@Valid @RequestBody AccountDto dto) {
 
-		return service.create(dto);
+		service.create(dto);
 
 	}
 	
