@@ -16,7 +16,7 @@ export class CreateAccountComponent implements OnInit {
   private user: UserInfo;
 
   submitted = false;
-  profilForm: any;
+  profilForm: FormGroup;
   errorMsg = "";
 
   constructor(private formBuilder: FormBuilder,
@@ -59,7 +59,7 @@ export class CreateAccountComponent implements OnInit {
       .set("Content-Type", "application/json");
 
     this.httpClient
-      .post('http://localhost:8081/account/create/', this.profilForm.value, { headers })
+      .post('http://localhost:8081/api/accounts/create/', this.profilForm.value, { headers })
       .subscribe(
         data => {
           //this.profilForm.reset();
