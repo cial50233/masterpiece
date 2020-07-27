@@ -1,5 +1,7 @@
 package fr.masterpiece.back.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,7 +37,12 @@ public class AccountController {
 
 	}
 	
-
+	@GetMapping("/{id}")
+	public AccountDto getOne(@PathVariable("id") Long id) {
+		
+		return service.get(id);
+	}
+	
 	@PutMapping("/{id}")
 	protected void update(@PathVariable("id") Long id, @Valid @RequestBody AccountDto dto) {
 
@@ -48,6 +55,11 @@ public class AccountController {
 
 		service.delete(id);
 
+	}
+	
+	@GetMapping
+	public List<AccountDto> getAll() {
+		return service.getAll();
 	}
 
 }

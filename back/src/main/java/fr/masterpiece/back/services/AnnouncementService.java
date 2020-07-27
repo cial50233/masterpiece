@@ -3,7 +3,6 @@ package fr.masterpiece.back.services;
 import java.util.List;
 
 import fr.masterpiece.back.dtos.AnnouncementDto;
-import fr.masterpiece.back.entities.Announcement;
 
 public interface AnnouncementService {
 	

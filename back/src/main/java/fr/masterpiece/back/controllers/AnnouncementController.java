@@ -33,8 +33,6 @@ public class AnnouncementController {
 
 	@GetMapping("/{id}")
 	public AnnouncementDto getOne(@PathVariable("id") Long id) {
-		//AnnouncementDto announcement = service.getAnnouncementById(id);
-		//return announcement;
 		
 		return service.get(id);
 	}

@@ -2,8 +2,6 @@ package fr.masterpiece.back.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,5 +73,33 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		}
 		return result;
 	}
+	/*
+	 	@Override
+		public List<AnnouncementDto> getAll() {
+		List<Announcement> announcements = announcementRepository.findAll();
+		List<AnnouncementDto> result = new ArrayList<>();
+		
+		List<Animal> animals = new ArrayList<>();
+		
+		for (Announcement announcement : announcements) {
+			AnnouncementDto dto = mapper.map(announcement, AnnouncementDto.class);
+			animals = animalRepository.findByAnnouncement(announcement);
+			
+			List<AnimalDto> animalsDto = new ArrayList<>();
+			
+			for (Animal i : animals) {
+
+				AnimalDto aniDto = mapper.map(i, AnimalDto.class);
+				animalsDto.add(aniDto);
+
+			}
+			
+			dto.setAnimals(animalsDto);
+			result.add(dto);
+		}
+		return result;
+	}
+	
+	*/
 
 }
