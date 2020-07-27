@@ -54,7 +54,19 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	public AnnouncementDto get(Long id) {
 		Announcement announcement = announcementRepository.findById(id).get();
 		AnnouncementDto dto = mapper.map(announcement, AnnouncementDto.class);
+		List<Animal> animals = new ArrayList<>();
+		animals = animalRepository.findByAnnouncement(announcement);
+		
+		List<AnimalDto> animalsDto = new ArrayList<>();
+		
+		for (Animal i : animals) {
 
+			AnimalDto aniDto = mapper.map(i, AnimalDto.class);
+			animalsDto.add(aniDto);
+
+		}
+		
+		dto.setAnimals(animalsDto);
 		return dto;
 	}
 
@@ -74,7 +86,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		return result;
 	}
 */	
-		public List<AnimalDto> getByAnnouncement(Long id) {
+		public List<AnimalDto> getAnimalByAnnouncement(Long id) {
 	
 			List<Animal> animals = animalRepository.findByAnnouncement(announcementRepository.findById(id).get());
 			List<AnimalDto> result = new ArrayList<>();
@@ -111,6 +123,28 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		return result;
 	}
 	
-	
+		public List<AnnouncementDto> getByOwner(Long id) {
+			
+			List<Announcement> announcements = announcementRepository.findByOwnerId(id);
+			List<AnnouncementDto> result = new ArrayList<>();
+			List<Animal> animals = new ArrayList<>();
+			for (Announcement announcement : announcements) {
+				AnnouncementDto dto = mapper.map(announcement, AnnouncementDto.class);
+				animals = animalRepository.findByAnnouncement(announcement);
+				
+				List<AnimalDto> animalsDto = new ArrayList<>();
+				
+				for (Animal i : animals) {
+
+					AnimalDto aniDto = mapper.map(i, AnimalDto.class);
+					animalsDto.add(aniDto);
+
+				}
+				
+				dto.setAnimals(animalsDto);
+				result.add(dto);
+			}
+			return result;
+		}
 
 }

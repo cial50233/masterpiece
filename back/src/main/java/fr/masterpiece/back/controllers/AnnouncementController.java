@@ -37,6 +37,10 @@ public class AnnouncementController {
 		
 		return service.get(id);
 	}
+	@GetMapping("/owner/{id}")
+	public List<AnnouncementDto> getByOwner(@PathVariable("id") Long id){
+		return service.getByOwner(id);
+	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") Long id) {
@@ -49,9 +53,9 @@ public class AnnouncementController {
 	}
 	
 	@GetMapping("/ani/{id}")
-	public List<AnimalDto> getByAnnouncement(@PathVariable("id") Long id) {
+	public List<AnimalDto> getAnimalByAnnouncement(@PathVariable("id") Long id) {
 		
-		return service.getByAnnouncement(id);
+		return service.getAnimalByAnnouncement(id);
 	}
 
 }

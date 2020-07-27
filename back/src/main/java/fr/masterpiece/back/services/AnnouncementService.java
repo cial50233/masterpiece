@@ -15,6 +15,8 @@ public interface AnnouncementService {
     
     List<AnnouncementDto> getAll();
     
-    List<AnimalDto> getByAnnouncement(Long id);    
+    List<AnimalDto> getAnimalByAnnouncement(Long id);
+    
+    List<AnnouncementDto> getByOwner(Long id);
 
 }
