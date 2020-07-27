@@ -2,6 +2,7 @@ package fr.masterpiece.back.services;
 
 import java.util.List;
 
+import fr.masterpiece.back.dtos.AnimalDto;
 import fr.masterpiece.back.dtos.AnnouncementDto;
 
 public interface AnnouncementService {
@@ -13,5 +14,7 @@ public interface AnnouncementService {
     void delete(Long id);
     
     List<AnnouncementDto> getAll();
+    
+    List<AnimalDto> getByAnnouncement(Long id);    
 
 }

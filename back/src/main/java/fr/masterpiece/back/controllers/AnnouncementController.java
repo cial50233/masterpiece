@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.masterpiece.back.dtos.AnimalDto;
 import fr.masterpiece.back.dtos.AnnouncementDto;
 import fr.masterpiece.back.services.AnnouncementService;
 
@@ -45,6 +46,12 @@ public class AnnouncementController {
 	@GetMapping
 	public List<AnnouncementDto> getAll() {
 		return service.getAll();
+	}
+	
+	@GetMapping("/ani/{id}")
+	public List<AnimalDto> getByAnnouncement(@PathVariable("id") Long id) {
+		
+		return service.getByAnnouncement(id);
 	}
 
 }

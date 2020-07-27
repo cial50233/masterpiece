@@ -62,7 +62,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	public void delete(Long id) {
 		announcementRepository.deleteById(id);
 	}
-	
+/*	
 	@Override
 	public List<AnnouncementDto> getAll() {
 		List<Announcement> announcements = announcementRepository.findAll();
@@ -73,7 +73,18 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		}
 		return result;
 	}
-	/*
+*/	
+		public List<AnimalDto> getByAnnouncement(Long id) {
+	
+			List<Animal> animals = animalRepository.findByAnnouncement(announcementRepository.findById(id).get());
+			List<AnimalDto> result = new ArrayList<>();
+			for (Animal a : animals) {
+				AnimalDto dto = mapper.map(a, AnimalDto.class);
+				result.add(dto);
+			}
+			return result;
+		}
+	
 	 	@Override
 		public List<AnnouncementDto> getAll() {
 		List<Announcement> announcements = announcementRepository.findAll();
@@ -100,6 +111,6 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		return result;
 	}
 	
-	*/
+	
 
 }
