@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-mini-ads',
@@ -11,17 +13,17 @@ export class MiniAdsComponent implements OnInit {
   // Pagination parameters.
   p: number = 1;
   count: number = 4;
-  constructor() { 
-    this.adverts = [
-      { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'candal', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'fitzgerald', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'marcoussis', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'amelie', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'pat', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-      { 'name': 'shawn', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
-    ];
-
+  constructor(private httpClient: HttpClient, private dataService: DataService) {
+    /*  this.adverts = [
+        { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+        { 'name': 'candal', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+        { 'name': 'fitzgerald', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+        { 'name': 'marcoussis', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+        { 'name': 'amelie', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+        { 'name': 'pat', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+        { 'name': 'shawn', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
+      ];
+  */
 
     this.ads = [
       { 'id': 1, 'name': 'Clare Cornau', 'phoneno': '(815) 6180492', 'email': 'ccornau0@bigcartel.com', 'gender': 'Female', 'nationality': 'Somalia' },
@@ -48,6 +50,34 @@ export class MiniAdsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
+
+    this.dataService.sendGetRequest().subscribe((data: any[])=>{
+      console.log(data);
+      this.adverts = data;
+    }) 
+
+
+
+    /*
+    let headers = new HttpHeaders()
+      .set("access-control-allow-origin", "http://localhost:8081")
+      .set("Access-Control-Request-Method", "GET,HEAD,PUT,PATCH,POST,DELETE")
+      .set("Content-Type", "application/json");
+
+    this.httpClient
+      .get('http://localhost:8081//announcements')
+      .subscribe(
+        (data: any[]) => {
+          console.log(data);
+          this.adverts = data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+        */
   }
 
 }
