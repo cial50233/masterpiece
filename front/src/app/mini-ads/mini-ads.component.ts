@@ -56,7 +56,7 @@ export class MiniAdsComponent implements OnInit {
     this.dataService.sendGetRequest().subscribe((data: any[])=>{
       console.log(data);
       this.adverts = data;
-    }) 
+    });
 
 
 
