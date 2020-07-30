@@ -59,23 +59,26 @@ export class CreateAccountComponent implements OnInit {
       .set("Content-Type", "application/json");
 
     this.httpClient
+<<<<<<< HEAD
       .post('http://localhost:8081/api/accounts/create/', this.profilForm.value, { headers })
+=======
+      .post('http://localhost:8081/accounts/create/', this.profilForm.value, { headers })
+>>>>>>> dev
       .subscribe(
-        data => {
+        (data) => {
+          console.log(data);
+          document.getElementById("alertMsg").setAttribute("style", "display:block;");
+          this.errorMsg = "Registered done";
+          document.getElementById("alertMsg").classList.add("alert-success");
+          document.getElementById("alertMsg").classList.remove('alert-danger');
           //this.profilForm.reset();
-          if (data) {
-            console.log(data);
-            document.getElementById("alertMsg").setAttribute("style", "display:block;");
-            this.errorMsg = "Registered done";
-            document.getElementById("alertMsg").classList.add("alert-success");
-            document.getElementById("alertMsg").classList.remove('alert-danger');
-          } else {
-            console.log(data);
-            document.getElementById("alertMsg").setAttribute("style", "display:block;");
-            this.errorMsg = "User already registered";
-            document.getElementById("alertMsg").classList.add('alert-danger');
-            document.getElementById("alertMsg").classList.remove("alert-success");
-          }
+        },
+        (error) => {
+          console.log(error);
+          document.getElementById("alertMsg").setAttribute("style", "display:block;");
+          this.errorMsg = "User already registered";
+          document.getElementById("alertMsg").classList.add('alert-danger');
+          document.getElementById("alertMsg").classList.remove("alert-success");
         }
       );
 

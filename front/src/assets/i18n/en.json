@@ -1,4 +1,7 @@
 {
+  "NAV": {
+    "ann": "Announcements"
+  },
   "HOME": {
     "TITLE": "Hello Angular with ngx-translate!",
     "SELECT": "Change language",
@@ -24,6 +27,9 @@
     "PWD": "Password",
     "btn1": "Sign In",
     "btn2": "Sign Up"
+  },
+  "ADS": {
+    "title": "Latests announcements : "
   }
   
 }

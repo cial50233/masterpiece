@@ -1,13 +1,16 @@
-<p>mini-ads works!</p>
+<h3>{{ 'ADS.title' | translate }}</h3>
 <div class="row">
     <div *ngFor="let e of adverts | paginate: { itemsPerPage: count, currentPage: p }" class="col-sm-6 col-md-3">
         <div class="thumbnail">
-            <img class="img-thumbnail" src="{{e.pic}}" alt="...">
+            <img class="img-thumbnail" src="../../assets/img/tree-1439369_1280.jpg" alt="...">
             <div class="caption">
-                <h3>{{e.name}}</h3>
-                <p>...</p>
-                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default"
-                        role="button">Button</a></p>
+                <h3>{{e.address}}</h3>
+                <p>{{e.jobPlace}}</p>
+                <p>{{e.startDate | date: 'dd/MM/yyyy à HH:mm'}}</p>
+                <div *ngFor="let a of e.animals">
+                    <p>Name : {{a.animalName}} ({{a.animalType}})</p>
+                </div>
+                <p><a href="#" class="btn btn-primary" role="button">Go</a></p>
             </div>
         </div>
     </div>
