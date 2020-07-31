@@ -1,6 +1,7 @@
 package fr.masterpiece.back.entities;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,33 +12,45 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "announcements")
-public class Announcement extends AbstractEntity{
-	
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false, foreignKey = @ForeignKey(name = "fk_announcements_users"))
+public class Announcement extends AbstractEntity {
+
+	@Column(name = "title", nullable = false, length = 25)
+	private String title;
+
+	@ManyToOne
+	@JoinColumn(name = "owner_id", nullable = false, foreignKey = @ForeignKey(name = "fk_announcements_accounts"))
 	private Account owner;
 
 	@Column(name = "job_place", nullable = false)
 	private String jobPlace;
-	
-	@Column(length = 250)
+
+	@Column(length = 255)
 	private String address;
-	
+
 	@Column(nullable = false)
 	private LocalDateTime startDate;
-	
+
 	private LocalDateTime endDate;
 
-	public Account getOwner() {
-		return owner;
-	}
 	
 	public Announcement() {
 
 	}
 
-	public void setOwner(Account owner) {
-		this.owner = owner;
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Account getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Account account) {
+		this.owner = account;
 	}
 
 	public String getJobPlace() {
@@ -71,7 +84,6 @@ public class Announcement extends AbstractEntity{
 	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
-	
-	
+
 
 }

@@ -18,7 +18,7 @@ export class AdComponent implements OnInit {
   public animalTypes: string[];
 
   public animals: any[] = [{
-    id: 1,
+    id: '',
     animalType: '',
     animalName: '',
     indication: ''

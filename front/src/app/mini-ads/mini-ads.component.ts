@@ -67,7 +67,7 @@ export class MiniAdsComponent implements OnInit {
       .set("Content-Type", "application/json");
 
     this.httpClient
-      .get('http://localhost:8081//announcements')
+      .get('http://localhost:8081/announcements')
       .subscribe(
         (data: any[]) => {
           console.log(data);

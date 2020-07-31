@@ -6,6 +6,8 @@ import java.util.List;
 public interface AnnouncementViewDto {
 	Long getId();
 	
+	String getTitle();
+	
 	String getJobPlace();
 	
 	String getAddress();
