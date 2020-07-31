@@ -12,10 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "animals", uniqueConstraints = {
-		@UniqueConstraint(name = "uk_announcement_animal", columnNames = {
-				"id_announcement", "animal_name" }) }, indexes = {
-					@Index(name = "fk_animals_announcements_idx", columnList = "id_announcement") })
+@Table(name = "animals")
 public class Animal extends AbstractEntity {
 
     @ManyToOne
