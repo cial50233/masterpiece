@@ -1,8 +1,6 @@
 package fr.masterpiece.back.entities;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -18,8 +16,8 @@ public class Announcement extends AbstractEntity {
 	private String title;
 
 	@ManyToOne
-	@JoinColumn(name = "owner_id", nullable = false)
-	private Account owner;
+	@JoinColumn(name = "owner_id", nullable = false, foreignKey = @ForeignKey(name = "fk_announcements_accounts"))
+	private Account ownerId;
 
 	@Column(name = "job_place", nullable = false)
 	private String jobPlace;
@@ -46,11 +44,11 @@ public class Announcement extends AbstractEntity {
 	}
 
 	public Account getOwner() {
-		return owner;
+		return ownerId;
 	}
 
 	public void setOwner(Account account) {
-		this.owner = account;
+		this.ownerId = account;
 	}
 
 	public String getJobPlace() {

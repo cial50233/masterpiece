@@ -33,7 +33,15 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	@Override
 	public void createAnnouncement(AnnouncementDto dto) {
 
-		Announcement announcement = mapper.map(dto, Announcement.class);
+		//Announcement announcement = mapper.map(dto, Announcement.class); for that, DON'T use model mapper cause it doesn't work
+		
+		Announcement announcement = new Announcement();
+		
+		announcement.setTitle(dto.getTitle());
+		announcement.setAddress(dto.getAddress());
+		announcement.setJobPlace(dto.getJobPlace());
+		announcement.setStartDate(dto.getStartDate());
+		announcement.setEndDate(dto.getEndDate());
 
 		Account account = accountRepository.findById(dto.getOwnerId()).get();
 		announcement.setOwner(account);
