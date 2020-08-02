@@ -19,6 +19,9 @@ public class Animal extends AbstractEntity {
 
 	@Column(length = 100, nullable = false, name = "animal_name")
 	private String animalName;
+	
+	@Column(length = 255)
+	private String indication;
 
 	@ManyToOne
 	@JoinColumn(name = "id_announcement", nullable = false, foreignKey = @ForeignKey(name = "fk_animals_announcements"))
@@ -46,6 +49,14 @@ public class Animal extends AbstractEntity {
 
 	public void setAnimalName(String animalName) {
 		this.animalName = animalName;
+	}
+
+	public String getIndication() {
+		return indication;
+	}
+
+	public void setIndication(String indication) {
+		this.indication = indication;
 	}
 
 }

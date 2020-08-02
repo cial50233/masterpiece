@@ -16,6 +16,9 @@ public class AnimalDto {
 	@Size(max = 255)
 	private String animalName;
 	
+	@Size(max = 255)
+	private String indication;
+	
 	private Announcement announcement;
 
 	public AnimalType getAnimalType() {
@@ -40,6 +43,14 @@ public class AnimalDto {
 
 	public void setAnnouncement(Announcement announcement) {
 		this.announcement = announcement;
+	}
+
+	public String getIndication() {
+		return indication;
+	}
+
+	public void setIndication(String indication) {
+		this.indication = indication;
 	}
 	
 	
