@@ -21,7 +21,6 @@ export class CreateAccountComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    private router: RouterModule,
     private _location: Location) {
     this.profilForm = this.formBuilder.group({
       username: ['', [Validators.required, ValidationService.userNameValidator]],

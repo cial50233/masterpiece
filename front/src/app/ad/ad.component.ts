@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Location } from '@angular/common';
 
 @Component({
@@ -11,9 +12,10 @@ import { Location } from '@angular/common';
 export class AdComponent implements OnInit {
 
   adForm: any;
+  errorMsg = "";
 
-  startDateJson: NgbDateStruct;
-  endDateJson: NgbDateStruct;
+  startDate: any;
+  endDate: any;
 
   public animalTypes: string[];
 
@@ -24,11 +26,15 @@ export class AdComponent implements OnInit {
     indication: ''
   }];
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient,
     private _location: Location) {
     this.animalTypes = ["Dog", 'Cat', 'Fish', 'Farm', 'Exotic light', 'Exotic warn'];
     this.adForm = this.formBuilder.group({
+      title: '',
       address: '',
+      jobPlace: '',
+      startDate: '',
+      endDate: '',
       animalType: '',
       animalName: '',
       indication: ''
@@ -76,7 +82,38 @@ export class AdComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.animals)
+    console.log(this.adForm.value);
+    console.log(this.animals);
+
+
+
+    let headers = new HttpHeaders()
+    .set("access-control-allow-origin", "http://localhost:8081")
+    .set("Access-Control-Request-Method", "POST")
+    .set("Content-Type", "application/json");
+
+  this.httpClient
+    .post('http://localhost:8081/announcements/create', this.adForm.value, { headers })
+    .subscribe(
+      (data) => {
+        console.log(data);
+        document.getElementById("alertMsg").setAttribute("style", "display:block;");
+        this.errorMsg = "Registered done";
+        document.getElementById("alertMsg").classList.add("alert-success");
+        document.getElementById("alertMsg").classList.remove('alert-danger');
+        //this.profilForm.reset();
+      },
+      (error) => {
+        console.log(error);
+        document.getElementById("alertMsg").setAttribute("style", "display:block;");
+        this.errorMsg = "Error";
+        document.getElementById("alertMsg").classList.add('alert-danger');
+        document.getElementById("alertMsg").classList.remove("alert-success");
+      }
+    );
+
+
+
   }
 
 }
