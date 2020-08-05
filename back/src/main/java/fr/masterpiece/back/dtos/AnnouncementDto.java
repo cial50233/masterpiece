@@ -9,14 +9,14 @@ import javax.validation.constraints.*;
 public class AnnouncementDto {
 	
 	@NotBlank
-    @Size(max = 25)
+    @Size(max = 255)
 	private String title;
 	
 	@NotBlank
-    @Size(max = 255)
+    @Size(max = 25)
 	private String jobPlace;
 	
-	@NotBlank
+
     @Size(max = 255)
 	private String address;
 	

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name = "announcements")
 public class Announcement extends AbstractEntity {
 
-	@Column(name = "title", nullable = false, length = 25)
+	@Column(name = "title", nullable = false, length = 255)
 	private String title;
 
 	@ManyToOne
