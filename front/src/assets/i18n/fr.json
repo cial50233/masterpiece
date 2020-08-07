@@ -11,6 +11,7 @@
   },
   "AD":{
     "TITLE": "Annonce",
+    "title": "Titre",
     "PLACE": "Lieu",
     "PLACEa": "Chez le jobber",
     "PLACEb": "Chez l'annonceur",

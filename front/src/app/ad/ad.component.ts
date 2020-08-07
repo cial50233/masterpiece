@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Location } from '@angular/common';
 
 @Component({
@@ -10,31 +11,59 @@ import { Location } from '@angular/common';
 })
 export class AdComponent implements OnInit {
 
-  adForm: any;
+  adForm: FormGroup;
+  items: FormArray;
+  errorMsg = "";
 
-  startDateJson: NgbDateStruct;
-  endDateJson: NgbDateStruct;
+  startDate: any;
+  endDate: any;
 
   public animalTypes: string[];
 
-  public animals: any[] = [{
-    id: 1,
+  public animalsList: any[] = [{
+    id: '',
     animalType: '',
     animalName: '',
     indication: ''
   }];
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient,
     private _location: Location) {
-    this.animalTypes = ["Dog", 'Cat', 'Fish', 'Farm', 'Exotic light', 'Exotic warn'];
+    this.animalTypes = ["Dog", 'Cat', 'Fish', 'Farm', 'Exotic_light', 'Exotic_warn'];
     this.adForm = this.formBuilder.group({
+      title: '',
       address: '',
-      animalType: '',
-      animalName: '',
-      indication: ''
+      jobPlace: '',
+      startDate: '',
+      endDate: '',
+      ownerId: 1,
+      animals: this.formBuilder.array([this.createItem()])
     });
 
   }
+
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      animalType: [''],
+      animalName: [''],
+      indication: ['']
+    });
+  }
+
+  addItem(): void {
+    this.items = this.adForm.get('animals') as FormArray;
+    this.items.push(this.createItem());
+  }
+
+  addAnimal() {
+    const control = <FormArray>this.adForm.get('animals');
+    control.push(this.createItem());
+  }
+  removeAnimal(i: number) {
+    const control = <FormArray>this.adForm.get('animals');
+    control.removeAt(i);
+  }
+
   ngOnInit(): void {
   }
 
@@ -50,7 +79,7 @@ export class AdComponent implements OnInit {
     if (target.checked) {
       console.log('chez le jobber clicked');
       (document.getElementById("address") as HTMLButtonElement).disabled = true;
-    } 
+    }
   }
   onRadioChange2(evt) {
     var target = evt.target;
@@ -61,22 +90,34 @@ export class AdComponent implements OnInit {
     }
   }
 
-  addAnimal(){
-    this.animals.push({
-      id: this.animals.length + 1,
-      animalType: '',
-      animalName: '',
-      indication: ''
-    });
+  submit() {
+    console.log(this.adForm.value);
+    console.log(this.animalsList);
 
-  }
+    let headers = new HttpHeaders()
+      .set("access-control-allow-origin", "http://localhost:8081")
+      .set("Access-Control-Request-Method", "POST")
+      .set("Content-Type", "application/json");
 
-  removeAnimal(i: number) {
-    this.animals.splice(i, 1);
-  }
-
-  submit(){
-    console.log(this.animals)
+    this.httpClient
+      .post('http://localhost:8081/announcements/create', this.adForm.value, { headers })
+      .subscribe(
+        (data) => {
+          console.log(data);
+          document.getElementById("alertMsg").setAttribute("style", "display:block;");
+          this.errorMsg = "Registered done";
+          document.getElementById("alertMsg").classList.add("alert-success");
+          document.getElementById("alertMsg").classList.remove('alert-danger');
+          //this.adForm.reset();
+        },
+        (error) => {
+          console.log(error);
+          document.getElementById("alertMsg").setAttribute("style", "display:block;");
+          this.errorMsg = "Error";
+          document.getElementById("alertMsg").classList.add('alert-danger');
+          document.getElementById("alertMsg").classList.remove("alert-success");
+        }
+      );
   }
 
 }
