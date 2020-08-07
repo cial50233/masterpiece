@@ -6,11 +6,7 @@ import { HttpClient } from '@angular/common/http';
       providedIn: 'root'
 })
 export class DataService {
-<<<<<<< HEAD
       private REST_API_SERVER = "http://localhost:8081/api/announcements";
-=======
-      private REST_API_SERVER = "http://localhost:8081/announcements";
->>>>>>> dev
 
       constructor(private httpClient: HttpClient) { }
 

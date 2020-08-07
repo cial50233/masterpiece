@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class CORSFilter implements Filter {
+public class CorsFilter implements Filter {
 
 	@Value("${jwt-auth-server.allowedOrigin}")
 	private String allowedOrigin;
