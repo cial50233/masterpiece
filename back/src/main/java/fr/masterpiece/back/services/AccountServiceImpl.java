@@ -13,8 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.masterpiece.back.config.CustomUserDetails;
+import fr.masterpiece.back.dtos.AccountAuthDto;
 import fr.masterpiece.back.dtos.AccountDto;
-import fr.masterpiece.back.dtos.AccountViewDto;
 import fr.masterpiece.back.entities.Account;
 import fr.masterpiece.back.entities.Role;
 import fr.masterpiece.back.repositories.AccountRepository;
@@ -115,7 +115,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        AccountViewDto account = accountRepository.findByUsername(username)
+        AccountAuthDto account = (AccountAuthDto) accountRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(
                         "no user found with username: " + username));
         return new CustomUserDetails(account);

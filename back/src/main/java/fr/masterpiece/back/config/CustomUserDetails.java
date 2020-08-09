@@ -3,7 +3,7 @@ package fr.masterpiece.back.config;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import fr.masterpiece.back.dtos.AccountViewDto;
+import fr.masterpiece.back.dtos.AccountAuthDto;
 import fr.masterpiece.back.entities.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,8 +19,9 @@ public class CustomUserDetails extends User {
 
 	private Long id;
 
-	public CustomUserDetails(AccountViewDto user) {
-		super(user.getUsername(), user.getPassword(), true, true, true, true, buildAuthorities(user.getRoles()));
+	public CustomUserDetails(AccountAuthDto user) {
+		super(user.getUsername(), user.getPassword(), true, true, true, true,
+				buildAuthorities(user.getRoles()));
 		id = user.getId();
 	}
 

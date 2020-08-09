@@ -13,7 +13,7 @@ import java.io.IOException;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
-	@Value("${jwt-auth-server.allowedOrigin}")
+	@Value("${masterpiece.allowedOrigin}")
 	private String allowedOrigin;
 
 	@Override
@@ -22,7 +22,7 @@ public class CorsFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		response.setHeader("Access-Control-Allow-Origin", allowedOrigin);
 		response.setHeader("Access-Control-Allow-Credentials", "true");
-		response.setHeader("Access-Control-Allow-Headers", "x-request-with, Authorization, content-type");
+		response.setHeader("Access-Control-Allow-Headers", "x-request-with, Authorization, Content-type");
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
 }

@@ -35,19 +35,19 @@ public class AuthorizationServerConfig
 
     // Get custom properties from application.properties
     // Could be different between environments
-    @Value("${jwt-auth-server.keyStore}")
+    @Value("${masterpiece.keyStore}")
     private String keyStore;
 
-    @Value("${jwt-auth-server.keyPass}")
+    @Value("${masterpiece.keyPass}")
     private String keyPass;
 
-    @Value("${jwt-auth-server.keyAlias}")
+    @Value("${masterpiece.keyAlias}")
     private String keyAlias;
 
-    @Value("${jwt-auth-server.accessTokenValiditySeconds}")
+    @Value("${masterpiece.accessTokenValiditySeconds}")
     private int accessTokenValiditySeconds;
 
-    @Value("${jwt-auth-server.refreshTokenValiditySeconds}")
+    @Value("${masterpiece.refreshTokenValiditySeconds}")
     private int refreshTokenValiditySeconds;
 
     // Defined as Spring bean in WebSecurity

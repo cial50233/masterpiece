@@ -1,0 +1,37 @@
+{"properties": [
+  {
+    "name": "allowedOrigin",
+    "type": "java.lang.String",
+    "description": "A description for 'allowedOrigin'"
+  },
+  {
+    "name": "masterpiece.allowedOrigin",
+    "type": "java.lang.String",
+    "description": "A description for 'masterpiece.allowedOrigin'"
+  },
+  {
+    "name": "masterpiece.keyStore",
+    "type": "java.lang.String",
+    "description": "A description for 'masterpiece.keyStore'"
+  },
+  {
+    "name": "masterpiece.keyAlias",
+    "type": "java.lang.String",
+    "description": "A description for 'masterpiece.keyAlias'"
+  },
+  {
+    "name": "masterpiece.keyPass",
+    "type": "java.lang.String",
+    "description": "A description for 'masterpiece.keyPass'"
+  },
+  {
+    "name": "masterpiece.accessTokenValiditySeconds",
+    "type": "java.lang.String",
+    "description": "A description for 'masterpiece.accessTokenValiditySeconds'"
+  },
+  {
+    "name": "masterpiece.refreshTokenValiditySeconds",
+    "type": "java.lang.String",
+    "description": "A description for 'masterpiece.refreshTokenValiditySeconds'"
+  }
+]}

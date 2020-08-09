@@ -8,6 +8,6 @@ public interface AccountViewDto {
 
     Long getId();
     String getUsername();
-    String getPassword();
+
     Set<Role> getRoles();
 }
