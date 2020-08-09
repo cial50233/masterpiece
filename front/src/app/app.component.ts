@@ -8,6 +8,10 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'AnimalsAround';
-  constructor() { }
+  title = 'Find Around';
+  constructor(private translate: TranslateService) { }
+
+  setLang(language: string) {
+    this.translate.use(language);
+  }
 }

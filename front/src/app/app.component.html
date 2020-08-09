@@ -1,13 +1,10 @@
 <div class="container">
   <mat-toolbar color="primary">  
-    <h1>  
-      ngImageUpload   
-    </h1>  
-    <button mat-button routerLink="/">Home</button>  
+    <button mat-button routerLink="/"><img class="ng-star-inserted" src="assets/logo.png" title ="Find Around" alt="Find Around" width="90" height="90"></button>  
     <button mat-button routerLink="/login">About</button>
+    <button class="btn btn-info" (click)="setLang('en')">en</button>
+    <button class="btn btn-info ml-2" (click)="setLang('fr')">fr</button>
   </mat-toolbar>
-  <h2>{{ 'HOME.TITLE' | translate }}</h2>
-
   <app-navbar></app-navbar>
 </div>
 <router-outlet></router-outlet>
