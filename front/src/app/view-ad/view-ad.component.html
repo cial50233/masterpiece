@@ -1,0 +1,16 @@
+<div class="container text-center col-lg-8 col-lg-offset-2">
+
+
+    <p>{{announcement.title}}</p>
+    <p>{{announcement.address}}</p>
+    <p>{{announcement.jobPlace}}</p>
+    <p>{{announcement.startDate | date: 'dd/MM/yyyy à HH:mm'}}</p>
+    <p>{{announcement.animals.length}} animal(s)</p>
+    <ul *ngFor="let a of announcement.animals">
+        <li>Name : {{a.animalName}} ({{a.animalType}})</li>
+    </ul>
+
+    <div>
+        <button type="button" class="btn btn-info" (click)="onReturn()">retour</button>
+    </div>
+</div>

@@ -5,5 +5,6 @@ export const paths = {
     ad: 'ad',
     create: 'create',
     createAd: 'createAd',
+    viewAd: 'viewAd',
     notfound: 'notfound'
 }
