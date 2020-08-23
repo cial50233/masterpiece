@@ -9,7 +9,7 @@
     "EMAIL": "Email",
     "PWD": "Mot de passe"
   },
-  "AD":{
+  "AD": {
     "TITLE": "Annonce",
     "title": "Titre",
     "PLACE": "Lieu",
@@ -31,5 +31,15 @@
   },
   "ADS": {
     "title": "Dernières annonces : "
+  },
+  "carousel": {
+    "1": "Besoin d'un animal sitter ?",
+    "1b": "Trouvez le sitter idéal pour votre animal",
+    "2": "Soyez serein",
+    "2b": "Laissez votre animal en toute confiance",
+    "3": "La meilleur solution pour vos gardes d'animaux",
+    "3b": "Trouvez ici, des services pour les animaux",
+    "4": "Trouvez ici",
+    "4b": "Le plus large réseau de sitters"
   }
 }

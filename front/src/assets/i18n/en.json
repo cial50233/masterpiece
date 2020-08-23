@@ -31,6 +31,15 @@
   },
   "ADS": {
     "title": "Latests announcements : "
+  },
+  "carousel": {
+    "1": "Need an animal sitter ?",
+    "1b": "Find the best sitter for your animal",
+    "2": "Be serene",
+    "2b": "Leave your animal with confidence",
+    "3": "The best solution for your animal care",
+    "3b": "Find here, services for animals",
+    "4": "Find here",
+    "4b": "The largest network of animal sitters"
   }
-  
 }
