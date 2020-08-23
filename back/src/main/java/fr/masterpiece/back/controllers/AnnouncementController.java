@@ -17,7 +17,7 @@ import fr.masterpiece.back.services.AnnouncementService;
 
 @RestController
 @RequestMapping("/announcements")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AnnouncementController {
 
 	private final AnnouncementService service;

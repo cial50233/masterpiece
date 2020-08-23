@@ -35,25 +35,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		// Allow options requests
 		.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll().and()//allow CORS option calls
 		// "/api/public/**" for anyone even anonymous
-		.authorizeRequests().antMatchers(HttpMethod.POST,"/api/accounts/create","/api/announcements").permitAll()
+		.authorizeRequests().antMatchers("/api/accounts/create","/api/announcements").permitAll()
 		/*
 		 * "/api/userInfo", "/api/private/**" for fully authenticated
 		 * (not anonymous)
 		 */
-		.antMatchers("/api/me")
-		.authenticated();
+		.antMatchers("/api/me").authenticated();
 		
-		/*
-		
-		.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll().and()
-		.authorizeRequests()
-		.antMatchers(HttpMethod.POST, "/api/announcements", "/api/accounts")
-		.permitAll()
-		.antMatchers(HttpMethod.GET, "/api/announcements", "/api/accounts")
-		.permitAll()
-
-		.antMatchers("/api/me", "/api/user/**", "/api/admin/**").authenticated();
-		*/
 		 
     }
 }
