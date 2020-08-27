@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from '../services/data.service';
+import { RouterModule, Routes } from '@angular/router';
+import { TransfereService } from '../services/transfere.service';
 
 @Component({
   selector: 'app-mini-ads',
@@ -8,12 +10,13 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./mini-ads.component.scss']
 })
 export class MiniAdsComponent implements OnInit {
+
   public adverts = [];
   public ads = [];
   // Pagination parameters.
   p: number = 1;
   count: number = 4;
-  constructor(private httpClient: HttpClient, private dataService: DataService) {
+  constructor(private httpClient: HttpClient, private dataService: DataService, private tranfereService : TransfereService) {
     /*  this.adverts = [
         { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
         { 'name': 'candal', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
@@ -78,6 +81,12 @@ export class MiniAdsComponent implements OnInit {
         }
       );
         */
+  }
+
+  open(e){
+
+    this.tranfereService.setData(e);
+    
   }
 
 }

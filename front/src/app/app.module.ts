@@ -39,6 +39,8 @@ import { MiniAdsComponent } from './mini-ads/mini-ads.component';
 import { FindAroundComponent } from './find-around/find-around.component';
 import { CreateAdComponent } from './create-ad/create-ad.component';
 import { AdComponent } from './ad/ad.component';
+import { ViewAdComponent } from './view-ad/view-ad.component';
+import { TransfereService } from './services/transfere.service';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -60,7 +62,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MiniAdsComponent,
     FindAroundComponent,
     CreateAdComponent,
-    AdComponent
+    AdComponent,
+    ViewAdComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +97,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       libraries: ['places']
     })
   ],
-  providers: [DataService],
+  providers: [DataService,TransfereService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
