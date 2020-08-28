@@ -100,7 +100,7 @@ export class AdComponent implements OnInit {
       .set("Content-Type", "application/json");
 
     this.httpClient
-      .post('http://localhost:8081/announcements/create', this.adForm.value, { headers })
+      .post('http://localhost:8081/api/announcements/create', this.adForm.value)
       .subscribe(
         (data) => {
           console.log(data);

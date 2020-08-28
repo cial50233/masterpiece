@@ -40,7 +40,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		 * "/api/userInfo", "/api/private/**" for fully authenticated
 		 * (not anonymous)
 		 */
-		.antMatchers("/api/me").authenticated();
+		.antMatchers("/api/me", "/api/announcements/create").authenticated();
 		
 		 
     }

@@ -58,7 +58,7 @@ export class CreateAccountComponent implements OnInit {
       .set("Content-Type", "application/json");
 
     this.httpClient
-      .post('http://localhost:8081/api/accounts/create/', this.profilForm.value, { headers })
+      .post('http://localhost:8081/api/accounts/create/', this.profilForm.value)
       .subscribe(
         (data) => {
           console.log(data);
