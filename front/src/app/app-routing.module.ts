@@ -10,6 +10,8 @@ import { FindAroundComponent } from './find-around/find-around.component';
 import { CreateAdComponent } from './create-ad/create-ad.component';
 import { ViewAdComponent } from './view-ad/view-ad.component';
 import { AdComponent } from './ad/ad.component';
+import { ShowAdsComponent } from './show-ads/show-ads.component';
+import { AboutComponent } from './about/about.component';
 
 
 export const appRoutes: Routes = [
@@ -19,6 +21,13 @@ export const appRoutes: Routes = [
     path : '',
     pathMatch: 'full',
     redirectTo: paths.home
+  },
+  {
+
+    path : paths.about,
+
+    component : AboutComponent
+
   },
   {
 
@@ -60,6 +69,13 @@ export const appRoutes: Routes = [
     path : paths.createAd,
 
     component : CreateAdComponent
+
+  },
+  {
+
+    path : paths.showAds,
+
+    component : ShowAdsComponent
 
   },
   {

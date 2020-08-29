@@ -14,7 +14,7 @@ export class AdComponent implements OnInit {
   adForm: FormGroup;
   items: FormArray;
   errorMsg = "";
-
+  edited = false;
   startDate: any;
   endDate: any;
 
@@ -29,7 +29,7 @@ export class AdComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient,
     private _location: Location) {
-    this.animalTypes = ["Dog", 'Cat', 'Fish', 'Farm', 'Exotic_light', 'Exotic_warn'];
+    this.animalTypes = ["Dog", 'Cat', 'Bird', 'Fish', 'Farm', 'Exotic_light', 'Exotic_warn'];
     this.adForm = this.formBuilder.group({
       title: '',
       address: '',
@@ -79,6 +79,7 @@ export class AdComponent implements OnInit {
     if (target.checked) {
       console.log('chez le jobber clicked');
       (document.getElementById("address") as HTMLButtonElement).disabled = true;
+      (document.getElementById("address") as HTMLButtonElement).value = '';
     }
   }
   onRadioChange2(evt) {
@@ -109,6 +110,7 @@ export class AdComponent implements OnInit {
           document.getElementById("alertMsg").classList.add("alert-success");
           document.getElementById("alertMsg").classList.remove('alert-danger');
           //this.adForm.reset();
+          this.edited = true;
         },
         (error) => {
           console.log(error);

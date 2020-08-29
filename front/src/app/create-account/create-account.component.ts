@@ -14,7 +14,7 @@ import { Location } from '@angular/common';
 export class CreateAccountComponent implements OnInit {
 
   private user: UserInfo;
-
+  edited = false;
   submitted = false;
   profilForm: FormGroup;
   errorMsg = "";
@@ -67,6 +67,7 @@ export class CreateAccountComponent implements OnInit {
           document.getElementById("alertMsg").classList.add("alert-success");
           document.getElementById("alertMsg").classList.remove('alert-danger');
           //this.profilForm.reset();
+          this.edited = true;
         },
         (error) => {
           console.log(error);
@@ -81,7 +82,9 @@ export class CreateAccountComponent implements OnInit {
 
   onReset() {
     this.submitted = false;
-    this.profilForm.reset();
+    (document.getElementById("username") as HTMLButtonElement).value = '';
+    (document.getElementById("email") as HTMLButtonElement).value = '';
+    (document.getElementById("password") as HTMLButtonElement).value = '';
   }
 
   onReturn() {

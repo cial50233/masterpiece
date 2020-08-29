@@ -1,4 +1,5 @@
 export const paths = {
+    about: 'about',
     home: 'home',
     find: 'find',
     login: 'login',
@@ -6,5 +7,6 @@ export const paths = {
     create: 'create',
     createAd: 'createAd',
     viewAd: 'viewAd',
+    showAds: 'showAds',
     notfound: 'notfound'
 }
