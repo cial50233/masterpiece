@@ -1,6 +1,14 @@
 {
+  "ABOUT": {
+    "title": "A propos"
+  },
+  "APP": {
+    "lang": "Langue"
+  },
   "NAV": {
-    "ann": "Annonces"
+    "ann": "Annonces",
+    "drop1": "Voir annonces",
+    "drop2": "Créer annonces"
   },
   "HOME": {
     "TITLE": "Trouvez ici !",

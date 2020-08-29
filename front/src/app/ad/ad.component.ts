@@ -79,6 +79,7 @@ export class AdComponent implements OnInit {
     if (target.checked) {
       console.log('chez le jobber clicked');
       (document.getElementById("address") as HTMLButtonElement).disabled = true;
+      (document.getElementById("address") as HTMLButtonElement).value = '';
     }
   }
   onRadioChange2(evt) {

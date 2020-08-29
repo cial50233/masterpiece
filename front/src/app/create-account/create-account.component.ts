@@ -82,7 +82,9 @@ export class CreateAccountComponent implements OnInit {
 
   onReset() {
     this.submitted = false;
-    this.profilForm.reset();
+    (document.getElementById("username") as HTMLButtonElement).value = '';
+    (document.getElementById("email") as HTMLButtonElement).value = '';
+    (document.getElementById("password") as HTMLButtonElement).value = '';
   }
 
   onReturn() {

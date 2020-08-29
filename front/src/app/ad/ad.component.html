@@ -86,8 +86,8 @@
                                 formControlName="indication" class="md-textarea form-control" mdbInput></textarea>
                         </div>
                     </div>
-                    <div class="row d-flex flex-row-reverse">
-                        <button type="button" class="btn btn-warning" (click)="addAnimal()">Add an other one</button>
+                    <div class="row flex-row-reverse justify-content-center p-3">
+                        <button type="button" class="btn btn-warning ml-1" (click)="addAnimal()">Add an other one</button>
                         <button type="button" class="btn btn-danger btn-sm" (click)="removeAnimal(i)">Remove</button>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
             </div>
             <div>
                 <button type="button" class="btn btn-primary" (click)="onReset()">Reset</button>
-                <button type="submit" class="btn btn-success" [disabled]="!adForm.valid">Submit</button>
+                <button type="submit" class="btn btn-success ml-1" [disabled]="!adForm.valid">Submit</button>
             </div>
         </div>
     </form>
