@@ -1,6 +1,17 @@
 {
+  "ABOUT": {
+    "title": "About"
+  },
+  "APP": {
+    "lang": "Language"
+  },
+  "NAV": {
+    "ann": "Announcements",
+    "drop1": "See announcements",
+    "drop2": "Create announcements"
+  },
   "HOME": {
-    "TITLE": "Hello Angular with ngx-translate!",
+    "TITLE": "Find here !",
     "SELECT": "Change language",
     "USERNAME": "Username",
     "EMAIL": "Email",
@@ -8,6 +19,7 @@
   },
   "AD":{
     "TITLE": "Announcement",
+    "title": "Title",
     "PLACE": "Place",
     "PLACEa": "At sitter's place",
     "PLACEb": "At owner's place",
@@ -24,6 +36,18 @@
     "PWD": "Password",
     "btn1": "Sign In",
     "btn2": "Sign Up"
+  },
+  "ADS": {
+    "title": "Latests announcements : "
+  },
+  "carousel": {
+    "1": "Need an animal sitter ?",
+    "1b": "Find the best sitter for your animal",
+    "2": "Be serene",
+    "2b": "Leave your animal with confidence",
+    "3": "The best solution for your animal care",
+    "3b": "Find here, services for animals",
+    "4": "Find here",
+    "4b": "The largest network of animal sitters"
   }
-  
 }

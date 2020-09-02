@@ -1,6 +1,8 @@
 package fr.masterpiece.back.services;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.modelmapper.ModelMapper;
@@ -11,8 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.masterpiece.back.config.CustomUserDetails;
+import fr.masterpiece.back.dtos.AccountAuthDto;
 import fr.masterpiece.back.dtos.AccountDto;
-import fr.masterpiece.back.dtos.AccountViewDto;
 import fr.masterpiece.back.entities.Account;
 import fr.masterpiece.back.entities.Role;
 import fr.masterpiece.back.repositories.AccountRepository;
@@ -65,6 +67,14 @@ public class AccountServiceImpl implements AccountService {
 		accountRepository.save(account);
 
 	}
+	
+	@Override
+	public AccountDto get(Long id) {
+		Account account = accountRepository.findById(id).get();
+		AccountDto dto = mapper.map(account, AccountDto.class);
+
+		return dto;
+	}
 
 	@Override
 	public void delete(Long id) {
@@ -81,14 +91,17 @@ public class AccountServiceImpl implements AccountService {
 		// populateAndSave(dto);
 
 	}
-
-	public boolean isAlreadyPresent(String name) {
-		if ((accountRepository.findByUsername(name) != null) || (accountRepository.findByEmail(name) != null)) {
-			return true;
+	
+	@Override
+	public List<AccountDto> getAll() {
+		List<Account> accounts = accountRepository.findAll();
+		List<AccountDto> result = new ArrayList<>();
+		for (Account a : accounts) {
+			AccountDto dto = mapper.map(a, AccountDto.class);
+			result.add(dto);
 		}
-		return false;
+		return result;
 	}
-
 	@Override
 	public boolean uniqueEmail(String value) {
 		return !accountRepository.existsByEmail(value);
@@ -102,7 +115,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        AccountViewDto account = accountRepository.findByUsername(username)
+        AccountAuthDto account = (AccountAuthDto) accountRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(
                         "no user found with username: " + username));
         return new CustomUserDetails(account);

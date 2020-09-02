@@ -4,6 +4,8 @@
             <h1>{{ 'LOGIN.title' | translate }}</h1>
             <form [formGroup]="loginForm" (ngSubmit)="logIn()" class="form-horizontal">
                 <div class="form-group row">
+                <input type="hidden" class="form-control" formControlName="client_id" value="masterpiece-client">
+                <input type="hidden" class="form-control" formControlName="grant_type" value="password">
                     <label class="col-lg-3 control-label">{{ 'LOGIN.USERNAME' | translate }} :</label>
                     <div class="col-lg-9">
                         <input type="text" id="username" formControlName="username" class="form-control" />

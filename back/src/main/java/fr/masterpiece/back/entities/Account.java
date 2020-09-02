@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
@@ -37,7 +38,7 @@ public class Account extends AbstractEntity {
     @Column(nullable = true)
     private boolean enable;
 	
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "accounts_roles",
             joinColumns = @JoinColumn(name = "account_id", nullable = false),
             foreignKey = @ForeignKey(name = "accounts_roles_account_id_FK"),

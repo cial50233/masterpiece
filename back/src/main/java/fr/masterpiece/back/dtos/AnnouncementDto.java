@@ -10,9 +10,13 @@ public class AnnouncementDto {
 	
 	@NotBlank
     @Size(max = 255)
-	private String jobPlace;
+	private String title;
 	
 	@NotBlank
+    @Size(max = 25)
+	private String jobPlace;
+	
+
     @Size(max = 255)
 	private String address;
 	
@@ -27,6 +31,15 @@ public class AnnouncementDto {
 	@NotNull
 	private Long ownerId;
 	
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public Long getOwnerId() {
 		return ownerId;
 	}

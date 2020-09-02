@@ -1,14 +1,11 @@
 package fr.masterpiece.back.dtos;
 
-import java.util.Set;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import fr.masterpiece.back.entities.Role;
 import fr.masterpiece.back.validation.UniqueEmail;
 import fr.masterpiece.back.validation.UniqueUsername;
 
@@ -32,15 +29,6 @@ public class AccountDto {
     private String password;
     
     
-    private Set<Role> roles;
-    
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
 
 	public AccountDto() {
 
@@ -72,8 +60,7 @@ public class AccountDto {
 
 	@Override
 	public String toString() {
-		return "UserDto [username=" + username + ", email=" + email + ", password=" + password + ", roles=" + roles
-				+ "]";
+		return "UserDto [username=" + username + ", email=" + email + ", password=" + password +"]";
 	}
 
 

@@ -16,6 +16,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { DataService } from '../app/services/data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
@@ -37,6 +39,10 @@ import { MiniAdsComponent } from './mini-ads/mini-ads.component';
 import { FindAroundComponent } from './find-around/find-around.component';
 import { CreateAdComponent } from './create-ad/create-ad.component';
 import { AdComponent } from './ad/ad.component';
+import { ViewAdComponent } from './view-ad/view-ad.component';
+import { TransfereService } from './services/transfere.service';
+import { ShowAdsComponent } from './show-ads/show-ads.component';
+import { AboutComponent } from './about/about.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -58,7 +64,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MiniAdsComponent,
     FindAroundComponent,
     CreateAdComponent,
-    AdComponent
+    AdComponent,
+    ViewAdComponent,
+    ShowAdsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +87,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatIconModule, MatInputModule,
     MatAutocompleteModule,
     MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatToolbarModule,
     MatCardModule,
@@ -90,7 +101,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       libraries: ['places']
     })
   ],
-  providers: [DataService],
+  providers: [DataService,TransfereService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

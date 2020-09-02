@@ -21,10 +21,7 @@ public class Role extends AbstractEntity{
 	@Column(name = "code", nullable = false, columnDefinition = EnumRole.columnDefinition)
     @Enumerated(EnumType.STRING)
     private EnumRole code;
-	
-	@Column(length = 50, nullable = true, unique = true)
-	private String label;
-	
+		
 	@Column(nullable = false)
 	private boolean defaultRole;
 
@@ -38,14 +35,6 @@ public class Role extends AbstractEntity{
 
 	public void setCode(EnumRole code) {
 		this.code = code;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
 	}
 
 	public boolean isDefaultRole() {

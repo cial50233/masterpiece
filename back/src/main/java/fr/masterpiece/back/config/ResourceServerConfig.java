@@ -10,7 +10,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 
 @Configuration
 @EnableResourceServer
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true,  securedEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     /**
@@ -26,18 +27,21 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		// Disable CSRF, no need with JWT if not cookie-based.
 		// Disable CORS if API is public, better to enable in general.
 		// Anonymous is enabled by default.
-		http.httpBasic().disable().csrf().disable().cors().disable()
+		http.httpBasic().disable()
+		.csrf().disable()
+		.cors().disable()
 		.sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 		// Allow options requests
 		.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll().and()//allow CORS option calls
 		// "/api/public/**" for anyone even anonymous
-		.authorizeRequests().antMatchers("/api/accounts/**").permitAll()
+		.authorizeRequests().antMatchers("/api/accounts/create","/api/announcements").permitAll()
 		/*
 		 * "/api/userInfo", "/api/private/**" for fully authenticated
 		 * (not anonymous)
 		 */
-		.antMatchers("/api/announcements/**")
-		.authenticated();
+		.antMatchers("/api/me", "/api/announcements/create").authenticated();
+		
+		 
     }
 }

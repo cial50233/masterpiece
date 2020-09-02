@@ -1,13 +1,25 @@
 {
+  "ABOUT": {
+    "title": "A propos"
+  },
+  "APP": {
+    "lang": "Langue"
+  },
+  "NAV": {
+    "ann": "Annonces",
+    "drop1": "Voir annonces",
+    "drop2": "Créer annonces"
+  },
   "HOME": {
-    "TITLE": "Bonjour Angular avec ngx-translate !",
+    "TITLE": "Trouvez ici !",
     "SELECT": "Changer la langue",
     "USERNAME": "Pseudo",
     "EMAIL": "Email",
     "PWD": "Mot de passe"
   },
-  "AD":{
+  "AD": {
     "TITLE": "Annonce",
+    "title": "Titre",
     "PLACE": "Lieu",
     "PLACEa": "Chez le jobber",
     "PLACEb": "Chez l'annonceur",
@@ -24,5 +36,18 @@
     "PWD": "Mot de passe",
     "btn1": "Se connecter",
     "btn2": "S'inscrire"
+  },
+  "ADS": {
+    "title": "Dernières annonces : "
+  },
+  "carousel": {
+    "1": "Besoin d'un animal sitter ?",
+    "1b": "Trouvez le sitter idéal pour votre animal",
+    "2": "Soyez serein",
+    "2b": "Laissez votre animal en toute confiance",
+    "3": "La meilleur solution pour vos gardes d'animaux",
+    "3b": "Trouvez ici, des services pour les animaux",
+    "4": "Trouvez ici",
+    "4b": "Le plus large réseau de sitters"
   }
 }

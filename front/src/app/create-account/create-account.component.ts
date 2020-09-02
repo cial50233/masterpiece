@@ -14,14 +14,13 @@ import { Location } from '@angular/common';
 export class CreateAccountComponent implements OnInit {
 
   private user: UserInfo;
-
+  edited = false;
   submitted = false;
-  profilForm: any;
+  profilForm: FormGroup;
   errorMsg = "";
 
   constructor(private formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    private router: RouterModule,
     private _location: Location) {
     this.profilForm = this.formBuilder.group({
       username: ['', [Validators.required, ValidationService.userNameValidator]],
@@ -59,23 +58,23 @@ export class CreateAccountComponent implements OnInit {
       .set("Content-Type", "application/json");
 
     this.httpClient
-      .post('http://localhost:8081/account/create/', this.profilForm.value, { headers })
+      .post('http://localhost:8081/api/accounts/create/', this.profilForm.value)
       .subscribe(
-        data => {
+        (data) => {
+          console.log(data);
+          document.getElementById("alertMsg").setAttribute("style", "display:block;");
+          this.errorMsg = "Registered done";
+          document.getElementById("alertMsg").classList.add("alert-success");
+          document.getElementById("alertMsg").classList.remove('alert-danger');
           //this.profilForm.reset();
-          if (data) {
-            console.log(data);
-            document.getElementById("alertMsg").setAttribute("style", "display:block;");
-            this.errorMsg = "Registered done";
-            document.getElementById("alertMsg").classList.add("alert-success");
-            document.getElementById("alertMsg").classList.remove('alert-danger');
-          } else {
-            console.log(data);
-            document.getElementById("alertMsg").setAttribute("style", "display:block;");
-            this.errorMsg = "User already registered";
-            document.getElementById("alertMsg").classList.add('alert-danger');
-            document.getElementById("alertMsg").classList.remove("alert-success");
-          }
+          this.edited = true;
+        },
+        (error) => {
+          console.log(error);
+          document.getElementById("alertMsg").setAttribute("style", "display:block;");
+          this.errorMsg = "User already registered";
+          document.getElementById("alertMsg").classList.add('alert-danger');
+          document.getElementById("alertMsg").classList.remove("alert-success");
         }
       );
 
@@ -83,7 +82,9 @@ export class CreateAccountComponent implements OnInit {
 
   onReset() {
     this.submitted = false;
-    this.profilForm.reset();
+    (document.getElementById("username") as HTMLButtonElement).value = '';
+    (document.getElementById("email") as HTMLButtonElement).value = '';
+    (document.getElementById("password") as HTMLButtonElement).value = '';
   }
 
   onReturn() {

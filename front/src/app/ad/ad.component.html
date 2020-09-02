@@ -1,21 +1,28 @@
 <div class="container text-center col-lg-8 col-lg-offset-2">
     <h1>{{ 'AD.TITLE' | translate }}</h1>
-    <form [formGroup]="adForm" class="form-horizontal" (ngSubmit)="submit()">
+    <div id="alertMsg" class="alert alert-danger" role="alert" style="display: none;">{{ errorMsg }}</div>
+    <form [formGroup]="adForm" [hidden]="edited" class="form-horizontal" (ngSubmit)="submit()">
+        <div class="form-group row">
+            <label class="col-lg-3 control-label">{{ 'AD.title' | translate }} :</label>
+            <div class="col-lg-9">
+                <input type="text" id="title" name="title" formControlName="title" class="form-control" />
 
+            </div>
+        </div>
         <div class="form-group row">
             <label class="col-lg-3 control-label">{{ 'AD.PLACE' | translate }} :</label>
             <div class="col-lg-9">
                 <!-- Default unchecked -->
                 <div class="custom-control custom-radio text-left">
-                    <input type="radio" class="custom-control-input" id="r1" name="jobPlace" mdbInput
-                        (change)="onRadioChange($event)">
+                    <input type="radio" class="custom-control-input" id="r1" name="jobPlace" formControlName="jobPlace"
+                        mdbInput (change)="onRadioChange($event)" value="sitter">
                     <label class="custom-control-label" for="r1">{{ 'AD.PLACEa' | translate }}</label>
                 </div>
 
                 <!-- Default checked -->
                 <div class="custom-control custom-radio text-left">
-                    <input type="radio" class="custom-control-input" id="r2" name="jobPlace" checked mdbInput
-                        (change)="onRadioChange2($event)">
+                    <input type="radio" class="custom-control-input" id="r2" name="jobPlace" formControlName="jobPlace"
+                        checked mdbInput (change)="onRadioChange2($event)" value="owner">
                     <label class="custom-control-label" for="r2">{{ 'AD.PLACEb' | translate }}</label>
                 </div>
             </div>
@@ -29,67 +36,64 @@
         </div>
 
         <div class="form-group row">
-            <label class="col-lg-3 control-label">{{ 'AD.DATE1' | translate }} :</label>
-            <div class="col-lg-9 input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="startDateJson"
-                    [ngModelOptions]="{standalone: true}" ngbDatepicker #d1="ngbDatepicker">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
-                </div>
+            <div class="col-lg-6">
+                <label>{{ 'AD.DATE1' | translate }} :</label>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="startDate" formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                    <mat-datepicker #startDate></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+                <label>{{ 'AD.DATE2' | translate }} :</label>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="endDate" formControlName="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                    <mat-datepicker #endDate></mat-datepicker>
+                </mat-form-field>
             </div>
         </div>
-        <hr>
-        <pre>Model: {{ startDateJson | json }}</pre>
-
-        <div class="form-group row">
-            <label class="col-lg-3 control-label">{{ 'AD.DATE2' | translate }} :</label>
-            <div class="col-lg-9 input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd" name="endDate" [(ngModel)]="endDateJson"
-                    [ngModelOptions]="{standalone: true}" ngbDatepicker #d2="ngbDatepicker">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <pre>Model: {{ endDateJson | json }}</pre>
-
         <fieldset>
             <legend>ADD</legend>
-            <section *ngFor="let animal of animals; let i = index;">
-                <h5 class="text-left">Animal n° {{i+1}}</h5>
-                <div class="form-group row">
-                    <label class="col-lg-3 control-label">{{ 'AD.type' | translate }} :</label>
-                    <div class="col-lg-9">
-                        <select [(ngModel)]="animal.animalType" formControlName="animalType" class="form-control selectpicker" data-live-search="true"
-                            class="form-control" name="animalType_{{animal.id}}" placeholder="Dog">
-                            <option *ngFor="let type of animalTypes" title="{{type}}" value="{{type}}">
-                                {{type}}
-                            </option>
-                        </select>
+            <div formArrayName="animals" *ngFor="let animal of adForm.get('animals')['controls']; let i = index;">
+                <div [formGroupName]="i">
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">{{ 'AD.type' | translate }} :</label>
+                        <div class="col-lg-9">
+                            <select formControlName="animalType" class="form-control selectpicker" data-live-search="true"
+                                class="form-control" name="animalType_{{animal.id}}" placeholder="Dog">
+                                <option *ngFor="let type of animalTypes" title="{{type}}" value="{{type}}">
+                                    {{type}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">{{ 'AD.name' | translate }} :</label>
+                        <div class="col-lg-9">
+                            <input type="text" id="animalName_{{animal.id}}" name="animalName_{{animal.id}}"
+                                formControlName="animalName" class="form-control" />
+    
+                        </div>
+                    </div>
+    
+                    <div class="form-group row">
+                        <label class="col-lg-3 control-label">{{ 'AD.indication' | translate }} :</label>
+                        <div class="col-lg-9">
+                            <textarea type="text" id="indication_{{animal.id}}" name="animalIndication_{{animal.id}}"
+                                formControlName="indication" class="md-textarea form-control" mdbInput></textarea>
+                        </div>
+                    </div>
+                    <div class="row flex-row-reverse justify-content-center p-3">
+                        <button type="button" class="btn btn-warning ml-1" (click)="addAnimal()">Add an other one</button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="removeAnimal(i)">Remove</button>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-lg-3 control-label">{{ 'AD.name' | translate }} :</label>
-                    <div class="col-lg-9">
-                        <input type="text" [(ngModel)]="animal.animalName" id="animalName_{{animal.id}}" name="animalName_{{animal.id}}" formControlName="animalName" class="form-control" />
 
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-lg-3 control-label">{{ 'AD.indication' | translate }} :</label>
-                    <div class="col-lg-9">
-                        <textarea [(ngModel)]="animal.indication" type="text" id="indication_{{animal.id}}"  name="animalIndication_{{animal.id}}"formControlName="comment" class="md-textarea form-control"
-                            mdbInput></textarea>
-                    </div>
-                </div>
-                <div class="row d-flex flex-row-reverse">
-                    <button type="button" class="btn btn-warning" (click)="addAnimal()">Add an other one</button>
-                    <button type="button" class="btn btn-danger btn-sm" (click)="removeAnimal(i)">Remove</button>
-                </div>
-                <hr>
-            </section>
+              <!--  Chosen name: {{ adForm.controls.items.controls[i].controls.name.value }} -->
+            </div>
         </fieldset>
         <div class="row justify-content-between p-3">
             <div>
@@ -97,7 +101,7 @@
             </div>
             <div>
                 <button type="button" class="btn btn-primary" (click)="onReset()">Reset</button>
-                <button type="submit" class="btn btn-success" [disabled]="!adForm.valid">Submit</button>
+                <button type="submit" class="btn btn-success ml-1" [disabled]="!adForm.valid">Submit</button>
             </div>
         </div>
     </form>
