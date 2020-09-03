@@ -4,7 +4,8 @@
           alt="Find Around" width="90" height="90"></button> </div>
     <div></div>
     <div>
-      <button mat-button routerLink="/login">About</button>
+      <button mat-button routerLink="/about">About</button>
+      <span> {{ 'APP.lang' | translate }} : </span>
       <button class="btn btn-info" (click)="setLang('en')">en</button>
       <button class="btn btn-info ml-2" (click)="setLang('fr')">fr</button>
     </div>
