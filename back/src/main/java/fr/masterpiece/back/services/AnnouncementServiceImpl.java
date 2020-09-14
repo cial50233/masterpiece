@@ -80,6 +80,15 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
 	@Override
 	public void delete(Long id) {
+		Announcement announcement = announcementRepository.findById(id).get();
+		List<Animal> animals = new ArrayList<>();
+		animals = animalRepository.findByAnnouncement(announcement);
+		
+		for (Animal i : animals) {
+
+			animalRepository.delete(i);
+
+		}
 		announcementRepository.deleteById(id);
 	}
 /*	
