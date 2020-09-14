@@ -1,6 +1,6 @@
 <div class="container text-center col-lg-8 col-lg-offset-2">
 
-
+    <div id="alertMsg" class="alert alert-danger" role="alert" style="display: none;">{{ errorMsg }}</div>
     <p>{{announcement.title}}</p>
     <p>{{announcement.address}}</p>
     <p>{{announcement.jobPlace}}</p>
@@ -12,5 +12,6 @@
 
     <div>
         <button type="button" class="btn btn-info" (click)="onReturn()">retour</button>
+        <button id="deleteBtn" type="button" class="btn btn-danger ml-1" (click)="delete(announcement.id)">delete</button>
     </div>
 </div>

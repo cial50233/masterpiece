@@ -116,7 +116,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	
 	 	@Override
 		public List<AnnouncementDto> getAll() {
-		List<Announcement> announcements = announcementRepository.findAll();
+		List<Announcement> announcements = announcementRepository.findAllByOrderByIdDesc();
 		List<AnnouncementDto> result = new ArrayList<>();
 		
 		List<Animal> animals = new ArrayList<>();
