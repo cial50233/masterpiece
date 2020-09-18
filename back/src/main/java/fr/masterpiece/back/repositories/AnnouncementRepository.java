@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import fr.masterpiece.back.entities.Account;
 import fr.masterpiece.back.entities.Announcement;
 
 public interface AnnouncementRepository extends JpaRepository<Announcement, Long>{
@@ -17,5 +16,7 @@ public interface AnnouncementRepository extends JpaRepository<Announcement, Long
 	List<Announcement> findByAddressContainingOrderByAddress(String address);
 	
 	List<Announcement> findByOwnerId(Long id);
+	
+	List<Announcement> findAllByOrderByIdDesc();
 
 }

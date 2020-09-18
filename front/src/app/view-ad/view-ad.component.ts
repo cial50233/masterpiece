@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TransfereService } from '../services/transfere.service';
 import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-ad',
@@ -9,10 +10,11 @@ import { Location } from '@angular/common';
 })
 export class ViewAdComponent implements OnInit {
  
-
+  errorMsg = "";
+  edited = false;
   announcement = this.transfereService.getData();
 
-  constructor(private transfereService : TransfereService, private location: Location) { }
+  constructor(private transfereService : TransfereService, private location: Location, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
    
@@ -21,6 +23,30 @@ export class ViewAdComponent implements OnInit {
 
   onReturn() {
     this.location.back();
+  }
+
+
+  delete(id){
+    this.httpClient
+      .delete('http://localhost:8081/announcements/'+id)
+      .subscribe(
+        (data) => {
+          console.log(data);
+          document.getElementById("alertMsg").setAttribute("style", "display:block;");
+          this.errorMsg = "Deleted";
+          document.getElementById("alertMsg").classList.add("alert-success");
+          document.getElementById("alertMsg").classList.remove('alert-danger');
+          document.getElementById("deleteBtn").setAttribute("style", "display:none;");
+          this.edited = true;
+        },
+        (error) => {
+          console.log(error);
+          document.getElementById("alertMsg").setAttribute("style", "display:block;");
+          this.errorMsg = "Error";
+          document.getElementById("alertMsg").classList.add('alert-danger');
+          document.getElementById("alertMsg").classList.remove("alert-success");
+        }
+      );
   }
 
 }
