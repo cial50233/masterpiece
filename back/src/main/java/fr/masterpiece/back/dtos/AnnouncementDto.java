@@ -8,6 +8,8 @@ import javax.validation.constraints.*;
 
 public class AnnouncementDto {
 	
+	private Long id;
+	
 	@NotBlank
     @Size(max = 255)
 	private String title;
@@ -90,5 +92,15 @@ public class AnnouncementDto {
 	public void setAnimals(List<AnimalDto> animals) {
 		this.animals = animals;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 
 }

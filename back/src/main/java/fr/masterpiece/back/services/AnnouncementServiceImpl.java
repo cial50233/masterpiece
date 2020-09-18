@@ -80,6 +80,15 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
 	@Override
 	public void delete(Long id) {
+		Announcement announcement = announcementRepository.findById(id).get();
+		List<Animal> animals = new ArrayList<>();
+		animals = animalRepository.findByAnnouncement(announcement);
+		
+		for (Animal i : animals) {
+
+			animalRepository.delete(i);
+
+		}
 		announcementRepository.deleteById(id);
 	}
 /*	
@@ -107,7 +116,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	
 	 	@Override
 		public List<AnnouncementDto> getAll() {
-		List<Announcement> announcements = announcementRepository.findAll();
+		List<Announcement> announcements = announcementRepository.findAllByOrderByIdDesc();
 		List<AnnouncementDto> result = new ArrayList<>();
 		
 		List<Animal> animals = new ArrayList<>();
