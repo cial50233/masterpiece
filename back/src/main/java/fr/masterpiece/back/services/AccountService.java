@@ -4,7 +4,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import java.util.List;
 
+import fr.masterpiece.back.config.CustomUserDetails;
 import fr.masterpiece.back.dtos.AccountDto;
+import fr.masterpiece.back.dtos.AccountInfoDto;
 
 public interface AccountService extends UserDetailsService {
 
@@ -20,9 +22,10 @@ public interface AccountService extends UserDetailsService {
     
     boolean uniqueUsername(String value);
     
-    UserDetails loadUserByUsername(String username);
+    CustomUserDetails loadUserByUsername(String username);
     
     List<AccountDto> getAll();
 
+    AccountInfoDto getCurrentUserInfo(Long id);
 
 }

@@ -13,8 +13,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.masterpiece.back.config.CustomUserDetails;
+import fr.masterpiece.back.config.ResourceNotFoundException;
 import fr.masterpiece.back.dtos.AccountAuthDto;
 import fr.masterpiece.back.dtos.AccountDto;
+import fr.masterpiece.back.dtos.AccountInfoDto;
 import fr.masterpiece.back.entities.Account;
 import fr.masterpiece.back.entities.Role;
 import fr.masterpiece.back.repositories.AccountRepository;
@@ -41,7 +43,7 @@ public class AccountServiceImpl implements AccountService {
 		Set<Role> set = new HashSet<Role>();
 		set.add(defaultRole);
 		account.setRoles(set);
-		account.setEnable(true);
+		account.setEnabled(true);
 
 		accountRepository.save(account);
 	}
@@ -62,7 +64,7 @@ public class AccountServiceImpl implements AccountService {
 		Set<Role> set = new HashSet<Role>();
 		set.add(defaultRole);
 		account.setRoles(set);
-		account.setEnable(true);
+		account.setEnabled(true);
 
 		accountRepository.save(account);
 
@@ -113,12 +115,18 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
     @Override
-    public UserDetails loadUserByUsername(String username)
+    public CustomUserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        AccountAuthDto account = (AccountAuthDto) accountRepository.findByUsername(username)
+        AccountAuthDto user = accountRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(
                         "no user found with username: " + username));
-        return new CustomUserDetails(account);
+        return new CustomUserDetails(user);
+    }
+    
+    @Override
+    public AccountInfoDto getCurrentUserInfo(Long id) {
+    	return accountRepository.getById(id).orElseThrow(
+                () -> new ResourceNotFoundException("with id:" + id));
     }
 
 }

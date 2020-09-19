@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 
 @Configuration
 @EnableResourceServer
-@EnableGlobalMethodSecurity(prePostEnabled = true,  securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 //@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
@@ -36,12 +36,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll().and()//allow CORS option calls
 		// "/api/public/**" for anyone even anonymous
 		.authorizeRequests()
-		.antMatchers("/api/login","/api/accounts/create","/api/announcements").permitAll()
+		.antMatchers(HttpMethod.POST,"/api/users","/api/accounts/**","/api/login","/api/accounts/create","/api/announcements").permitAll()
 		/*
 		 * "/api/userInfo", "/api/private/**" for fully authenticated
 		 * (not anonymous)
 		 */
-		.antMatchers("/api/me", "/api/announcements/create", "/ad").authenticated();
+		.antMatchers("/api/userInfo","/api/me", "/api/announcements/create", "/ad").authenticated();
 		
 		 
     }

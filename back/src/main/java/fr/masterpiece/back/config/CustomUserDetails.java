@@ -20,9 +20,10 @@ public class CustomUserDetails extends User {
 	private Long id;
 
 	public CustomUserDetails(AccountAuthDto user) {
-		super(user.getUsername(), user.getPassword(), true, true, true, true,
-				buildAuthorities(user.getRoles()));
-		id = user.getId();
+		super(user.getUsername(), user.getPassword(), user.isEnabled(),
+				user.isAccountNonExpired(), user.isCredentialsNonExpired(),
+				user.isAccountNonLocked(), buildAuthorities(user.getRoles()));
+			id = user.getId();
 	}
 
 	private static Set<GrantedAuthority> buildAuthorities(Set<Role> roles) {
