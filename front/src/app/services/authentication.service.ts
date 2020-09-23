@@ -28,8 +28,8 @@ export class AuthenticationService {
       );
   }
 
-  isAuthenticated(): boolean {
-    if(localStorage.getItem("token")){
+  isLogged(): boolean {
+    if(localStorage.getItem("token")||sessionStorage.getItem("accessToken")){
       return true;
     }
     return false;
@@ -38,6 +38,7 @@ export class AuthenticationService {
 
   logout(): void {
     localStorage.removeItem("token");
-    this.router.navigate(['/login'])
+    sessionStorage.removeItem("accessToken");
+    this.router.navigate(['/home']);
   }
 }

@@ -8,6 +8,7 @@
       <span> {{ 'APP.lang' | translate }} : </span>
       <button class="btn btn-info" (click)="setLang('en')">en</button>
       <button class="btn btn-info ml-2" (click)="setLang('fr')">fr</button>
+      <button class="btn btn-info ml-2" (click)="logout()" *ngIf="isLogged()">logout</button>
     </div>
   </mat-toolbar>
   <app-navbar></app-navbar>

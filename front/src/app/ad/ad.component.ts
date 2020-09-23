@@ -3,6 +3,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Location } from '@angular/common';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-ad',
@@ -36,7 +37,7 @@ export class AdComponent implements OnInit {
       jobPlace: '',
       startDate: '',
       endDate: '',
-      ownerId: 1,
+      ownerId: this.getUserIdInToken(),
       animals: this.formBuilder.array([this.createItem()])
     });
 
@@ -94,14 +95,15 @@ export class AdComponent implements OnInit {
   submit() {
     console.log(this.adForm.value);
     console.log(this.animalsList);
-
-    let headers = new HttpHeaders()
-      .set("access-control-allow-origin", "http://localhost:8081")
-      .set("Access-Control-Request-Method", "POST")
-      .set("Content-Type", "application/json");
+    
+    const httpOptions = {
+    headers : new HttpHeaders()
+      .set("Authorization", "Bearer "+ sessionStorage.getItem("accessToken"))
+      .set("Content-Type", "application/json")
+    };
 
     this.httpClient
-      .post('http://localhost:8081/api/announcements/create', this.adForm.value)
+      .post('http://localhost:8081/api/announcements/create', this.adForm.value, httpOptions)
       .subscribe(
         (data) => {
           console.log(data);
@@ -120,6 +122,34 @@ export class AdComponent implements OnInit {
           document.getElementById("alertMsg").classList.remove("alert-success");
         }
       );
+        
+      /*
+    var axios = require('axios');
+    var data = this.adForm.value;
+
+    var config = {
+      method: 'post',
+      url: 'http://localhost:8081/api/announcements/create',
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem("accessToken"),
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      }); */
+  } 
+  getUserIdInToken() {
+    const token = sessionStorage.getItem("accessToken");
+    var decoded = jwt_decode(token);
+
+    return decoded.userId;
   }
 
 }

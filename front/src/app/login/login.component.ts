@@ -18,7 +18,7 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
 
   private grant_type: string = "password";
-  private client_id: string = "masterpiece-client"
+  private client_id: string = "masterpiece-client";
 
   submitted = false;
   loginForm: FormGroup;
@@ -35,6 +35,9 @@ export class LoginComponent implements OnInit {
       grant_type: [this.grant_type],
       client_id: [this.client_id]
     });
+    if(this.authService.isLogged()){
+      this.goAway();
+    }
   }
 
   ngOnInit() {
@@ -129,5 +132,7 @@ export class LoginComponent implements OnInit {
         })
   */
   }
-
+  goAway() {
+    this.router.navigate(['/home']);
+  }
 }
