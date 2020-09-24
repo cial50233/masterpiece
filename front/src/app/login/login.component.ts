@@ -22,6 +22,10 @@ export class LoginComponent implements OnInit {
 
   submitted = false;
   loginForm: FormGroup;
+  errorMsg = "";
+  edited = false;
+  msg = true;
+  username;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,14 +54,14 @@ export class LoginComponent implements OnInit {
       "Content-Type",
       "application/x-www-form-urlencoded"
     );
-    const username = this.loginForm.value.username;
+    this.username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
 
     const axios = require('axios');
     const qs = require('qs');
     const data = qs.stringify({
       'grant_type': 'password',
-      'username': username,
+      'username': this.username,
       'password': password,
       'client_id': 'masterpiece-client'
     });
@@ -69,16 +73,31 @@ export class LoginComponent implements OnInit {
       },
       data: data
     };
-
+    let self = this
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         window.sessionStorage.setItem("accessToken", response.data.access_token);
         console.log("Connexion réussie");
         console.log(sessionStorage.getItem("accessToken"));
+        //self.goAway();
+        //self.router.navigate(["/home"]);
+        document.getElementById("alertMsg").setAttribute("style", "display:none;");
+       // self.errorMsg = "OK";
+        //document.getElementById("alertMsg").classList.add("alert-success");
+        //document.getElementById("alertMsg").classList.remove('alert-danger');
+        //self.username = response.data;
+        self.edited = true;
+        self.msg = false;
+        //setTimeout(self.goAway, 7000);
       })
       .catch(function (error) {
         console.log(error);
+        console.log("Connexion échoué");
+        document.getElementById("alertMsg").setAttribute("style", "display:block;");
+        self.errorMsg = "Error";
+        document.getElementById("alertMsg").classList.add('alert-danger');
+        document.getElementById("alertMsg").classList.remove("alert-success");
       });
 
     /* 

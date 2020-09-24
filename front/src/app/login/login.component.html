@@ -1,8 +1,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 col-md-offset-3">
-            <h1>{{ 'LOGIN.title' | translate }}</h1>
-            <form [formGroup]="loginForm" (ngSubmit)="logIn()" class="form-horizontal">
+            <h1 [hidden]="edited">{{ 'LOGIN.title' | translate }}</h1>
+            <div id="alertMsg" class="alert alert-danger" role="alert" style="display: none;">{{ errorMsg }}</div>
+            <form [formGroup]="loginForm" [hidden]="edited" (ngSubmit)="logIn()" class="form-horizontal">
                 <div class="form-group row">
                 <input type="hidden" class="form-control" formControlName="client_id" value="masterpiece-client">
                 <input type="hidden" class="form-control" formControlName="grant_type" value="password">
@@ -29,6 +30,7 @@
                     </div>
                 </div>
             </form>
+            <h2 class="text-center" [hidden]="msg">Welcome <span class="text-success">{{username}}</span>, you are logged.</h2>
         </div>
     </div>
 </div>

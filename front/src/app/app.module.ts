@@ -17,6 +17,7 @@ import { DataService } from '../app/services/data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -88,6 +89,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatAutocompleteModule,
     MatChipsModule,
     MatDatepickerModule,
+    MatDialogModule,
     MatNativeDateModule,
     MatFormFieldModule,
     MatToolbarModule,
@@ -101,7 +103,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       libraries: ['places']
     })
   ],
-  providers: [DataService,TransfereService],
+  providers: [DataService, TransfereService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
