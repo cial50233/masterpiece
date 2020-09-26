@@ -12,7 +12,7 @@ import { ViewAdComponent } from './view-ad/view-ad.component';
 import { AdComponent } from './ad/ad.component';
 import { ShowAdsComponent } from './show-ads/show-ads.component';
 import { AboutComponent } from './about/about.component';
-
+import { MyAdsComponent } from './my-ads/my-ads.component';
 
 export const appRoutes: Routes = [
 
@@ -69,6 +69,13 @@ export const appRoutes: Routes = [
     path : paths.createAd,
 
     component : CreateAdComponent
+
+  },
+  {
+
+    path : paths.myAds,
+
+    component : MyAdsComponent
 
   },
   {

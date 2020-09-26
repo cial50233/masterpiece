@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.masterpiece.back.dtos.AccountDto;
+import fr.masterpiece.back.dtos.AccountInfoDto;
 import fr.masterpiece.back.services.AccountService;
 
 @Configuration
@@ -155,8 +156,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	 * @return a view of the current authenticated user
 	 */
 	@GetMapping("/userInfo")
-	public AccountDto userInfo() {
+	public AccountInfoDto userInfo() {
 		Long userId = SecurityHelper.getUserId();
-		return accountService.get(userId);
+		return accountService.getCurrentUserInfo(userId);
 	}
 }

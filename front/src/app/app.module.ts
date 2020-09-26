@@ -44,6 +44,7 @@ import { ViewAdComponent } from './view-ad/view-ad.component';
 import { TransfereService } from './services/transfere.service';
 import { ShowAdsComponent } from './show-ads/show-ads.component';
 import { AboutComponent } from './about/about.component';
+import { MyAdsComponent } from './my-ads/my-ads.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -68,7 +69,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AdComponent,
     ViewAdComponent,
     ShowAdsComponent,
-    AboutComponent
+    AboutComponent,
+    MyAdsComponent
   ],
   imports: [
     BrowserModule,

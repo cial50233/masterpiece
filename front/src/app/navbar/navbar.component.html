@@ -27,6 +27,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" [routerLink]="'/showAds'">{{ 'NAV.drop1' | translate }}</a>
+                    <a class="dropdown-item" *ngIf="isLogged()" [routerLink]="'/myAds'">{{ 'NAV.myAds' | translate }}</a>
                     <a class="dropdown-item" *ngIf="isLogged()" [routerLink]="'/ad'">{{ 'NAV.drop2' | translate }}</a>
                  <!--   <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a> -->

@@ -29,6 +29,19 @@ export class AppComponent {
     this.translate.use(language);
   }
 
+  private tokenExpired(token: string) {
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+  }
+
+  ngOnInit() {
+    if (this.tokenExpired(sessionStorage.getItem("accessToken"))) {
+      this.authenticationService.isLogged();
+      console.log("Token has expired");
+    } else {
+      // token valid
+    }
+  }
 
   isLogged() {
     return this.authenticationService.isLogged();
@@ -53,7 +66,7 @@ export class AppComponent {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        self.username = JSON.stringify(response.data.id);
+        self.username = response.data.username;
         self.email = response.data.email;
       })
       .catch(function (error) {

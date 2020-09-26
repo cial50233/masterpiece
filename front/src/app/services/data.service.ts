@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -11,6 +11,12 @@ export class DataService {
       constructor(private httpClient: HttpClient) { }
 
       public sendGetRequest() {
-            return this.httpClient.get(this.REST_API_SERVER);
+            const httpOptions = {
+                  headers : new HttpHeaders()
+                    .set("Authorization", "Bearer "+ sessionStorage.getItem("accessToken"))
+                    .set("Content-Type", "application/json")
+                  };
+
+            return this.httpClient.get(this.REST_API_SERVER, httpOptions);
       }
 }

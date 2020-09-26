@@ -44,6 +44,9 @@ public class AccountServiceImpl implements AccountService {
 		set.add(defaultRole);
 		account.setRoles(set);
 		account.setEnabled(true);
+		account.setAccountNonExpired(true);
+		account.setAccountNonLocked(true);
+		account.setCredentialsNonExpired(true);
 
 		accountRepository.save(account);
 	}
