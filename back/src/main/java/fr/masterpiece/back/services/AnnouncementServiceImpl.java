@@ -139,7 +139,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
 	public List<AnnouncementDto> getByOwner(Long id) {
 		Account acc = accountRepository.getOne(id);
-		List<Announcement> announcements = announcementRepository.findByOwnerId(acc);
+		List<Announcement> announcements = announcementRepository.findByOwnerIdOrderByIdDesc(acc);
 		List<AnnouncementDto> result = new ArrayList<>();
 		List<Animal> animals = new ArrayList<>();
 		for (Announcement announcement : announcements) {

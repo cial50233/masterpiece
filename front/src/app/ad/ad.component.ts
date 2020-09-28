@@ -30,7 +30,7 @@ export class AdComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient,
     private _location: Location) {
-    this.animalTypes = ["Dog", 'Cat', 'Bird', 'Fish', 'Farm', 'Exotic_light', 'Exotic_warn'];
+    this.animalTypes = ["Dog", 'Cat', 'Bird', 'Rabbit', 'Fish', 'Farm', 'Exotic_light', 'Exotic_warn'];
     this.adForm = this.formBuilder.group({
       title: '',
       address: '',

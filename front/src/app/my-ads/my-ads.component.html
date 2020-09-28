@@ -1,6 +1,8 @@
 <div class="container text-center col-lg-8 col-lg-offset-2">
     <h3>{{ 'myAds.title' | translate }}</h3>
     <div class="row">
+        <div *ngIf="!adverts.length" class="text-center">{{ 'myAds.noAds' | translate }}</div>
+
         <div *ngFor="let e of adverts | paginate: { itemsPerPage: count, currentPage: p }" class="col-sm-6 col-md-3">
             <div class="thumbnail">
                 <img class="img-thumbnail" src="../../assets/img/tree-1439369_1280.jpg" alt="...">
@@ -19,6 +21,7 @@
                 </div>
             </div>
         </div>
+
     </div>
     <div class="pagination justify-content-center">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>

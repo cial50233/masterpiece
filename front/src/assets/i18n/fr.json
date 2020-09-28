@@ -42,7 +42,8 @@
     "title": "Dernières annonces : "
   },
   "myAds": {
-    "title": "Mes annonces"
+    "title": "Mes annonces",
+    "noAds": "Vous n'avez pas encore créé d'annonces"
   },
   "carousel": {
     "1": "Besoin d'un animal sitter ?",

@@ -42,7 +42,8 @@
     "title": "Latests announcements : "
   },
   "myAds": {
-    "title": "My announcements"
+    "title": "My announcements",
+    "noAds": "You haven't created any ads yet"
   },
   "carousel": {
     "1": "Need an animal sitter ?",

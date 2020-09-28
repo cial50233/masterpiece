@@ -28,19 +28,19 @@ export class AppComponent {
   setLang(language: string) {
     this.translate.use(language);
   }
-
+/*
   private tokenExpired(token: string) {
     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
     return (Math.floor((new Date).getTime() / 1000)) >= expiry;
   }
-
+*/
   ngOnInit() {
-    if (this.tokenExpired(sessionStorage.getItem("accessToken"))) {
+  /*  if (this.tokenExpired(sessionStorage.getItem("accessToken"))) {
       this.authenticationService.isLogged();
       console.log("Token has expired");
     } else {
       // token valid
-    }
+    }*/
   }
 
   isLogged() {

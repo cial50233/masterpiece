@@ -11,12 +11,12 @@ export class DataService {
       constructor(private httpClient: HttpClient) { }
 
       public sendGetRequest() {
-            const httpOptions = {
+           /* const httpOptions = {
                   headers : new HttpHeaders()
                     .set("Authorization", "Bearer "+ sessionStorage.getItem("accessToken"))
                     .set("Content-Type", "application/json")
                   };
-
-            return this.httpClient.get(this.REST_API_SERVER, httpOptions);
+            */
+            return this.httpClient.get(this.REST_API_SERVER);
       }
 }

@@ -16,7 +16,7 @@ public interface AnnouncementRepository extends JpaRepository<Announcement, Long
 	
 	List<Announcement> findByAddressContainingOrderByAddress(String address);
 	
-	List<Announcement> findByOwnerId(Account owner);
+	List<Announcement> findByOwnerIdOrderByIdDesc(Account owner);
 	
 	List<Announcement> findAllByOrderByIdDesc();
 
