@@ -28,7 +28,7 @@ export class ViewAdComponent implements OnInit {
 
   delete(id){
     this.httpClient
-      .delete('http://localhost:8081/announcements/'+id)
+      .delete('http://localhost:8081/api/announcements/'+id)
       .subscribe(
         (data) => {
           console.log(data);

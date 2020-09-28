@@ -33,10 +33,11 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	@Override
 	public void createAnnouncement(AnnouncementDto dto) {
 
-		//Announcement announcement = mapper.map(dto, Announcement.class); for that, DON'T use model mapper cause it doesn't work
-		
+		// Announcement announcement = mapper.map(dto, Announcement.class); for that,
+		// DON'T use model mapper cause it doesn't work
+
 		Announcement announcement = new Announcement();
-		
+
 		announcement.setTitle(dto.getTitle());
 		announcement.setAddress(dto.getAddress());
 		announcement.setJobPlace(dto.getJobPlace());
@@ -64,16 +65,16 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		AnnouncementDto dto = mapper.map(announcement, AnnouncementDto.class);
 		List<Animal> animals = new ArrayList<>();
 		animals = animalRepository.findByAnnouncement(announcement);
-		
+
 		List<AnimalDto> animalsDto = new ArrayList<>();
-		
+
 		for (Animal i : animals) {
 
 			AnimalDto aniDto = mapper.map(i, AnimalDto.class);
 			animalsDto.add(aniDto);
 
 		}
-		
+
 		dto.setAnimals(animalsDto);
 		return dto;
 	}
@@ -83,7 +84,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		Announcement announcement = announcementRepository.findById(id).get();
 		List<Animal> animals = new ArrayList<>();
 		animals = animalRepository.findByAnnouncement(announcement);
-		
+
 		for (Animal i : animals) {
 
 			animalRepository.delete(i);
@@ -91,77 +92,73 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		}
 		announcementRepository.deleteById(id);
 	}
-/*	
-	@Override
-	public List<AnnouncementDto> getAll() {
-		List<Announcement> announcements = announcementRepository.findAll();
-		List<AnnouncementDto> result = new ArrayList<>();
-		for (Announcement announcement : announcements) {
-			AnnouncementDto dto = mapper.map(announcement, AnnouncementDto.class);
+
+	/*
+	 * @Override public List<AnnouncementDto> getAll() { List<Announcement>
+	 * announcements = announcementRepository.findAll(); List<AnnouncementDto>
+	 * result = new ArrayList<>(); for (Announcement announcement : announcements) {
+	 * AnnouncementDto dto = mapper.map(announcement, AnnouncementDto.class);
+	 * result.add(dto); } return result; }
+	 */
+	public List<AnimalDto> getAnimalByAnnouncement(Long id) {
+
+		List<Animal> animals = animalRepository.findByAnnouncement(announcementRepository.findById(id).get());
+		List<AnimalDto> result = new ArrayList<>();
+		for (Animal a : animals) {
+			AnimalDto dto = mapper.map(a, AnimalDto.class);
 			result.add(dto);
 		}
 		return result;
 	}
-*/	
-		public List<AnimalDto> getAnimalByAnnouncement(Long id) {
-	
-			List<Animal> animals = animalRepository.findByAnnouncement(announcementRepository.findById(id).get());
-			List<AnimalDto> result = new ArrayList<>();
-			for (Animal a : animals) {
-				AnimalDto dto = mapper.map(a, AnimalDto.class);
-				result.add(dto);
-			}
-			return result;
-		}
-	
-	 	@Override
-		public List<AnnouncementDto> getAll() {
+
+	@Override
+	public List<AnnouncementDto> getAll() {
 		List<Announcement> announcements = announcementRepository.findAllByOrderByIdDesc();
 		List<AnnouncementDto> result = new ArrayList<>();
-		
+
 		List<Animal> animals = new ArrayList<>();
-		
+
 		for (Announcement announcement : announcements) {
 			AnnouncementDto dto = mapper.map(announcement, AnnouncementDto.class);
 			animals = animalRepository.findByAnnouncement(announcement);
-			
+
 			List<AnimalDto> animalsDto = new ArrayList<>();
-			
+
 			for (Animal i : animals) {
 
 				AnimalDto aniDto = mapper.map(i, AnimalDto.class);
 				animalsDto.add(aniDto);
 
 			}
-			
+
 			dto.setAnimals(animalsDto);
 			result.add(dto);
 		}
 		return result;
 	}
-	
-		public List<AnnouncementDto> getByOwner(Long id) {
-			
-			List<Announcement> announcements = announcementRepository.findByOwnerId(id);
-			List<AnnouncementDto> result = new ArrayList<>();
-			List<Animal> animals = new ArrayList<>();
-			for (Announcement announcement : announcements) {
-				AnnouncementDto dto = mapper.map(announcement, AnnouncementDto.class);
-				animals = animalRepository.findByAnnouncement(announcement);
-				
-				List<AnimalDto> animalsDto = new ArrayList<>();
-				
-				for (Animal i : animals) {
 
-					AnimalDto aniDto = mapper.map(i, AnimalDto.class);
-					animalsDto.add(aniDto);
+	public List<AnnouncementDto> getByOwner(Long id) {
+		Account acc = accountRepository.getOne(id);
+		List<Announcement> announcements = announcementRepository.findByOwnerIdOrderByIdDesc(acc);
+		List<AnnouncementDto> result = new ArrayList<>();
+		List<Animal> animals = new ArrayList<>();
+		for (Announcement announcement : announcements) {
+			AnnouncementDto dto = mapper.map(announcement, AnnouncementDto.class);
+			animals = animalRepository.findByAnnouncement(announcement);
 
-				}
-				
-				dto.setAnimals(animalsDto);
-				result.add(dto);
+			List<AnimalDto> animalsDto = new ArrayList<>();
+
+			for (Animal i : animals) {
+
+				AnimalDto aniDto = mapper.map(i, AnimalDto.class);
+				animalsDto.add(aniDto);
+
 			}
-			return result;
+
+			dto.setAnimals(animalsDto);
+			result.add(dto);
 		}
+		return result;
+	}
 
 }

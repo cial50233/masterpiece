@@ -11,10 +11,10 @@
                 <a class="nav-link" [routerLink]="'/find'">Find around <span class="sr-only">(current)</span></a>
             </li> -->
             <li class="nav-item active">
-                <a class="nav-link" [routerLink]="'/login'">Log In <span class="sr-only">(current)</span></a>
+                <a class="nav-link" *ngIf="!isLogged()" [routerLink]="'/login'">Log In <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" [routerLink]="'/create'">Create Account <span class="sr-only">(current)</span></a>
+                <a class="nav-link" *ngIf="!isLogged()" [routerLink]="'/create'">Create Account <span class="sr-only">(current)</span></a>
             </li>
            <!-- <li class="nav-item active">
                 <a class="nav-link" [routerLink]="'/ad'">{{ 'NAV.ann' | translate }}<span
@@ -27,7 +27,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" [routerLink]="'/showAds'">{{ 'NAV.drop1' | translate }}</a>
-                    <a class="dropdown-item" [routerLink]="'/ad'">{{ 'NAV.drop2' | translate }}</a>
+                    <a class="dropdown-item" *ngIf="isLogged()" [routerLink]="'/myAds'">{{ 'NAV.myAds' | translate }}</a>
+                    <a class="dropdown-item" *ngIf="isLogged()" [routerLink]="'/ad'">{{ 'NAV.drop2' | translate }}</a>
                  <!--   <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a> -->
                 </div>

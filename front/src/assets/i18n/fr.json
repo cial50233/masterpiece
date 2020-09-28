@@ -8,7 +8,8 @@
   "NAV": {
     "ann": "Annonces",
     "drop1": "Voir annonces",
-    "drop2": "Créer annonces"
+    "myAds": "Mes annonces",
+    "drop2": "Créer une annonce"
   },
   "HOME": {
     "TITLE": "Trouvez ici !",
@@ -39,6 +40,10 @@
   },
   "ADS": {
     "title": "Dernières annonces : "
+  },
+  "myAds": {
+    "title": "Mes annonces",
+    "noAds": "Vous n'avez pas encore créé d'annonces"
   },
   "carousel": {
     "1": "Besoin d'un animal sitter ?",

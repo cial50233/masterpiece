@@ -19,7 +19,7 @@ import fr.masterpiece.back.services.AccountService;
 
 @RestController
 @RequestMapping("/accounts")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AccountController {
 
 	private final AccountService service;

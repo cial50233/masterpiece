@@ -17,6 +17,7 @@ import { DataService } from '../app/services/data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -43,6 +44,7 @@ import { ViewAdComponent } from './view-ad/view-ad.component';
 import { TransfereService } from './services/transfere.service';
 import { ShowAdsComponent } from './show-ads/show-ads.component';
 import { AboutComponent } from './about/about.component';
+import { MyAdsComponent } from './my-ads/my-ads.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -67,7 +69,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AdComponent,
     ViewAdComponent,
     ShowAdsComponent,
-    AboutComponent
+    AboutComponent,
+    MyAdsComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +91,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatAutocompleteModule,
     MatChipsModule,
     MatDatepickerModule,
+    MatDialogModule,
     MatNativeDateModule,
     MatFormFieldModule,
     MatToolbarModule,
@@ -101,7 +105,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       libraries: ['places']
     })
   ],
-  providers: [DataService,TransfereService],
+  providers: [DataService, TransfereService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
