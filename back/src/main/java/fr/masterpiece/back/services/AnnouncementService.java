@@ -10,6 +10,8 @@ public interface AnnouncementService {
 	void createAnnouncement(AnnouncementDto dto);
 	
 	AnnouncementDto get(Long id);
+	
+	void update(Long id, AnnouncementDto dto);
 
     void delete(Long id);
     

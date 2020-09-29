@@ -80,6 +80,40 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	}
 
 	@Override
+	public void update(Long id, AnnouncementDto dto) {
+		Announcement announcement = announcementRepository.findById(id).get();
+		
+		//animals purge
+		List<Animal> animals = new ArrayList<>();
+		animals = animalRepository.findByAnnouncement(announcement);
+
+		for (Animal i : animals) {
+
+			animalRepository.delete(i);
+
+		}
+
+		announcement.setTitle(dto.getTitle());
+		announcement.setAddress(dto.getAddress());
+		announcement.setJobPlace(dto.getJobPlace());
+		announcement.setStartDate(dto.getStartDate());
+		announcement.setEndDate(dto.getEndDate());
+
+		Account account = accountRepository.findById(dto.getOwnerId()).get();
+		announcement.setOwner(account);
+
+		announcementRepository.save(announcement);
+
+		for (AnimalDto animalDto : dto.getAnimals()) {
+
+			Animal animal = mapper.map(animalDto, Animal.class);
+			animal.setAnnouncement(announcement);
+			animalRepository.save(animal);
+
+		}
+	}
+
+	@Override
 	public void delete(Long id) {
 		Announcement announcement = announcementRepository.findById(id).get();
 		List<Animal> animals = new ArrayList<>();
