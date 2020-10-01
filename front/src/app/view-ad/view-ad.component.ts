@@ -3,6 +3,7 @@ import { TransfereService } from '../services/transfere.service';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-view-ad',
@@ -13,6 +14,8 @@ export class ViewAdComponent implements OnInit {
 
   errorMsg = "";
   edited = false;
+  btnEditHide = true;
+  btnDeleteHide = true;
   announcement = this.transfereService.getData();
 
   constructor(
@@ -22,7 +25,13 @@ export class ViewAdComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+console.log(this.announcement.ownerId);
+console.log(this.getUserIdInToken());
+      if( this.getUserRoleInToken() =="ROLE_ADMIN" || this.getUserIdInToken() == this.announcement.ownerId){
 
+        this.btnEditHide = false;
+        this.btnDeleteHide = false;
+      }
 
   }
 
@@ -58,5 +67,19 @@ export class ViewAdComponent implements OnInit {
     this.transfereService.setData(e);
     this.router.navigate(['/ad']);
 
+  }
+
+  getUserIdInToken() {
+    const token = sessionStorage.getItem("accessToken");
+    var decoded = jwt_decode(token);
+
+    return decoded.userId;
+  }
+
+  getUserRoleInToken() {
+    const token = sessionStorage.getItem("accessToken");
+    var decoded = jwt_decode(token);
+
+    return decoded.authorities;
   }
 }
