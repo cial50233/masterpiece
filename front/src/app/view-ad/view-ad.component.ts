@@ -25,13 +25,13 @@ export class ViewAdComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-console.log(this.announcement.ownerId);
-console.log(this.getUserIdInToken());
-      if( this.getUserRoleInToken() =="ROLE_ADMIN" || this.getUserIdInToken() == this.announcement.ownerId){
+    console.log(this.announcement.ownerId);
+    if (this.getUserRoleInToken() == "ROLE_ADMIN" || this.getUserIdInToken() == this.announcement.ownerId) {
 
-        this.btnEditHide = false;
-        this.btnDeleteHide = false;
-      }
+      //console.log(this.getUserIdInToken());
+      this.btnEditHide = false;
+      this.btnDeleteHide = false;
+    }
 
   }
 
@@ -52,6 +52,8 @@ console.log(this.getUserIdInToken());
           document.getElementById("alertMsg").classList.remove('alert-danger');
           document.getElementById("deleteBtn").setAttribute("style", "display:none;");
           this.edited = true;
+          this.btnEditHide = true;
+          this.btnDeleteHide = true;
         },
         (error) => {
           console.log(error);
@@ -71,15 +73,21 @@ console.log(this.getUserIdInToken());
 
   getUserIdInToken() {
     const token = sessionStorage.getItem("accessToken");
-    var decoded = jwt_decode(token);
-
-    return decoded.userId;
+    if (token) {
+      var decoded = jwt_decode(token);
+      return decoded.userId;
+    } else {
+      return false;
+    }
   }
 
   getUserRoleInToken() {
     const token = sessionStorage.getItem("accessToken");
-    var decoded = jwt_decode(token);
-
-    return decoded.authorities;
+    if (token) {
+      var decoded = jwt_decode(token);
+      return decoded.authorities;
+    } else {
+      return false;
+    }
   }
 }

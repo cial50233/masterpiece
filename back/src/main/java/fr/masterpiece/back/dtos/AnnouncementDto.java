@@ -52,7 +52,7 @@ public class AnnouncementDto {
 
 	@Size(min = 1, max = 50)
     List<@Valid AnimalDto> animals;
-
+	
 	public String getJobPlace() {
 		return jobPlace;
 	}

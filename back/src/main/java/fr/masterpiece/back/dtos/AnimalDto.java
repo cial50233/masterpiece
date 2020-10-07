@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import fr.masterpiece.back.entities.AnimalType;
-import fr.masterpiece.back.entities.Announcement;
 
 public class AnimalDto {
 	
@@ -19,7 +18,7 @@ public class AnimalDto {
 	@Size(max = 255)
 	private String indication;
 	
-	private Announcement announcement;
+	private AnnouncementDto announcement;
 
 	public AnimalType getAnimalType() {
 		return animalType;
@@ -37,11 +36,11 @@ public class AnimalDto {
 		this.animalName = animalName;
 	}
 
-	public Announcement getAnnouncement() {
+	public AnnouncementDto getAnnouncement() {
 		return announcement;
 	}
 
-	public void setAnnouncement(Announcement announcement) {
+	public void setAnnouncement(AnnouncementDto announcement) {
 		this.announcement = announcement;
 	}
 
