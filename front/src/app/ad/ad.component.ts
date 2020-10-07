@@ -54,10 +54,10 @@ export class AdComponent implements OnInit {
       console.log(this.ann.animals);
       if (this.ann.animals) {
         let self = this;
+        const control = <FormArray>self.adForm.get('animals');
+        control.removeAt(0);
         this.ann.animals.forEach(function (value) {
-
           //console.log(value);
-          const control = <FormArray>self.adForm.get('animals');
           control.push(self.createItem());
         });
         this.adForm.patchValue(this.ann);
@@ -210,9 +210,12 @@ export class AdComponent implements OnInit {
   }
   getUserIdInToken() {
     const token = sessionStorage.getItem("accessToken");
-    var decoded = jwt_decode(token);
-
-    return decoded.userId;
+    if (token) {
+      var decoded = jwt_decode(token);
+      return decoded.userId;
+    } else {
+      return false;
+    }
   }
 
 }

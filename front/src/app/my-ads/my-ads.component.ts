@@ -21,7 +21,7 @@ export class MyAdsComponent implements OnInit {
 
     var config = {
       method: 'get',
-      url: 'http://localhost:8081/api/announcements/owner/'+this.getUserIdInToken(),
+      url: 'http://localhost:8081/api/announcements/owner/' + this.getUserIdInToken(),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + sessionStorage.getItem("accessToken")
@@ -47,8 +47,11 @@ export class MyAdsComponent implements OnInit {
 
   getUserIdInToken() {
     const token = sessionStorage.getItem("accessToken");
-    var decoded = jwt_decode(token);
-
-    return decoded.userId;
+    if (token) {
+      var decoded = jwt_decode(token);
+      return decoded.userId;
+    } else {
+      return false;
+    }
   }
 }
