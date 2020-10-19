@@ -11,7 +11,17 @@ import fr.masterpiece.back.validation.UniqueUsername;
 
 public class AccountDto {
 	
-    @NotBlank
+	private Long id;
+	
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@NotBlank
     @Size(max = 20)
     @UniqueUsername
     private String username;

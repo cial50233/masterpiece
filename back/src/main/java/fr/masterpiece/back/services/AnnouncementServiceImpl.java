@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import fr.masterpiece.back.dtos.AnimalDto;
 import fr.masterpiece.back.dtos.AnnouncementDto;
+import fr.masterpiece.back.dtos.AnnouncementViewDto;
 import fr.masterpiece.back.entities.Account;
 import fr.masterpiece.back.entities.Animal;
 import fr.masterpiece.back.entities.Announcement;
@@ -146,14 +147,16 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	}
 
 	@Override
-	public List<AnnouncementDto> getAll() {
+	public List<AnnouncementViewDto> getAll() {
 		List<Announcement> announcements = announcementRepository.findAllByOrderByIdDesc();
-		List<AnnouncementDto> result = new ArrayList<>();
-
+		List<AnnouncementViewDto> result = new ArrayList<>();
 		List<Animal> animals = new ArrayList<>();
+		Account acc;
 
 		for (Announcement announcement : announcements) {
-			AnnouncementDto dto = mapper.map(announcement, AnnouncementDto.class);
+			AnnouncementViewDto dto = mapper.map(announcement, AnnouncementViewDto.class);
+			acc = announcement.getOwner();
+			dto.setUsername(acc.getUsername());
 			animals = animalRepository.findByAnnouncement(announcement);
 
 			List<AnimalDto> animalsDto = new ArrayList<>();

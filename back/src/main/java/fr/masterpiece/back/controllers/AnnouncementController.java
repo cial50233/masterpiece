@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.masterpiece.back.dtos.AnimalDto;
 import fr.masterpiece.back.dtos.AnnouncementDto;
+import fr.masterpiece.back.dtos.AnnouncementViewDto;
 import fr.masterpiece.back.services.AnnouncementService;
 
 @RestController
@@ -56,7 +57,7 @@ public class AnnouncementController {
 	}
 	
 	@GetMapping
-	public List<AnnouncementDto> getAll() {
+	public List<AnnouncementViewDto> getAll() {
 		return service.getAll();
 	}
 	
