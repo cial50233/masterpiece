@@ -2,13 +2,10 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 
 
-export interface DialogData {
-  username: string;
-  email: string;
-}
+
 
 @Component({
   selector: 'app-root',
@@ -89,10 +86,18 @@ export class AppComponent {
         self.logout();
       });
 
+    const dialogConfig = new MatDialogConfig();
 
-    const dialogRef = this.dialog.open(DialogBox, {
-      width: '350px'
-    });
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '350px';
+    dialogConfig.data = {
+      username: self.username,
+      email: this.email
+    };
+
+
+    const dialogRef = this.dialog.open(DialogBox, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -100,7 +105,10 @@ export class AppComponent {
     });
   }
 }
-
+export interface DialogData {
+  username: string;
+  email: string;
+}
 @Component({
   selector: 'dialog-box',
   templateUrl: 'dialog-box.html',
@@ -131,7 +139,7 @@ export class DialogBoxConfirm {
     this.dialogRef.close();
   }
 
-  
+
   onOkClick(): void {
     this.authenticationService.logout();
     this.dialogRef.close();
