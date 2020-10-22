@@ -42,7 +42,7 @@ public class AnnouncementController {
 		return service.get(id);
 	}
 	@GetMapping("/owner/{id}")
-	public List<AnnouncementDto> getByOwner(@PathVariable("id") Long id){
+	public List<AnnouncementViewDto> getByOwner(@PathVariable("id") Long id){
 		return service.getByOwner(id);
 	}
 	

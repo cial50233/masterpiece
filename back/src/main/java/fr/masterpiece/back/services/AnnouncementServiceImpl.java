@@ -174,13 +174,15 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		return result;
 	}
 
-	public List<AnnouncementDto> getByOwner(Long id) {
+	public List<AnnouncementViewDto> getByOwner(Long id) {
 		Account acc = accountRepository.getOne(id);
 		List<Announcement> announcements = announcementRepository.findByOwnerIdOrderByIdDesc(acc);
-		List<AnnouncementDto> result = new ArrayList<>();
+		List<AnnouncementViewDto> result = new ArrayList<>();
 		List<Animal> animals = new ArrayList<>();
 		for (Announcement announcement : announcements) {
-			AnnouncementDto dto = mapper.map(announcement, AnnouncementDto.class);
+			AnnouncementViewDto dto = mapper.map(announcement, AnnouncementViewDto.class);
+			acc = announcement.getOwner();
+			dto.setUsername(acc.getUsername());
 			animals = animalRepository.findByAnnouncement(announcement);
 
 			List<AnimalDto> animalsDto = new ArrayList<>();

@@ -20,6 +20,6 @@ public interface AnnouncementService {
     
     List<AnimalDto> getAnimalByAnnouncement(Long id);
     
-    List<AnnouncementDto> getByOwner(Long id);
+    List<AnnouncementViewDto> getByOwner(Long id);
 
 }
