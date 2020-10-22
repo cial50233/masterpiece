@@ -2,22 +2,26 @@ package fr.masterpiece.back.controllers;
 
 import javax.validation.Valid;
 import java.util.List;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.masterpiece.back.dtos.AnimalDto;
 import fr.masterpiece.back.dtos.AnnouncementDto;
+import fr.masterpiece.back.dtos.AnnouncementViewDto;
 import fr.masterpiece.back.services.AnnouncementService;
 
 @RestController
 @RequestMapping("/announcements")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AnnouncementController {
 
 	private final AnnouncementService service;
@@ -38,9 +42,14 @@ public class AnnouncementController {
 		return service.get(id);
 	}
 	@GetMapping("/owner/{id}")
-	public List<AnnouncementDto> getByOwner(@PathVariable("id") Long id){
+	public List<AnnouncementViewDto> getByOwner(@PathVariable("id") Long id){
 		return service.getByOwner(id);
 	}
+	
+    @PutMapping("/{id}")
+    protected void update(@PathVariable("id") Long id, @Valid @RequestBody AnnouncementDto dto) {
+        service.update(id, dto);
+    }
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") Long id) {
@@ -48,7 +57,7 @@ public class AnnouncementController {
 	}
 	
 	@GetMapping
-	public List<AnnouncementDto> getAll() {
+	public List<AnnouncementViewDto> getAll() {
 		return service.getAll();
 	}
 	

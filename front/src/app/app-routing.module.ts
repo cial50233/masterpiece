@@ -12,7 +12,8 @@ import { ViewAdComponent } from './view-ad/view-ad.component';
 import { AdComponent } from './ad/ad.component';
 import { ShowAdsComponent } from './show-ads/show-ads.component';
 import { AboutComponent } from './about/about.component';
-
+import { MyAdsComponent } from './my-ads/my-ads.component';
+import { RouteGuardService } from './services/route-guard.service';
 
 export const appRoutes: Routes = [
 
@@ -53,7 +54,7 @@ export const appRoutes: Routes = [
   {
 
     path : paths.ad,
-
+    canActivate: [RouteGuardService],
     component : AdComponent
 
   },
@@ -69,6 +70,13 @@ export const appRoutes: Routes = [
     path : paths.createAd,
 
     component : CreateAdComponent
+
+  },
+  {
+
+    path : paths.myAds,
+    canActivate: [RouteGuardService],
+    component : MyAdsComponent
 
   },
   {

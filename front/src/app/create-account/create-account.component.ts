@@ -16,12 +16,13 @@ export class CreateAccountComponent implements OnInit {
   private user: UserInfo;
   edited = false;
   submitted = false;
-  profilForm: any;
+  profilForm: FormGroup;
   errorMsg = "";
 
   constructor(private formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    private _location: Location) {
+    private _location: Location
+    ) {
     this.profilForm = this.formBuilder.group({
       username: ['', [Validators.required, ValidationService.userNameValidator]],
       email: ['', [Validators.required, ValidationService.emailValidator]],
@@ -58,7 +59,7 @@ export class CreateAccountComponent implements OnInit {
       .set("Content-Type", "application/json");
 
     this.httpClient
-      .post('http://localhost:8081/accounts/create/', this.profilForm.value)
+      .post('http://localhost:8081/api/accounts/create/', this.profilForm.value)
       .subscribe(
         (data) => {
           console.log(data);
@@ -68,6 +69,7 @@ export class CreateAccountComponent implements OnInit {
           document.getElementById("alertMsg").classList.remove('alert-danger');
           //this.profilForm.reset();
           this.edited = true;
+          this.goLog(this.profilForm.value.username, this.profilForm.value.password);
         },
         (error) => {
           console.log(error);
@@ -89,6 +91,38 @@ export class CreateAccountComponent implements OnInit {
 
   onReturn() {
     this._location.back();
+  }
+
+  goLog(username, password){
+    const url = "http://localhost:8081/oauth/token";
+    const axios = require('axios');
+    const qs = require('qs');
+    const data = qs.stringify({
+      'grant_type': 'password',
+      'username': username,
+      'password': password,
+      'client_id': 'masterpiece-client'
+    });
+    var config = {
+      method: 'post',
+      url: url,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: data
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        window.sessionStorage.setItem("accessToken", response.data.access_token);
+        console.log("Connexion réussie");
+        console.log(sessionStorage.getItem("accessToken"));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    
   }
 
 }

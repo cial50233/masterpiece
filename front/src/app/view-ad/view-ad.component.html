@@ -1,17 +1,23 @@
 <div class="container text-center col-lg-8 col-lg-offset-2">
 
     <div id="alertMsg" class="alert alert-danger" role="alert" style="display: none;">{{ errorMsg }}</div>
-    <p>{{announcement.title}}</p>
-    <p>{{announcement.address}}</p>
-    <p>{{announcement.jobPlace}}</p>
-    <p>{{announcement.startDate | date: 'dd/MM/yyyy à HH:mm'}}</p>
-    <p>{{announcement.animals.length}} animal(s)</p>
-    <ul *ngFor="let a of announcement.animals">
-        <li>Name : {{a.animalName}} ({{a.animalType}})</li>
-    </ul>
-
+    <div id="main">
+        <p>{{announcement.title}}</p>
+        <p>From : {{announcement.username}}</p>
+        <p>Address : {{announcement.address}}</p>
+        <p>At {{announcement.jobPlace}}'s place</p>
+        <p>Date : {{announcement.startDate | date: 'dd/MM/yyyy à HH:mm'}}</p>
+        <p>{{announcement.animals.length}} animal(s)</p>
+        <ul *ngFor="let a of announcement.animals">
+            <li>Name : {{a.animalName}} ({{a.animalType}})</li>
+            <li *ngIf="a.indication">Indications : {{a.indication}}</li>
+        </ul>
+    </div>
     <div>
         <button type="button" class="btn btn-info" (click)="onReturn()">retour</button>
-        <button id="deleteBtn" type="button" class="btn btn-danger ml-1" (click)="delete(announcement.id)">delete</button>
+        <button [hidden]="btnEditHide" id="editBtn" type="button" class="btn btn-success ml-1"
+            (click)="edit(announcement)">edit</button>
+        <button [hidden]="btnDeleteHide" id="deleteBtn" type="button" class="btn btn-danger ml-1"
+            (click)="delete(announcement.id)">delete</button>
     </div>
 </div>

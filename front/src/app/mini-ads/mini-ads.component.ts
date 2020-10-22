@@ -16,7 +16,7 @@ export class MiniAdsComponent implements OnInit {
   // Pagination parameters.
   p: number = 1;
   count: number = 4;
-  constructor(private httpClient: HttpClient, private dataService: DataService, private tranfereService : TransfereService) {
+  constructor(private httpClient: HttpClient, private dataService: DataService, private transfereService : TransfereService) {
     /*  this.adverts = [
         { 'name': 'bob', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
         { 'name': 'candal', 'pic': '../../assets/img/tree-1439369_1280.jpg' },
@@ -85,7 +85,7 @@ export class MiniAdsComponent implements OnInit {
 
   open(e){
 
-    this.tranfereService.setData(e);
+    this.transfereService.setData(e);
     
   }
 
