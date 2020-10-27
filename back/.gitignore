@@ -8,7 +8,6 @@ target/
 /.project
 /.settings/
 /target/
-.mvn/
 bin/
 ### STS ###
 .apt_generated

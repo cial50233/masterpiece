@@ -31,7 +31,7 @@ public class AnnouncementController {
 		this.service = service;
 	}
 
-	@PostMapping("/create")
+	@PostMapping
 	protected void createAnnouncement(@Valid @RequestBody AnnouncementDto dto) {
 		service.createAnnouncement(dto);
 	}

@@ -166,7 +166,7 @@ export class AdComponent implements OnInit {
       };
 
       this.httpClient
-        .post('http://localhost:8081/api/announcements/create', this.adForm.value, httpOptions)
+        .post('http://localhost:8081/api/announcements', this.adForm.value, httpOptions)
         .subscribe(
           (data) => {
             console.log(data);
