@@ -35,6 +35,8 @@ public class AnnouncementViewDto {
 	//@ManyToOne
 	private Long ownerId;
 	
+    private LocalDateTime lastUpDate;
+	
 	private String username;
 
 	public String getUsername() {
@@ -110,6 +112,14 @@ public class AnnouncementViewDto {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public LocalDateTime getLastUpDate() {
+		return lastUpDate;
+	}
+
+	public void setLastUpDate(LocalDateTime lastUpDate) {
+		this.lastUpDate = lastUpDate;
 	}
 
 }

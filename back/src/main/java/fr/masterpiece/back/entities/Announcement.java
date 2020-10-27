@@ -29,6 +29,9 @@ public class Announcement extends AbstractEntity {
 	private LocalDateTime startDate;
 
 	private LocalDateTime endDate;
+	
+    @Column(name = "last_up_date")
+    private LocalDateTime lastUpDate;
 
 	
 	public Announcement() {
@@ -81,6 +84,22 @@ public class Announcement extends AbstractEntity {
 
 	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
+	}
+
+	public Account getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(Account ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	public LocalDateTime getLastUpDate() {
+		return lastUpDate;
+	}
+
+	public void setLastUpDate(LocalDateTime lastUpDate) {
+		this.lastUpDate = lastUpDate;
 	}
 
 

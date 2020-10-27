@@ -1,5 +1,6 @@
 package fr.masterpiece.back.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.modelmapper.ModelMapper;
@@ -47,6 +48,9 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
 		Account account = accountRepository.findById(dto.getOwnerId()).get();
 		announcement.setOwner(account);
+		
+        LocalDateTime lastUpDate = LocalDateTime.now();
+        announcement.setLastUpDate(lastUpDate);
 
 		announcementRepository.save(announcement);
 
@@ -102,6 +106,9 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
 		Account account = accountRepository.findById(dto.getOwnerId()).get();
 		announcement.setOwner(account);
+		
+        LocalDateTime lastUpDate = LocalDateTime.now();
+        announcement.setLastUpDate(lastUpDate);
 
 		announcementRepository.save(announcement);
 
@@ -148,7 +155,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
 	@Override
 	public List<AnnouncementViewDto> getAll() {
-		List<Announcement> announcements = announcementRepository.findAllByOrderByIdDesc();
+		List<Announcement> announcements = announcementRepository.findAllByOrderByLastUpDateDesc();
 		List<AnnouncementViewDto> result = new ArrayList<>();
 		List<Animal> animals = new ArrayList<>();
 		Account acc;
@@ -176,7 +183,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
 	public List<AnnouncementViewDto> getByOwner(Long id) {
 		Account acc = accountRepository.getOne(id);
-		List<Announcement> announcements = announcementRepository.findByOwnerIdOrderByIdDesc(acc);
+		List<Announcement> announcements = announcementRepository.findByOwnerIdOrderByLastUpDateDesc(acc);
 		List<AnnouncementViewDto> result = new ArrayList<>();
 		List<Animal> animals = new ArrayList<>();
 		for (Announcement announcement : announcements) {
