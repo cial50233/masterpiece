@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import fr.masterpiece.back.entities.AnimalType;
+import fr.masterpiece.back.enums.AnimalType;
 
 public class AnimalDto {
 	
