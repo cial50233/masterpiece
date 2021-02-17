@@ -46,9 +46,6 @@ export class AdComponent implements OnInit {
       ownerId: this.getUserIdInToken(),
       animals: this.formBuilder.array([this.createItem()])
     });
-   // console.log(this.ann.id);
-    console.log(this.ann);
-    console.log(this.adForm);
 
     if (this.ann) {
       console.log(this.ann.animals);
@@ -57,14 +54,12 @@ export class AdComponent implements OnInit {
         const control = <FormArray>self.adForm.get('animals');
         control.removeAt(0);
         this.ann.animals.forEach(function (value) {
-          //console.log(value);
           control.push(self.createItem());
         });
         this.adForm.patchValue(this.ann);
       }
 
       console.log(this.adForm);
-      //this.items.patchValue(this.ann.animals);
     }
   }
 
@@ -75,12 +70,6 @@ export class AdComponent implements OnInit {
       indication: ['']
     });
   }
-
-  /* addItem(): void {
-     this.items = this.adForm.get('animals') as FormArray;
-     this.items.push(this.createItem());
-   }
- */
   addAnimal() {
     const control = <FormArray>this.adForm.get('animals');
     control.push(this.createItem());
@@ -186,27 +175,6 @@ export class AdComponent implements OnInit {
           }
         );
     }
-    /*
-  var axios = require('axios');
-  var data = this.adForm.value;
-
-  var config = {
-    method: 'post',
-    url: 'http://localhost:8081/api/announcements/create',
-    headers: {
-      'Authorization': 'Bearer ' + sessionStorage.getItem("accessToken"),
-      'Content-Type': 'application/json'
-    },
-    data: data
-  };
-
-  axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    }); */
   }
   getUserIdInToken() {
     const token = sessionStorage.getItem("accessToken");
