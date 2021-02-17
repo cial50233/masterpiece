@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import fr.masterpiece.back.enums.AnimalType;
+
 @Entity
 @Table(name = "animals")
 public class Animal extends AbstractEntity {
