@@ -131,5 +131,9 @@ public class AccountServiceImpl implements AccountService {
     	return accountRepository.getById(id).orElseThrow(
                 () -> new ResourceNotFoundException("with id:" + id));
     }
+    
+	public List<AccountInfoDto> getAllAccount() {
+		return accountRepository.findAllProjectedBy();
+	}
 
 }

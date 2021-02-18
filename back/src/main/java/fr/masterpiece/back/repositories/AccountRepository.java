@@ -1,5 +1,6 @@
 package fr.masterpiece.back.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,6 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 	
     int countByUsername(String name);
     int countByEmail(String name);
+    
+    List<AccountInfoDto> findAllProjectedBy();
 }
