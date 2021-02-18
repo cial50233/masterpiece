@@ -5,6 +5,9 @@
   "APP": {
     "lang": "Language"
   },
+  "ABOARD": {
+    "title": "Users list"
+  },
   "NAV": {
     "ann": "Announcements",
     "drop1": "See announcements",

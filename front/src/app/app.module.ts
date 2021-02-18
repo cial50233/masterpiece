@@ -46,6 +46,7 @@ import { ShowAdsComponent } from './show-ads/show-ads.component';
 import { AboutComponent } from './about/about.component';
 import { MyAdsComponent } from './my-ads/my-ads.component';
 import { RouteGuardService } from '../app/services/route-guard.service';
+import { AdminBoardComponent } from './admin-board/admin-board.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -71,7 +72,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ViewAdComponent,
     ShowAdsComponent,
     AboutComponent,
-    MyAdsComponent
+    MyAdsComponent,
+    AdminBoardComponent
   ],
   imports: [
     BrowserModule,

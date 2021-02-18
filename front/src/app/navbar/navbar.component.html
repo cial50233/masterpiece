@@ -26,6 +26,10 @@
                 <a class="nav-link" *ngIf="!isLogged()" [routerLink]="'/create'">Create Account <span
                         class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" *ngIf="isLogged() && isAdmin()" [routerLink]="'/adminBoard'">Admin Board<span
+                        class="sr-only">(current)</span></a>
+            </li>
             <!-- <li class="nav-item active">
                 <a class="nav-link" [routerLink]="'/ad'">{{ 'NAV.ann' | translate }}<span
                         class="sr-only">(current)</span></a>

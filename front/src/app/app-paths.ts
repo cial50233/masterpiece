@@ -9,5 +9,6 @@ export const paths = {
     myAds: 'myAds',
     viewAd: 'viewAd',
     showAds: 'showAds',
-    notfound: 'notfound'
+    notfound: 'notfound',
+    adminBoard: 'adminBoard'
 }
