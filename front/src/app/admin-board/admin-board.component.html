@@ -13,7 +13,7 @@
                     <div *ngFor="let a of e.roles">
                         <p>Role : {{(a.code).substring(5,(a.code).length)}}</p>
                         <p><button [hidden]="btnDeleteHide" id="deleteBtn" type="button" class="btn btn-danger ml-1"
-                            (click)="delete(e.id)">delete</button></p>
+                            (click)="delete(e.id, e.username)">delete</button></p>
                     </div>
                 </div>
             </div>

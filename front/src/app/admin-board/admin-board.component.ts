@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit, Inject } from '@angular/core';
 import { TransfereService } from '../services/transfere.service';
 import jwt_decode from "jwt-decode";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin-board',
@@ -19,7 +19,7 @@ export class AdminBoardComponent implements OnInit {
   errorMsg = "";
   btnDeleteHide = true;
 
-  constructor(private httpClient: HttpClient, private tranfereService: TransfereService) { }
+  constructor(private tranfereService: TransfereService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     
@@ -53,28 +53,16 @@ export class AdminBoardComponent implements OnInit {
 
   }
 
-  delete(id) {
+  delete(id, username) {
 
-    var config = {
-      method: 'delete',
-      url: 'http://localhost:8081/api/admin/' + id,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem("accessToken")
-      }
-    };
-    let self = this;
-    self.axios(config)
-      .then(function (response) {
-        window.location.reload();
-      })
-      .catch(function (error) {
-        console.log(error);
-        document.getElementById("alertMsg").setAttribute("style", "display:block;");
-          self.errorMsg = "Error";
-          document.getElementById("alertMsg").classList.add('alert-danger');
-          document.getElementById("alertMsg").classList.remove("alert-success");
-      });
+    const dialogRef = this.dialog.open(DialogBoxConfirm, {
+      width: '350px',
+      data: { username: username, id: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    
+    });
   }
 
   getUserIdInToken() {
@@ -95,6 +83,64 @@ export class AdminBoardComponent implements OnInit {
     } else {
       return false;
     }
+  }
+  
+
+}
+export interface DialogData {
+  username: string;
+  id: string;
+}
+@Component({
+  selector: 'dial-confirm',
+  templateUrl: 'dial-confirm.html',
+})
+export class DialogBoxConfirm {
+
+  constructor(public dialog: MatDialog,
+    public dialogRef: MatDialogRef<DialogBoxConfirm>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+  onCancelClick(): void {
+    this.dialogRef.close();
+  }
+
+  onOkClick(id): void {
+    var axios = require('axios');
+    var config = {
+      method: 'delete',
+      url: 'http://localhost:8081/api/admin/' + id,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + sessionStorage.getItem("accessToken")
+      }
+    };
+    let self = this;
+    axios(config)
+      .then(function (response) {
+        const dialogRefInfo = self.dialog.open(DialogBoxConfirmInfo, {
+          width: '350px'
+        });
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'dial-confirm-info',
+  templateUrl: 'dial-confirm-info.html',
+})
+export class DialogBoxConfirmInfo {
+
+  constructor(
+    public dialogRefInfo: MatDialogRef<DialogBoxConfirmInfo>) { }
+
+  onOkClick(): void {
+    window.location.reload();
+    this.dialogRefInfo.close();
   }
 
 }
