@@ -22,5 +22,5 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     int countByUsername(String name);
     int countByEmail(String name);
     
-    List<AccountInfoDto> findAllProjectedBy();
+    List<AccountInfoDto> findAllByOrderByUsernameAsc();
 }

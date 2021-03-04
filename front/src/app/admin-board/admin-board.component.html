@@ -1,5 +1,6 @@
 <div class="container text-center col-lg-8 col-lg-offset-2">
     <h3>{{ 'ABOARD.title' | translate }}</h3>
+    <div id="alertMsg" class="alert alert-danger" role="alert" style="display: none;">{{ errorMsg }}</div>
     <div class="row">
         <div *ngIf="!users.length" class="text-center">{{ 'myAds.noAds' | translate }}</div>
 
@@ -11,6 +12,8 @@
                     <p>Email : {{e.email}}</p>
                     <div *ngFor="let a of e.roles">
                         <p>Role : {{(a.code).substring(5,(a.code).length)}}</p>
+                        <p><button [hidden]="btnDeleteHide" id="deleteBtn" type="button" class="btn btn-danger ml-1"
+                            (click)="delete(e.id)">delete</button></p>
                     </div>
                 </div>
             </div>

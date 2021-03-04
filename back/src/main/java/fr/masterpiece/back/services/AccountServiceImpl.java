@@ -3,6 +3,7 @@ package fr.masterpiece.back.services;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.modelmapper.ModelMapper;
@@ -18,8 +19,12 @@ import fr.masterpiece.back.dtos.AccountAuthDto;
 import fr.masterpiece.back.dtos.AccountDto;
 import fr.masterpiece.back.dtos.AccountInfoDto;
 import fr.masterpiece.back.entities.Account;
+import fr.masterpiece.back.entities.Animal;
+import fr.masterpiece.back.entities.Announcement;
 import fr.masterpiece.back.entities.Role;
 import fr.masterpiece.back.repositories.AccountRepository;
+import fr.masterpiece.back.repositories.AnimalRepository;
+import fr.masterpiece.back.repositories.AnnouncementRepository;
 import fr.masterpiece.back.repositories.RoleRepository;
 
 @Service
@@ -33,6 +38,12 @@ public class AccountServiceImpl implements AccountService {
 	private RoleRepository roleRepository;
 	@Autowired
 	private ModelMapper mapper;
+
+	@Autowired
+	private AnnouncementRepository announcementRepository;
+
+	@Autowired
+	private AnimalRepository animalRepository;
 
 	@Override
 	public void create(AccountDto dto) {
@@ -72,7 +83,7 @@ public class AccountServiceImpl implements AccountService {
 		accountRepository.save(account);
 
 	}
-	
+
 	@Override
 	public AccountDto get(Long id) {
 		Account account = accountRepository.findById(id).get();
@@ -84,6 +95,20 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void delete(Long id) {
 
+		Optional<Account> acc = accountRepository.findById(id);
+		List<Announcement> announcement = announcementRepository.findByOwnerId(acc);
+
+		for (Announcement j : announcement) {
+			List<Animal> animals = new ArrayList<>();
+			animals = animalRepository.findByAnnouncement(j);
+
+			for (Animal i : animals) {
+
+				animalRepository.delete(i);
+
+			}
+			announcementRepository.deleteById(j.getId());
+		}
 		accountRepository.deleteById(id);
 
 	}
@@ -96,7 +121,7 @@ public class AccountServiceImpl implements AccountService {
 		// populateAndSave(dto);
 
 	}
-	
+
 	@Override
 	public List<AccountDto> getAll() {
 		List<Account> accounts = accountRepository.findAll();
@@ -107,6 +132,7 @@ public class AccountServiceImpl implements AccountService {
 		}
 		return result;
 	}
+
 	@Override
 	public boolean uniqueEmail(String value) {
 		return !accountRepository.existsByEmail(value);
@@ -116,24 +142,21 @@ public class AccountServiceImpl implements AccountService {
 	public boolean uniqueUsername(String value) {
 		return !accountRepository.existsByUsername(value);
 	}
-	
-    @Override
-    public CustomUserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
-        AccountAuthDto user = accountRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(
-                        "no user found with username: " + username));
-        return new CustomUserDetails(user);
-    }
-    
-    @Override
-    public AccountInfoDto getCurrentUserInfo(Long id) {
-    	return accountRepository.getById(id).orElseThrow(
-                () -> new ResourceNotFoundException("with id:" + id));
-    }
-    
+
+	@Override
+	public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		AccountAuthDto user = accountRepository.findByUsername(username)
+				.orElseThrow(() -> new UsernameNotFoundException("no user found with username: " + username));
+		return new CustomUserDetails(user);
+	}
+
+	@Override
+	public AccountInfoDto getCurrentUserInfo(Long id) {
+		return accountRepository.getById(id).orElseThrow(() -> new ResourceNotFoundException("with id:" + id));
+	}
+
 	public List<AccountInfoDto> getAllAccount() {
-		return accountRepository.findAllProjectedBy();
+		return accountRepository.findAllByOrderByUsernameAsc();
 	}
 
 }

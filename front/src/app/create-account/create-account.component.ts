@@ -37,12 +37,6 @@ export class CreateAccountComponent implements OnInit {
 
     this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.profilForm.invalid) {
-      alert("Not OK");
-      return;
-    }
-
     let user = {
 
       "id": "",
