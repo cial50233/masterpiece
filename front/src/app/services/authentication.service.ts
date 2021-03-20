@@ -35,10 +35,24 @@ export class AuthenticationService {
     return false;
   }
 
+  isAdmin() : boolean{
+
+    if(localStorage.getItem("token")||sessionStorage.getItem("accessToken")){
+    const jwtDecoded = this.parseJwt(sessionStorage.getItem("accessToken"));
+      const user = jwtDecoded.authorities; 
+      return (user == "ROLE_ADMIN");
+    }else return false;
+  }
 
   logout(): void {
     localStorage.removeItem("token");
     sessionStorage.removeItem("accessToken");
     this.router.navigate(['/home']);
   }
+
+  parseJwt(token: string) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(atob(base64));
+  };
 }

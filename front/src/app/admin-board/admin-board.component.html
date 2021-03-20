@@ -1,0 +1,26 @@
+<div class="container text-center col-lg-8 col-lg-offset-2">
+    <h3>{{ 'ABOARD.title' | translate }}</h3>
+    <div id="alertMsg" class="alert alert-danger" role="alert" style="display: none;">{{ errorMsg }}</div>
+    <div class="row">
+        <div *ngIf="!users.length" class="text-center">{{ 'myAds.noAds' | translate }}</div>
+
+        <div *ngFor="let e of users | paginate: { itemsPerPage: count, currentPage: p }" class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img class="img-thumbnail" src="../../assets/img/blank-profile-picture-973460_640.png" alt="...">
+                <div class="caption">
+                    <h3>{{e.username}}</h3>
+                    <p>Email : {{e.email}}</p>
+                    <div *ngFor="let a of e.roles">
+                        <p>Role : {{(a.code).substring(5,(a.code).length)}}</p>
+                        <p><button [hidden]="btnDeleteHide" id="deleteBtn" type="button" class="btn btn-danger ml-1"
+                            (click)="delete(e.id, e.username)">delete</button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="pagination justify-content-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

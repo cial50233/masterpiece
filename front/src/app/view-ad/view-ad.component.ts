@@ -27,8 +27,6 @@ export class ViewAdComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.announcement.ownerId);
     if (this.getUserRoleInToken() == "ROLE_ADMIN" || this.getUserIdInToken() == this.announcement.ownerId) {
-
-      //console.log(this.getUserIdInToken());
       this.btnEditHide = false;
       this.btnDeleteHide = false;
     }

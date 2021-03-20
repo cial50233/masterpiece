@@ -164,6 +164,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 			AnnouncementViewDto dto = mapper.map(announcement, AnnouncementViewDto.class);
 			acc = announcement.getOwner();
 			dto.setUsername(acc.getUsername());
+			dto.setEmail(acc.getEmail());
 			animals = animalRepository.findByAnnouncement(announcement);
 
 			List<AnimalDto> animalsDto = new ArrayList<>();

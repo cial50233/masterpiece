@@ -1,6 +1,5 @@
 package fr.masterpiece.back.services;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import java.util.List;
 
@@ -27,5 +26,8 @@ public interface AccountService extends UserDetailsService {
     List<AccountDto> getAll();
 
     AccountInfoDto getCurrentUserInfo(Long id);
+    
+    
+    public List<AccountInfoDto> getAllAccount();
 
 }

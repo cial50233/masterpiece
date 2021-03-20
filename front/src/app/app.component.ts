@@ -49,7 +49,6 @@ export class AppComponent {
   }
 
   logout() {
-    //this.authenticationService.logout();
     const dialogRef = this.dialog.open(DialogBoxConfirm, {
       width: '350px',
       data: { username: this.username, email: this.email }
