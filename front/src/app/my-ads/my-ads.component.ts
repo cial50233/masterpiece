@@ -1,5 +1,4 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TransfereService } from '../services/transfere.service';
 import jwt_decode from "jwt-decode";
 
@@ -14,7 +13,7 @@ export class MyAdsComponent implements OnInit {
   // Pagination parameters.
   p: number = 1;
   count: number = 4;
-  constructor(private httpClient: HttpClient, private tranfereService: TransfereService) { }
+  constructor(private tranfereService: TransfereService) { }
 
   ngOnInit(): void {
     var axios = require('axios');
@@ -38,11 +37,8 @@ export class MyAdsComponent implements OnInit {
       });
   }
 
-
   open(e) {
-
     this.tranfereService.setData(e);
-
   }
 
   getUserIdInToken() {

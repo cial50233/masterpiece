@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ValidationService } from './../services/validation.service';
 
 @Component({

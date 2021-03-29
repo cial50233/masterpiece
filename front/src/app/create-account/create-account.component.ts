@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserInfo } from '../classes/user-info';
-import { RouterModule } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient} from '@angular/common/http';
 import { ValidationService } from './../services/validation.service';
 import { Location } from '@angular/common';
 
@@ -13,16 +11,12 @@ import { Location } from '@angular/common';
 })
 export class CreateAccountComponent implements OnInit {
 
-  private user: UserInfo;
   edited = false;
   submitted = false;
   profilForm: FormGroup;
   errorMsg = "";
 
-  constructor(private formBuilder: FormBuilder,
-    private httpClient: HttpClient,
-    private _location: Location
-    ) {
+  constructor(private formBuilder: FormBuilder,private httpClient: HttpClient,private _location: Location){
     this.profilForm = this.formBuilder.group({
       username: ['', [Validators.required, ValidationService.userNameValidator]],
       email: ['', [Validators.required, ValidationService.emailValidator]],
@@ -34,24 +28,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   public saveUser() {
-
     this.submitted = true;
-
-    let user = {
-
-      "id": "",
-      "username": this.profilForm.value.username,
-      "email": this.profilForm.value.email,
-      "password": this.profilForm.value.password
-
-    }
-    console.log(this.profilForm.value);
-    console.log(user);
-    let headers = new HttpHeaders()
-      .set("access-control-allow-origin", "http://localhost:8081")
-      .set("Access-Control-Request-Method", "GET,HEAD,PUT,PATCH,POST,DELETE")
-      .set("Content-Type", "application/json");
-
     this.httpClient
       .post('http://localhost:8081/api/accounts/create/', this.profilForm.value)
       .subscribe(
@@ -61,7 +38,6 @@ export class CreateAccountComponent implements OnInit {
           this.errorMsg = "Registered done";
           document.getElementById("alertMsg").classList.add("alert-success");
           document.getElementById("alertMsg").classList.remove('alert-danger');
-          //this.profilForm.reset();
           this.edited = true;
           this.goLog(this.profilForm.value.username, this.profilForm.value.password);
         },

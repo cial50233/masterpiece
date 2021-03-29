@@ -9,7 +9,8 @@
                 <p>From : {{e.username}}</p>
                 <p>Address : {{e.address}}</p>
                 <!--<p>{{e.jobPlace}}</p>-->
-                <p>Date : {{e.startDate | date: 'dd/MM/yyyy'}}</p> <!--<p>{{e.startDate | date: 'dd/MM/yyyy à HH:mm'}}</p>-->
+                <p>Date : {{e.startDate | date: 'dd/MM/yyyy'}}</p>
+                <p>to : {{e.endDate | date: 'dd/MM/yyyy'}}</p>
                 <p>{{e.animals.length}} animal(s)</p>
              <!--   <div *ngFor="let a of e.animals">
                     <p>Name : {{a.animalName}} ({{a.animalType}})</p>

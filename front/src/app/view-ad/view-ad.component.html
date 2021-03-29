@@ -2,16 +2,17 @@
 
     <div id="alertMsg" class="alert alert-danger" role="alert" style="display: none;">{{ errorMsg }}</div>
     <div id="main">
-        <p>{{announcement.title}}</p>
-        <p>From : {{announcement.username}}</p>
-        <p>Contact : {{announcement.email}}</p>
-        <p>Address : {{announcement.address}}</p>
-        <p>At {{announcement.jobPlace}}'s place</p>
-        <p>Date : {{announcement.startDate | date: 'dd/MM/yyyy à HH:mm'}}</p>
-        <p>{{announcement.animals.length}} animal(s)</p>
+        <h5>{{announcement.title}}</h5>
+        <p><b>From : </b> {{announcement.username}}</p>
+        <p *ngIf="announcement.email"><b>Contact : </b> {{announcement.email}}</p>
+        <p *ngIf="announcement.address"><b>Address : </b> {{announcement.address}}</p>
+        <p><b>At : </b> {{announcement.jobPlace}}'s place</p>
+        <p><b>Date start at : </b> {{announcement.startDate | date: 'dd/MM/yyyy'}}</p>
+        <p><b>To : </b> {{announcement.endDate | date: 'dd/MM/yyyy'}}</p>
+        <p><b>{{announcement.animals.length}} animal(s)</b></p>
         <ul *ngFor="let a of announcement.animals">
-            <li>Name : {{a.animalName}} ({{a.animalType}})</li>
-            <li *ngIf="a.indication">Indications : {{a.indication}}</li>
+            <li><b>Name : </b> {{a.animalName}} ({{a.animalType}})</li>
+            <li *ngIf="a.indication"><b>Indications : </b> {{a.indication}}</li>
         </ul>
     </div>
     <div>

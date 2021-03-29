@@ -31,14 +31,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from '../app/map/map.component';
 import { CarouselComponent } from '../app/carousel/carousel.component';
-// search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SearchbarComponent } from './searchbar/searchbar.component';
-
 import { SearchComponent } from './search/search.component';
 import { MiniAdsComponent } from './mini-ads/mini-ads.component';
 import { FindAroundComponent } from './find-around/find-around.component';
-import { CreateAdComponent } from './create-ad/create-ad.component';
 import { AdComponent } from './ad/ad.component';
 import { ViewAdComponent } from './view-ad/view-ad.component';
 import { TransfereService } from './services/transfere.service';
@@ -67,7 +64,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SearchComponent,
     MiniAdsComponent,
     FindAroundComponent,
-    CreateAdComponent,
     AdComponent,
     ViewAdComponent,
     ShowAdsComponent,

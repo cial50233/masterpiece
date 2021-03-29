@@ -3,7 +3,9 @@
     "title": "A propos"
   },
   "APP": {
-    "lang": "Langue"
+    "lang": "Langue",
+    "info": "Mes infos",
+    "logout": "Déconnexion"
   },
   "ABOARD": {
     "title": "Liste des utilisateurs"
@@ -12,14 +14,19 @@
     "ann": "Annonces",
     "drop1": "Voir annonces",
     "myAds": "Mes annonces",
-    "drop2": "Créer une annonce"
+    "drop2": "Créer une annonce",
+    "login": "Connexion"
   },
   "HOME": {
     "TITLE": "Trouvez ici !",
     "SELECT": "Changer la langue",
     "USERNAME": "Pseudo",
     "EMAIL": "Email",
-    "PWD": "Mot de passe"
+    "PWD": "Mot de passe",
+    "title": "S'inscrire",
+    "back": "Retour",
+    "reset": "Effacer",
+    "submit": "Envoyer"
   },
   "AD": {
     "TITLE": "Annonce",
@@ -35,7 +42,7 @@
     "indication": "Indications"
   },
   "LOGIN": {
-    "title": "Connexion",
+    "title": "S'identifier",
     "USERNAME": "Pseudo",
     "PWD": "Mot de passe",
     "btn1": "Se connecter",
