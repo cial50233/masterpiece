@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { TransfereService } from '../services/transfere.service';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -25,18 +25,15 @@ export class ViewAdComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.announcement.ownerId);
     if (this.getUserRoleInToken() == "ROLE_ADMIN" || this.getUserIdInToken() == this.announcement.ownerId) {
       this.btnEditHide = false;
       this.btnDeleteHide = false;
     }
-
   }
 
   onReturn() {
     this.location.back();
   }
-
 
   delete(id) {
     this.httpClient
@@ -66,7 +63,6 @@ export class ViewAdComponent implements OnInit {
   edit(e) {
     this.transfereService.setData(e);
     this.router.navigate(['/ad']);
-
   }
 
   getUserIdInToken() {

@@ -3,7 +3,9 @@
     "title": "About"
   },
   "APP": {
-    "lang": "Language"
+    "lang": "Language",
+    "info": "My infos",
+    "logout": "Logout"
   },
   "ABOARD": {
     "title": "Users list"
@@ -12,14 +14,19 @@
     "ann": "Announcements",
     "drop1": "See announcements",
     "myAds": "My announcements",
-    "drop2": "Create an announcement"
+    "drop2": "Create an announcement",
+    "login": "Login"
   },
   "HOME": {
     "TITLE": "Find here !",
     "SELECT": "Change language",
     "USERNAME": "Username",
     "EMAIL": "Email",
-    "PWD": "Password"
+    "PWD": "Password",
+    "title": "Sign up",
+    "back": "Back",
+    "reset": "Reset",
+    "submit": "Submit"
   },
   "AD":{
     "TITLE": "Announcement",

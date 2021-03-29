@@ -7,7 +7,6 @@ import {paths} from './app-paths'
 import { from } from 'rxjs';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { FindAroundComponent } from './find-around/find-around.component';
-import { CreateAdComponent } from './create-ad/create-ad.component';
 import { ViewAdComponent } from './view-ad/view-ad.component';
 import { AdComponent } from './ad/ad.component';
 import { ShowAdsComponent } from './show-ads/show-ads.component';
@@ -71,13 +70,6 @@ export const appRoutes: Routes = [
     path : paths.create,
 
     component : CreateAccountComponent
-
-  },
-  {
-
-    path : paths.createAd,
-
-    component : CreateAdComponent
 
   },
   {

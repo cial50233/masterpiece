@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Location } from '@angular/common';
 import jwt_decode from "jwt-decode";
-import { Router } from '@angular/router';
 import { TransfereService } from '../services/transfere.service';
 
 @Component({
@@ -48,7 +46,6 @@ export class AdComponent implements OnInit {
     });
 
     if (this.ann) {
-      console.log(this.ann.animals);
       if (this.ann.animals) {
         let self = this;
         const control = <FormArray>self.adForm.get('animals');
@@ -58,8 +55,6 @@ export class AdComponent implements OnInit {
         });
         this.adForm.patchValue(this.ann);
       }
-
-      console.log(this.adForm);
     }
   }
 
@@ -107,14 +102,9 @@ export class AdComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.adForm.value);
-    console.log(this.animalsList);
-
     if (this.ann) {
-
       var axios = require('axios');
       var data = this.adForm.value;
-
       var config = {
         method: 'put',
         url: 'http://localhost:8081/api/announcements/'+this.ann.id,
@@ -143,11 +133,8 @@ export class AdComponent implements OnInit {
           document.getElementById("alertMsg").classList.add('alert-danger');
           document.getElementById("alertMsg").classList.remove("alert-success");
         });
-
-
     }
     else {
-
       const httpOptions = {
         headers: new HttpHeaders()
           .set("Authorization", "Bearer " + sessionStorage.getItem("accessToken"))

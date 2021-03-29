@@ -9,6 +9,10 @@ border: rgb(48, 138, 85) solid 2px;
     margin: 15px auto;
     padding: 25px;
 }
-p:first-child{
+p:first-child, h5{
     text-align: center;
+}
+
+h5{
+    margin-bottom: 25px;
 }

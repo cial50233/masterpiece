@@ -1,7 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from '../services/data.service';
-import { RouterModule, Routes } from '@angular/router';
 import { TransfereService } from '../services/transfere.service';
 
 @Component({
@@ -16,7 +14,7 @@ export class MiniAdsComponent implements OnInit {
   // Pagination parameters.
   p: number = 1;
   count: number = 4;
-  constructor(private httpClient: HttpClient, private dataService: DataService, private transfereService : TransfereService) {
+  constructor(private dataService: DataService, private transfereService : TransfereService) {
 
   }
 

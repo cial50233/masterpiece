@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import custom validator to validate that password and confirm password fields match
-import { MustMatch } from '../_helpers/must-match.validator';
 import { ValidationService } from './../services/validation.service';
-import { Token } from "../token"
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import axios from 'axios';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
 
 
@@ -30,7 +25,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthenticationService,
-    private http: HttpClient,
     private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
@@ -50,10 +44,7 @@ export class LoginComponent implements OnInit {
   logIn() {
 
     const url = "http://localhost:8081/oauth/token";
-    const headers = new HttpHeaders().set(
-      "Content-Type",
-      "application/x-www-form-urlencoded"
-    );
+
     this.username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
 
