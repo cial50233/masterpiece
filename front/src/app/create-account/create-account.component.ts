@@ -40,6 +40,7 @@ export class CreateAccountComponent implements OnInit {
     this._location.back();
   }
 
+  //account data send to api
   public saveUser() {
     this.submitted = true;
     const url = 'http://localhost:8081/api/accounts/create/';
@@ -69,6 +70,7 @@ export class CreateAccountComponent implements OnInit {
       });
   }
 
+  //go log in this created account
   goLog(username, password){
     const url = "http://localhost:8081/oauth/token";
     const axios = require('axios');

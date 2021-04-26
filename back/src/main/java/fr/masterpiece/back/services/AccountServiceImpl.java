@@ -27,6 +27,7 @@ import fr.masterpiece.back.repositories.AnimalRepository;
 import fr.masterpiece.back.repositories.AnnouncementRepository;
 import fr.masterpiece.back.repositories.RoleRepository;
 
+//Account service
 @Service
 public class AccountServiceImpl implements AccountService {
 
@@ -92,6 +93,7 @@ public class AccountServiceImpl implements AccountService {
 		return dto;
 	}
 
+	//deleting a user (an account) with his announcements and animals (related to an announcement) if he has
 	@Override
 	public void delete(Long id) {
 
@@ -110,7 +112,6 @@ public class AccountServiceImpl implements AccountService {
 			announcementRepository.deleteById(j.getId());
 		}
 		accountRepository.deleteById(id);
-
 	}
 
 	@Override

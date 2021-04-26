@@ -7,6 +7,7 @@ import fr.masterpiece.back.config.CustomUserDetails;
 import fr.masterpiece.back.dtos.AccountDto;
 import fr.masterpiece.back.dtos.AccountInfoDto;
 
+// interface for Account service
 public interface AccountService extends UserDetailsService {
 
     void create(AccountDto dto);

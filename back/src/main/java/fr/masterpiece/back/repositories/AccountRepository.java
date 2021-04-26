@@ -9,6 +9,7 @@ import fr.masterpiece.back.dtos.AccountAuthDto;
 import fr.masterpiece.back.dtos.AccountInfoDto;
 import fr.masterpiece.back.entities.Account;
 
+//Account repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
 	Account findByEmail(String email);
