@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.masterpiece.back.services.AccountService;
 
+//unique email validator
 public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, String> {
 
 	@Autowired

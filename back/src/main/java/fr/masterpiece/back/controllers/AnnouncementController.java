@@ -26,6 +26,7 @@ public class AnnouncementController {
 
 	private final AnnouncementService service;
 
+	//inject service
 	protected AnnouncementController(AnnouncementService service) {
 
 		this.service = service;

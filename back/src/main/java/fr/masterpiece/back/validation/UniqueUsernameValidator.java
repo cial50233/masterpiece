@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.masterpiece.back.services.AccountService;
 
+//unique username validator
 public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
     @Autowired
     private AccountService service;
