@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.ArrayList;
 import java.util.List;
 
+//Handle exception at controller level
 @RestControllerAdvice
 public class ControllerAdvice extends ResponseEntityExceptionHandler {
 

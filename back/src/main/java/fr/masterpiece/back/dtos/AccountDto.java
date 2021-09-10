@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 import fr.masterpiece.back.validation.UniqueEmail;
 import fr.masterpiece.back.validation.UniqueUsername;
 
+//DTO with validations constraints
 public class AccountDto {
 	
 	private Long id;

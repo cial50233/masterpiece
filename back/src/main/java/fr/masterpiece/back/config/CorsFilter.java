@@ -9,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+//Cors configuration
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
