@@ -29,7 +29,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
-import { MapComponent } from '../app/map/map.component';
 import { CarouselComponent } from '../app/carousel/carousel.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SearchbarComponent } from './searchbar/searchbar.component';
@@ -59,7 +58,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NotfoundComponent,
     LoginComponent,
     SearchbarComponent,
-    MapComponent,
     CarouselComponent,
     SearchComponent,
     MiniAdsComponent,

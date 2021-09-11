@@ -68,7 +68,9 @@ export class AdminBoardComponent implements OnInit {
   getUserIdInToken() {
     const token = sessionStorage.getItem("accessToken");
     if (token) {
-      var decoded = jwt_decode(token);
+      var decoded : any;
+      
+      decoded = jwt_decode(token);
       return decoded.userId;
     } else {
       return false;
@@ -78,7 +80,9 @@ export class AdminBoardComponent implements OnInit {
   getUserRoleInToken() {
     const token = sessionStorage.getItem("accessToken");
     if (token) {
-      var decoded = jwt_decode(token);
+      
+      var decoded : any;
+      decoded = jwt_decode(token);
       return decoded.authorities;
     } else {
       return false;
