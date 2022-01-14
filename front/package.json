@@ -34,7 +34,7 @@
     "jwt-decode": "^3.0.0",
     "ng2-search-filter": "^0.5.1",
     "ngx-pagination": "^5.0.0",
-    "node-forge": "^0.10.0",
+    "node-forge": "^1.0.0",
     "popper.js": "^1.16.1",
     "rxjs": "^6.6.3",
     "serialize-javascript": "^4.0.0",
