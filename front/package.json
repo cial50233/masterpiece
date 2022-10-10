@@ -27,7 +27,7 @@
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "@types/ol": "^6.4.1",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "bootstrap": "^4.5.3",
     "i18n": "^0.8.6",
     "jquery": "^3.5.1",
