@@ -38,7 +38,7 @@
     "popper.js": "^1.16.1",
     "rxjs": "^6.6.3",
     "serialize-javascript": "^4.0.0",
-    "translate": "^1.1.2",
+    "translate": "^1.4.1",
     "tslib": "^1.14.1",
     "zone.js": "~0.10.2"
   },
